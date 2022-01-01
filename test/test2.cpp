@@ -47,5 +47,7 @@ int main(int argc, char **argv) {
     Amd64Writer *writer = new Amd64Writer(mod);
     writer->compile();
     writer->dump();
+    writer->writeToFile();
+    writer->build();
     return 0;
 }

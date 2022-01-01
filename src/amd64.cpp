@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 
 #include <amd64.hpp>
 #include <llir.hpp>
@@ -148,7 +150,23 @@ void Amd64Writer::dump() {
 }
 
 void Amd64Writer::writeToFile() {
+    std::string path = "/tmp/" + mod->getName() + ".s";
+    std::ofstream writer(path);
+    writer << assembly << std::endl;
+    writer.close();
+}
 
+// TODO: This function probably should be replaced
+void Amd64Writer::build() {
+    std::string asmPath = "/tmp/" + mod->getName() + ".s";
+    std::string objPath = "/tmp/" + mod->getName() + ".o";
+    std::string binPath = "/tmp/" + mod->getName();
+    
+    std::string cmd1 = "as " + asmPath + " -o " + objPath;
+    std::string cmd2 = "gcc " + objPath + " -o " + binPath;
+    
+    system(cmd1.c_str());
+    system(cmd2.c_str());
 }
 
 std::string Amd64Writer::getSizeForType(Type *type) {
