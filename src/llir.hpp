@@ -6,6 +6,17 @@
 namespace LLIR {
 
 // Enumerations
+enum class DataType {
+    Void,
+    I8,
+    I16,
+    I32,
+    I64,
+    F32,
+    F64,
+    Ptr
+};
+
 enum class Linkage {
     Global,
     Local,
@@ -82,6 +93,20 @@ private:
 };
 
 //
+// Represents a data type
+//
+class Type {
+public:
+    explicit Type(DataType type) {
+        this->type = type;
+    }
+    
+    void print();
+protected:
+    DataType type = DataType::Void;
+};
+
+//
 // Represents a function
 //
 class Function {
@@ -89,6 +114,12 @@ public:
     explicit Function(std::string name, Linkage linkage) {
         this->name = name;
         this->linkage = linkage;
+        dataType = new Type(DataType::Void);
+    }
+    
+    void setDataType(Type *d) {
+        if (dataType) delete dataType;
+        dataType = d;
     }
     
     void addBlock(Block *block) { blocks.push_back(block); }
@@ -98,6 +129,7 @@ public:
     
     void print();
 private:
+    Type *dataType;
     std::string name = "";
     Linkage linkage = Linkage::Local;
     std::vector<Block *> blocks;
@@ -133,6 +165,12 @@ class Instruction {
 public:
     explicit Instruction(InstrType type) {
         this->type = type;
+        dataType = new Type(DataType::Void);
+    }
+    
+    void setDataType(Type *d) {
+        if (dataType) delete dataType;
+        dataType = d;
     }
     
     void setDest(Operand *d) { dest = d; }
@@ -142,6 +180,7 @@ public:
     
     void print();
 protected:
+    Type *dataType;
     InstrType type = InstrType::None;
     Operand *dest = nullptr;
     Operand *src1 = nullptr;

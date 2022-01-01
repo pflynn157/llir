@@ -10,12 +10,22 @@ void Module::print() {
     for (Function *func : functions) func->print();
 }
 
-void Function::print() {
-    if (blocks.size() == 0) {
-        std::cout << "def ";
-    } else {
-        std::cout << "func ";
+void Type::print() {
+    switch (type) {
+        case DataType::Void: std::cout << "void"; break;
+        case DataType::I8: std::cout << "i8"; break;
+        case DataType::I16: std::cout << "i16"; break;
+        case DataType::I32: std::cout << "i32"; break;
+        case DataType::I64: std::cout << "i64"; break;
+        case DataType::F32: std::cout << "f32"; break;
+        case DataType::F64: std::cout << "f64"; break;
+        case DataType::Ptr: std::cout << "ptr"; break;
     }
+}
+
+void Function::print() {
+    dataType->print();
+    std::cout << " ";
     switch (linkage) {
         case Linkage::Local: std::cout << "(lcl) "; break;
         case Linkage::Global: std::cout << "(gbl) "; break;
@@ -71,6 +81,8 @@ void Instruction::print() {
         case InstrType::Load: std::cout << "load "; break;
         case InstrType::Store: std::cout << "store "; break;
     }
+    dataType->print();
+    std::cout << " ";
     
     if (dest) dest->print();
     if (src1) {
