@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include <llir.hpp>
+#include <amd64.hpp>
 using namespace LLIR;
 
 int main(int argc, char **argv) {
@@ -40,6 +41,9 @@ int main(int argc, char **argv) {
     ret->setOperand1(new Reg("2"));
     b1->addInstruction(ret);
     
-    mod->print();
+    //mod->print();
+    Amd64Writer *writer = new Amd64Writer(mod);
+    writer->compile();
+    writer->dump();
     return 0;
 }
