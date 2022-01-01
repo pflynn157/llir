@@ -4,6 +4,7 @@
 #include <map>
 
 #include <llir.hpp>
+#include <x86ir.hpp>
 
 namespace LLIR {
 
@@ -19,7 +20,7 @@ protected:
     std::string getSizeForType(Type *type);
 private:
     Module *mod = nullptr;
-    std::string assembly = "";
+    X86File *file;
     
     int stackPos = 0;
     std::map<std::string, int> memMap;

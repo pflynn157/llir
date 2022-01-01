@@ -9,44 +9,41 @@ namespace LLIR {
 
 Amd64Writer::Amd64Writer(Module *mod) {
     this->mod = mod;
-    
-    // GAS specific
-    assembly += ".intel_syntax noprefix\n";
+    file = new X86File(mod->getName());
 }
 
 void Amd64Writer::compile() {
     // Data section
-    assembly += ".data\n";
     
     // Text section
-    assembly += ".text\n";
     for (int i = 0; i<mod->getFunctionCount(); i++) {
-        assembly += "\n";
-        
         Function *func = mod->getFunction(i);
         switch (func->getLinkage()) {
             case Linkage::Global: {
-                assembly += ".globl " + func->getName() + "\n";
-                assembly += ".type " + func->getName() + ",@function\n";
+                X86GlobalFunc *x86Func = new X86GlobalFunc(func->getName());
+                file->addCode(x86Func);
             } break;
             
             case Linkage::Local: {} break;
             
             case Linkage::Extern: {
-                assembly += ".extern " + func->getName() + "\n";
+                //assembly += ".extern " + func->getName() + "\n";
                 continue;
             } break;
         }
         
-        assembly += func->getName() + ":\n";
-        assembly += "  push rbp\n";
-        assembly += "  mov rbp, rsp\n";
-        assembly += std::string("  sub rsp, ") + std::to_string(func->getStackSize()) + "\n";
+        // Setup the stack
+        X86Push *p = new X86Push(new X86Reg64(X86Reg::BP));
+        file->addCode(p);
+        X86Mov *mov = new X86Mov(new X86Reg64(X86Reg::BP), new X86Reg64(X86Reg::SP));
+        file->addCode(mov);
+        X86Sub *sub = new X86Sub(new X86Reg64(X86Reg::SP), new X86Imm(func->getStackSize()));
+        file->addCode(sub);
         
         // Blocks
         for (int j = 0; j<func->getBlockCount(); j++) {
             Block *block = func->getBlock(j);
-            assembly += block->getName() + ":\n";
+            file->addCode(new X86Label(block->getName()));
             
             // Instructions
             for (int k = 0; k<block->getInstrCount(); k++) {
@@ -55,14 +52,14 @@ void Amd64Writer::compile() {
         }
         
         // Clean up the stack and leave
-        assembly += "  leave\n";
-        assembly += "  ret\n";
+        file->addCode(new X86Leave);
+        file->addCode(new X86Ret);
     }
 }
 
 void Amd64Writer::compileInstruction(Instruction *instr) {
     switch (instr->getType()) {
-        case InstrType::None: assembly += "nop\n"; break;
+        case InstrType::None: break;
         
         case InstrType::Ret: {
             Operand *src = instr->getOperand1();
@@ -120,9 +117,9 @@ void Amd64Writer::compileInstruction(Instruction *instr) {
             Reg *srcReg = static_cast<Reg *>(instr->getOperand1());
             int pos = memMap[srcReg->getName()];
             
-            assembly += "  mov eax, ";
+            /*assembly += "  mov eax, ";
             assembly += getSizeForType(instr->getDataType());
-            assembly += " [rbp-" + std::to_string(pos) + "]\n";
+            assembly += " [rbp-" + std::to_string(pos) + "]\n";*/
         } break;
         
         case InstrType::Store: {
@@ -134,9 +131,9 @@ void Amd64Writer::compileInstruction(Instruction *instr) {
                 case OpType::Imm: {
                     Imm *imm = static_cast<Imm *>(src);
                     
-                    assembly += "  mov " + getSizeForType(instr->getDataType());
+                    /*assembly += "  mov " + getSizeForType(instr->getDataType());
                     assembly += " [rbp-" + std::to_string(pos) + "]";
-                    assembly += ", " + std::to_string(imm->getValue()) + "\n";
+                    assembly += ", " + std::to_string(imm->getValue()) + "\n";*/
                 } break;
                 
                 case OpType::Reg: break;
@@ -146,13 +143,13 @@ void Amd64Writer::compileInstruction(Instruction *instr) {
 }
 
 void Amd64Writer::dump() {
-    std::cout << assembly << std::endl;
+    std::cout << file->print() << std::endl;
 }
 
 void Amd64Writer::writeToFile() {
     std::string path = "/tmp/" + mod->getName() + ".s";
     std::ofstream writer(path);
-    writer << assembly << std::endl;
+    writer << file->print() << std::endl;
     writer.close();
 }
 
