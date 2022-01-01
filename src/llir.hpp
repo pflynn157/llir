@@ -124,9 +124,11 @@ public:
     }
     
     void addBlock(Block *block) { blocks.push_back(block); }
+    void setStackSize(int size) { stackSize = size; }
     
     std::string getName() { return name; }
     Linkage getLinkage() { return linkage; }
+    int getStackSize() { return stackSize; }
     
     void print();
 private:
@@ -134,6 +136,7 @@ private:
     std::string name = "";
     Linkage linkage = Linkage::Local;
     std::vector<Block *> blocks;
+    int stackSize = 0;
 };
 
 //

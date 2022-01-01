@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
     //     ret 5
     Function *mainFunc = new Function("main", Linkage::Global);
     mainFunc->setDataType(new Type(DataType::I32));
+    mainFunc->setStackSize(16);
     mod->addFunction(mainFunc);
     Block *b1 = new Block("entry");
     mainFunc->addBlock(b1);
