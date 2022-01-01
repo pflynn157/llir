@@ -52,6 +52,7 @@ enum class InstrType {
     Ble,
     
     // Memory
+    Alloca,
     Load,
     Store
 };

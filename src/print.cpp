@@ -55,6 +55,11 @@ void Block::print() {
 }
 
 void Instruction::print() {
+    if (dest) {
+        dest->print();
+        std::cout << " = ";
+    }
+
     switch (type) {
         case InstrType::None: std::cout << "?? "; break;
         
@@ -78,15 +83,14 @@ void Instruction::print() {
         case InstrType::Blt: std::cout << "blt "; break;
         case InstrType::Ble: std::cout << "ble "; break;
         
+        case InstrType::Alloca: std::cout << "alloca "; break;
         case InstrType::Load: std::cout << "load "; break;
         case InstrType::Store: std::cout << "store "; break;
     }
     dataType->print();
     std::cout << " ";
     
-    if (dest) dest->print();
     if (src1) {
-        if (dest) std::cout << ", ";
         src1->print();
     }
     if (src2) {
