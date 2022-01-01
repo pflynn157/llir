@@ -42,7 +42,8 @@ int main(int argc, char **argv) {
     ret->setOperand1(new Reg("2"));
     b1->addInstruction(ret);
     
-    //mod->print();
+    mod->print();
+    std::cout << "---------------" << std::endl;
     Amd64Writer *writer = new Amd64Writer(mod);
     writer->compile();
     writer->dump();

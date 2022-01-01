@@ -102,6 +102,8 @@ public:
         this->type = type;
     }
     
+    DataType getType() { return type; }
+    
     void print();
 protected:
     DataType type = DataType::Void;
@@ -130,6 +132,9 @@ public:
     Linkage getLinkage() { return linkage; }
     int getStackSize() { return stackSize; }
     
+    int getBlockCount() { return blocks.size(); }
+    Block *getBlock(int pos) { return blocks.at(pos); }
+    
     void print();
 private:
     Type *dataType;
@@ -155,6 +160,9 @@ public:
     void addInstruction(Instruction *i) { instrs.push_back(i); }
     
     std::string getName() { return name; }
+    
+    int getInstrCount() { return instrs.size(); }
+    Instruction *getInstruction(int pos) { return instrs.at(pos); }
     
     void print();
 private:
@@ -182,6 +190,13 @@ public:
     void setOperand2(Operand *o) { src2 = o; }
     void setOperand3(Operand *o) { src3 = o; }
     
+    InstrType getType() { return type; }
+    Type *getDataType() { return dataType; }
+    Operand *getDest() { return dest; }
+    Operand *getOperand1() { return src1; }
+    Operand *getOperand2() { return src2; }
+    Operand *getOperand3() { return src3; }
+    
     void print();
 protected:
     Type *dataType;
@@ -201,6 +216,8 @@ public:
         this->type = type;
     }
     
+    OpType getType() { return type; }
+    
     virtual void print() {}
 protected:
     OpType type = OpType::None;
@@ -213,6 +230,8 @@ public:
         this->imm = imm;
     }
     
+    uint64_t getValue() { return imm; }
+    
     void print();
 private:
     uint64_t imm = 0;
@@ -224,6 +243,8 @@ public:
     explicit Reg(std::string name) : Operand(OpType::Reg) {
         this->name = name;
     }
+    
+    std::string getName() { return name; }
     
     void print();
 private:
