@@ -1,25 +1,38 @@
 #include <iostream>
+#include <cstdlib>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <llir.hpp>
+#include <irbuilder.hpp>
+#include <amd64.hpp>
 using namespace LLIR;
 
 int main(int argc, char **argv) {
-    Module *mod = new Module("mod1");
+    Module *mod = new Module("test1");
+    IRBuilder *builder = new IRBuilder(mod);
     
     //
     // func main:
     //     ret 5
-    Function *mainFunc = new Function("main", Linkage::Global);
-    mainFunc->setDataType(new Type(DataType::I32));
+    Type *i32Type = Type::createI32Type();
+    Function *mainFunc = Function::Create("main", Linkage::Global, i32Type);
     mod->addFunction(mainFunc);
-    Block *b1 = new Block("entry");
-    mainFunc->addBlock(b1);
+    builder->setCurrentFunction(mainFunc);
+    builder->createBlock("entry");
     
-    Instruction *ret = new Instruction(InstrType::Ret);
-    ret->setDataType(new Type(DataType::I32));
-    ret->setOperand1(new Imm(5));
-    b1->addInstruction(ret);
+    Operand *i32 = builder->createI32(5);
+    builder->createRet(i32Type, i32);
     
     mod->print();
+    
+    // Generate a binary
+    mkdir("./test_bin", 0700);
+    
+    LLIR::Amd64Writer *writer = new LLIR::Amd64Writer(mod);
+    writer->compile();
+    writer->writeToFile("./test_bin/test1.s");
+    system("gcc ./test_bin/test1.s -o ./test_bin/test1");
+    
     return 0;
 }
