@@ -1,16 +1,39 @@
 #include <iostream>
+#include <cstdlib>
+#include <sys/stat.h>
+#include <sys/types.h>
 
-#include <x86ir.hpp>
+#include <llir.hpp>
+#include <irbuilder.hpp>
+#include <amd64.hpp>
 using namespace LLIR;
 
 int main(int argc, char **argv) {
-    X86File *file = new X86File("first");
-    X86GlobalFunc *mainFunc = new X86GlobalFunc("main");
-    file->addCode(mainFunc);
+    Module *mod = new Module("test3");
+    IRBuilder *builder = new IRBuilder(mod);
     
-    X86Push *p1 = new X86Push(new X86Reg64(X86Reg::BP));
-    file->addCode(p1);
-
-    std::cout << file->print() << std::endl;
+    //
+    // func main:
+    //     ret 0
+    Type *i32Type = Type::createI32Type();
+    Function *mainFunc = Function::Create("main", Linkage::Global, i32Type);
+    mod->addFunction(mainFunc);
+    builder->setCurrentFunction(mainFunc);
+    builder->createBlock("entry");
+    
+    Operand *i32 = builder->createI32(0);
+    builder->createRet(i32Type, i32);
+    
+    mod->print();
+    mod->transform();
+    
+    // Generate a binary
+    mkdir("./test_bin", 0700);
+    
+    LLIR::Amd64Writer *writer = new LLIR::Amd64Writer(mod);
+    writer->compile();
+    writer->writeToFile("/tmp/test3.s");
+    system("gcc /tmp/test3.s -o ./test_bin/test3");
+    
     return 0;
 }
