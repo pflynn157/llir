@@ -6,5 +6,5 @@ add_compile_options(-std=c++14)
 include_directories(src compiler)
 
 add_subdirectory(src)
-add_subdirectory(test)
+add_subdirectory(examples)
 add_subdirectory(compiler)
