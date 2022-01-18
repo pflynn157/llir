@@ -1,4 +1,4 @@
-;module test1
+#module test1
 
 global i32 main() {
 entry:

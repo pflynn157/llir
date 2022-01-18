@@ -5,7 +5,7 @@
 namespace LLIR {
 
 void Module::print() {
-    std::cout << ";module " << name << std::endl;
+    std::cout << "#module " << name << std::endl;
     std::cout << std::endl;
     for (Function *func : functions) func->print();
 }

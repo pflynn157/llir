@@ -3,7 +3,8 @@ project(llir)
 
 add_compile_options(-std=c++14)
 
-include_directories(src)
+include_directories(src compiler)
 
 add_subdirectory(src)
 add_subdirectory(test)
+add_subdirectory(compiler)
