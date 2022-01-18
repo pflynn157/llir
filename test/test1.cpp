@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     builder->setCurrentFunction(mainFunc);
     builder->createBlock("entry");
     
-    Operand *i32 = builder->createI32(5);
+    Operand *i32 = builder->createI32(0);
     builder->createRet(i32Type, i32);
     
     mod->print();
@@ -31,8 +31,8 @@ int main(int argc, char **argv) {
     
     LLIR::Amd64Writer *writer = new LLIR::Amd64Writer(mod);
     writer->compile();
-    writer->writeToFile("./test_bin/test1.s");
-    system("gcc ./test_bin/test1.s -o ./test_bin/test1");
+    writer->writeToFile("/tmp/test1.s");
+    system("gcc /tmp/test1.s -o ./test_bin/test1");
     
     return 0;
 }
