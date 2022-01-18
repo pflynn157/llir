@@ -1,53 +1,77 @@
 #include <iostream>
+#include <cstdlib>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 #include <llir.hpp>
+#include <irbuilder.hpp>
 #include <amd64.hpp>
 using namespace LLIR;
 
 int main(int argc, char **argv) {
-    Module *mod = new Module("mod1");
+    Module *mod = new Module("test2");
+    IRBuilder *builder = new IRBuilder(mod);
     
     //
     // func main:
+    //     %0 = alloca i32
     //     %1 = alloca i32
-    //     store i32 10, %1
-    //     %2 = load i32 %1
-    //     ret 5
-    Function *mainFunc = new Function("main", Linkage::Global);
-    mainFunc->setDataType(new Type(DataType::I32));
-    mainFunc->setStackSize(16);
+    //     %2 = alloca i32
+    //     store 20, %0
+    //     store 30, %1
+    //     %4 = load %0
+    //     %5 = load %1
+    //     %6 = add %4, %5
+    //     store %6, %2
+    //     %7 = load %2
+    //     %8 = sub %7, 50
+    //     ret %8
+    Type *i32Type = Type::createI32Type();
+    Function *mainFunc = Function::Create("main", Linkage::Global, i32Type);
     mod->addFunction(mainFunc);
-    Block *b1 = new Block("entry");
-    mainFunc->addBlock(b1);
+    builder->setCurrentFunction(mainFunc);
+    builder->createBlock("entry");
     
-    Instruction *alloc1 = new Instruction(InstrType::Alloca);
-    alloc1->setDataType(new Type(DataType::I32));
-    alloc1->setDest(new Reg("1"));
-    b1->addInstruction(alloc1);
+    //     %0 = alloca i32
+    //     %1 = alloca i32
+    //     %2 = alloca i32
+    Reg *r0 = builder->createAlloca(i32Type);
+    Reg *r1 = builder->createAlloca(i32Type);
+    Reg *r2 = builder->createAlloca(i32Type);
     
-    Instruction *store = new Instruction(InstrType::Store);
-    store->setDataType(new Type(DataType::I32));
-    store->setOperand1(new Imm(10));
-    store->setOperand2(new Reg("1"));
-    b1->addInstruction(store);
+    //     store 20, %0
+    //     store 30, %1
+    Operand *imm1 = builder->createI32(20);
+    Operand *imm2 = builder->createI32(30);
+    builder->createStore(i32Type, imm1, r0);
+    builder->createStore(i32Type, imm2, r1);
     
-    Instruction *load = new Instruction(InstrType::Load);
-    load->setDataType(new Type(DataType::I32));
-    load->setDest(new Reg("2"));
-    load->setOperand1(new Reg("1"));
-    b1->addInstruction(load);
+    //     %4 = load %0
+    //     %5 = load %1
+    //     %6 = add %4, %5
+    //     store %6, %2
+    Operand *r4 = builder->createLoad(i32Type, r0);
+    Operand *r5 = builder->createLoad(i32Type, r1);
+    Operand *r6 = builder->createAdd(i32Type, r4, r5);
+    builder->createStore(i32Type, r6, r2);
     
-    Instruction *ret = new Instruction(InstrType::Ret);
-    ret->setDataType(new Type(DataType::I32));
-    ret->setOperand1(new Reg("2"));
-    b1->addInstruction(ret);
+    //     %7 = load %2
+    //     %8 = sub %7, 50
+    //     ret %8
+    Operand *r7 = builder->createLoad(i32Type, r2);
+    Operand *r8 = builder->createSub(i32Type, r7, builder->createI32(50));
+    builder->createRet(i32Type, r8);
     
     mod->print();
-    std::cout << "---------------" << std::endl;
-    Amd64Writer *writer = new Amd64Writer(mod);
+    mod->transform();
+    
+    // Generate a binary
+    mkdir("./test_bin", 0700);
+    
+    LLIR::Amd64Writer *writer = new LLIR::Amd64Writer(mod);
     writer->compile();
-    writer->dump();
-    writer->writeToFile();
-    writer->build();
+    writer->writeToFile("/tmp/test2.s");
+    system("gcc /tmp/test2.s -o ./test_bin/test2");
+    
     return 0;
 }

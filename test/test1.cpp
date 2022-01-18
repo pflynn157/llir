@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     
     //
     // func main:
-    //     ret 5
+    //     ret 0
     Type *i32Type = Type::createI32Type();
     Function *mainFunc = Function::Create("main", Linkage::Global, i32Type);
     mod->addFunction(mainFunc);
@@ -25,6 +25,7 @@ int main(int argc, char **argv) {
     builder->createRet(i32Type, i32);
     
     mod->print();
+    mod->transform();
     
     // Generate a binary
     mkdir("./test_bin", 0700);

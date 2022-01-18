@@ -6,7 +6,7 @@ echo ""
 
 (
 cd $TEST_DIR
-for d in ./*/
+for d in ./*
 do
     CURRENT=`basename $d`
     echo $CURRENT
