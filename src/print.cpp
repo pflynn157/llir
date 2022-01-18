@@ -38,13 +38,13 @@ void StructType::print() {
 }
 
 void Function::print() {
+    switch (linkage) {
+        case Linkage::Local: std::cout << "local "; break;
+        case Linkage::Global: std::cout << "global "; break;
+        case Linkage::Extern: std::cout << "extern "; break;
+    }
     dataType->print();
     std::cout << " ";
-    switch (linkage) {
-        case Linkage::Local: std::cout << "(lcl) "; break;
-        case Linkage::Global: std::cout << "(gbl) "; break;
-        case Linkage::Extern: std::cout << "(ext) "; break;
-    }
     std::cout << name;
     
     std::cout << "(";

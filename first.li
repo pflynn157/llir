@@ -1,0 +1,7 @@
+;module test1
+
+global i32 main() {
+entry:
+  ret i32 0;
+}
+
