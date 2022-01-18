@@ -23,6 +23,20 @@ void Type::print() {
     }
 }
 
+void PointerType::print() {
+    std::cout << "*";
+    baseType->print();
+}
+
+void StructType::print() {
+    std::cout << name << "{";
+    for (int i = 0; i<elementTypes.size(); i++) {
+        elementTypes.at(i)->print();
+        if (i + 1 < elementTypes.size()) std::cout << ", ";
+    }
+    std::cout << "}";
+}
+
 void Function::print() {
     dataType->print();
     std::cout << " ";
@@ -33,8 +47,14 @@ void Function::print() {
     }
     std::cout << name;
     
-    // TODO: args
-    std::cout << "()";
+    std::cout << "(";
+    for (int i = 0; i<args.size(); i++) {
+        varRegs.at(i)->print();
+        std::cout << ":";
+        args.at(i)->print();
+        if (i + 1 < args.size()) std::cout << ", ";
+    }
+    std::cout << ")";
     
     if (blocks.size() == 0) {
         std::cout << ";";
@@ -75,16 +95,24 @@ void Instruction::print() {
         case InstrType::URem: std::cout << "urem "; break;
         case InstrType::SRem: std::cout << "srem "; break;
         
+        case InstrType::And: std::cout << "and "; break;
+        case InstrType::Or: std::cout << "or "; break;
+        case InstrType::Xor: std::cout << "xor "; break;
+        case InstrType::Not: std::cout << "not "; break;
+        
         case InstrType::Br: std::cout << "br "; break;
         case InstrType::Beq: std::cout << "beq "; break;
         case InstrType::Bne: std::cout << "bne "; break;
         case InstrType::Bgt: std::cout << "bgt "; break;
-        case InstrType::Bge: std::cout << "bge "; break;
         case InstrType::Blt: std::cout << "blt "; break;
+        case InstrType::Bge: std::cout << "bge "; break;
         case InstrType::Ble: std::cout << "ble "; break;
         
         case InstrType::Alloca: std::cout << "alloca "; break;
+        case InstrType::StructLoad: std::cout << "load.struct "; break;
         case InstrType::Load: std::cout << "load "; break;
+        case InstrType::GEP: std::cout << "getelementptr "; break;
+        case InstrType::StructStore: std::cout << "store.struct "; break;
         case InstrType::Store: std::cout << "store "; break;
     }
     dataType->print();
@@ -104,6 +132,26 @@ void Instruction::print() {
     std::cout << ";" << std::endl;
 }
 
+void FunctionCall::print() {
+    if (dest) {
+        dest->print();
+        std::cout << " = ";
+    }
+    if (dataType) {
+    dataType->print();
+    std::cout << " ";
+    }
+    
+    std::cout << name << "(";
+    for (int i = 0; i<args.size(); i++) {
+        args.at(i)->print();
+        if (i + 1 < args.size()) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << ");" << std::endl;
+}
+
 void Imm::print() {
     std::cout << imm;
 }
@@ -114,6 +162,26 @@ void Reg::print() {
 
 void Label::print() {
     std::cout << name;
+}
+
+void StringPtr::print() {
+    std::cout << name << "(\"" << val << "\")";
+}
+
+void Mem::print() {
+    std::cout << "[" << name << "]";
+}
+
+void HReg::print() {
+    std::cout << "r" << num;
+}
+
+void AReg::print() {
+    std::cout << "a" << num;
+}
+
+void PReg::print() {
+    std::cout << "p" << num;
 }
 
 } // end namespace LLIR

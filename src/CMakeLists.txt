@@ -3,7 +3,9 @@ project(llir_src)
 
 set(SRC
     amd64.cpp
+    irbuilder.cpp
     print.cpp
+    transform.cpp
     x86ir.cpp
 )
 
