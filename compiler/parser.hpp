@@ -15,6 +15,7 @@ protected:
     Type *getType(Token token);
     bool buildFunction(Token linkToken);
     bool buildBody();
+    bool buildInstruction(Token instrType, Operand *dest = nullptr);
 private:
     Scanner *scanner;
     Module *mod;

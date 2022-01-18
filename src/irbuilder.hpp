@@ -57,6 +57,10 @@ public:
     Reg *createCall(Type *type, std::string name, std::vector<Operand *> args);
     Instruction *createRetVoid();
     Instruction *createRet(Type *type, Operand *op);
+    
+    void addInstruction(Instruction *instr) {
+        currentBlock->addInstruction(instr);
+    }
 protected:
     Operand *createBinaryOp(Type *type, Operand *op1, Operand *op2, InstrType iType, Block *destBlock = nullptr);
 private:

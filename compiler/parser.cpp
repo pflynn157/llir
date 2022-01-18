@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 #include <parser.hpp>
 
@@ -46,6 +47,7 @@ Type *Parser::getType(Token token) {
 // Builds a function
 //
 bool Parser::buildFunction(Token linkToken) {
+    // First, build the type
     Token token = scanner->getNext();
     Type *type = getType(token);
     if (type == nullptr) {
@@ -102,7 +104,9 @@ bool Parser::buildFunction(Token linkToken) {
     return true;
 }
 
+//
 // Builds a function body
+//
 bool Parser::buildBody() {
     Token token = scanner->getNext();
     
@@ -121,17 +125,61 @@ bool Parser::buildBody() {
                 builder->createBlock(name);
             } break;
             
-            // Instructions
-            case Ret: std::cout << "RET" << std::endl; break;
+            // TODO: Destination operands
             
-            default: {
-                std::cerr << "Error: Invalid token in function body." << std::endl;
-                return false;
-            }
+            default: buildInstruction(token);
         }
     
         token = scanner->getNext();
     }
+    
+    return true;
+}
+
+//
+// Builds an instruction
+//
+bool Parser::buildInstruction(Token instrType, Operand *dest) {
+    // The type
+    Token token = scanner->getNext();
+    Type *type = getType(token);
+    if (type == nullptr) {
+        std::cerr << "Error: Invalid token." << std::endl;
+        return false;
+    }
+    
+    // Operands
+    std::vector<Operand *> operands;
+    
+    token = scanner->getNext();
+    while (token.type != Eof && token.type != SemiColon) {
+        switch (token.type) {
+            case Int32: operands.push_back(new Imm(token.i32_val)); break;
+            
+            default: {}
+        }
+        
+        token = scanner->getNext();
+        if (token.type == Comma) {
+            token = scanner->getNext();
+        }
+    }
+    
+    // Now, build the instruction
+    Instruction *instr;
+    switch (instrType.type) {
+        case Ret: {
+            instr = new Instruction(InstrType::Ret);
+            if (!operands.empty()) instr->setOperand1(operands.at(0));
+        } break;
+        
+        default: {}
+    }
+    
+    instr->setDataType(type);
+    if (dest) instr->setDest(dest);
+    
+    builder->addInstruction(instr);
     
     return true;
 }
