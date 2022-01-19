@@ -244,10 +244,19 @@ bool Parser::buildDestInstruction() {
 bool Parser::buildInstruction(Token instrType, Operand *dest) {
     // The type
     Token token = scanner->getNext();
+    int ptrLevel = 0;
+    while (token.type != Eof && token.type == Pointer) {
+        ++ptrLevel;
+        token = scanner->getNext();
+    }
     Type *type = getType(token);
     if (type == nullptr) {
-        std::cerr << "Error: Invalid token." << std::endl;
+        std::cerr << "Error: Invalid type for function." << std::endl;
         return false;
+    }
+    
+    for (int i = 0; i<ptrLevel; i++) {
+        type = new PointerType(type);
     }
     
     // Operands

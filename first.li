@@ -1,53 +1,40 @@
 #module a.out
 
+extern *i8 malloc(%0:*i8);
 extern void printf(%0:*i8);
 extern void puts(%0:*i8);
 
-global void test1(%0:i8) {
-entry:
-  %1 = alloca i8 ;
-  store i8 %0, %1;
-  %2 = load i8 %1;
-  %3 = beq i8 %2, 20, true0;
-  br void false0;
-true0:
-  call void puts($STR0("True"));
-  br void end0;
-false0:
-  call void puts($STR1("False"));
-  br void end0;
-end0:
-  %4 = load i8 %1;
-  call void printf($STR2("%d\n"), %4);
-  ret void ;
-}
-global void test2(%0:i8) {
-entry:
-  %1 = alloca i8 ;
-  store i8 %0, %1;
-  %2 = load i8 %1;
-  %3 = beq i8 %2, 20, true1;
-  br void false1;
-true1:
-  call void puts($STR3("True"));
-  br void end1;
-false1:
-  call void puts($STR4("False"));
-  br void end1;
-end1:
-  %4 = load i8 %1;
-  call void printf($STR5("%d\n"), %4);
-  ret void ;
-}
 global i32 main() {
 entry:
-  %0 = alloca i8 ;
-  store i8 20, %0;
-  %1 = alloca i8 ;
-  store i8 31, %1;
-  %2 = load i8 %0;
-  call void test1(%2);
-  %3 = load i8 %1;
-  call void test2(%3);
+  %0 = alloca **i8 ;
+  %1 = call *void malloc(24);
+  store *void %1, %0;
+  %2 = load **i8 %0;
+  %3 = getelementptr **i8 %2, 0;
+  store *i8 $STR0("Hi!"), %3;
+  %4 = load **i8 %0;
+  %5 = getelementptr **i8 %4, 1;
+  store *i8 $STR1("How are you?"), %5;
+  %6 = load **i8 %0;
+  %7 = getelementptr **i8 %6, 2;
+  store *i8 $STR2("Good!"), %7;
+  %8 = alloca i32 ;
+  store i32 0, %8;
+  br void loop_cmp0;
+loop_body0:
+  %11 = load i32 %8;
+  %12 = load **i8 %0;
+  %13 = getelementptr **i8 %12, %11;
+  %14 = load *i8 %13;
+  call void puts(%14);
+  %15 = load i32 %8;
+  %16 = add i32 %15, 1;
+  store i32 %16, %8;
+  br void loop_cmp0;
+loop_cmp0:
+  %9 = load i32 %8;
+  %10 = blt i32 %9, 3, loop_body0;
+  br void loop_end0;
+loop_end0:
   ret i32 0;
 }
