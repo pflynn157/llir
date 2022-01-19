@@ -2,6 +2,7 @@
 
 global i32 main() {
 entry:
-  ret i32 0;
+   %0 = alloca i32;
+   ret i32 0;
 }
 
