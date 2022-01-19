@@ -243,8 +243,12 @@ TokenType Scanner::getSymbol(char c) {
 }
 
 bool Scanner::isInt() {
-    for (char c : buffer) {
+    /*for (char c : buffer) {
         if (!isdigit(c)) return false;
+    }*/
+    for (int i = 0; i<buffer.length(); i++) {
+        if (buffer[i] == '-' && i == 0) continue;
+        if (!isdigit(buffer[i])) return false;
     }
     return true;
 }
