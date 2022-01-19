@@ -22,6 +22,16 @@ enum TokenType {
     SMul,
     SDiv,
     Call,
+    Br,
+    Beq,
+    Bne,
+    Bgt,
+    Blt,
+    Bge,
+    Ble,
+    LoadStruct,
+    StoreStruct,
+    GetElementPtr,
     
     // Datatype Keywords
     Void,

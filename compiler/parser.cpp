@@ -282,7 +282,8 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
                     funcName = name;
                     inFunc = true;
                 } else {
-                    // TODO: Label
+                    scanner->rewind(token);
+                    operands.push_back(new Label(name));
                 }
             } break;
             
@@ -340,11 +341,23 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
         case Alloca: instr = new Instruction(InstrType::Alloca); break;
         case Load: instr = new Instruction(InstrType::Load); break;
         case Store: instr = new Instruction(InstrType::Store); break;
+        case LoadStruct: instr = new Instruction(InstrType::StructLoad); break;
+        case StoreStruct: instr = new Instruction(InstrType::StructStore); break;
+        case GetElementPtr: instr = new Instruction(InstrType::GEP); break;
+        
         case Add: instr = new Instruction(InstrType::Add); break;
         case Sub: instr = new Instruction(InstrType::Sub); break;
         case SMul: instr = new Instruction(InstrType::SMul); break;
         case SDiv: instr = new Instruction(InstrType::SDiv); break;
         case Call: instr = new FunctionCall(funcName, operands); break;
+        
+        case Br: instr = new Instruction(InstrType::Br); break;
+        case Beq: instr = new Instruction(InstrType::Beq); break;
+        case Bne: instr = new Instruction(InstrType::Bne); break;
+        case Bgt: instr = new Instruction(InstrType::Bgt); break;
+        case Blt: instr = new Instruction(InstrType::Blt); break;
+        case Bge: instr = new Instruction(InstrType::Bge); break;
+        case Ble: instr = new Instruction(InstrType::Ble); break;
         
         default: {
             std::cerr << "Error: Unknown instruction." << std::endl;

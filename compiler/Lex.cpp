@@ -208,6 +208,16 @@ TokenType Scanner::getKeyword() {
     else if (buffer == "smul") return SMul;
     else if (buffer == "sdiv") return SDiv;
     else if (buffer == "call") return Call;
+    else if (buffer == "br") return Br;
+    else if (buffer == "beq") return Beq;
+    else if (buffer == "bne") return Bne;
+    else if (buffer == "bgt") return Bgt;
+    else if (buffer == "blt") return Blt;
+    else if (buffer == "bge") return Bge;
+    else if (buffer == "ble") return Ble;
+    else if (buffer == "load.struct") return LoadStruct;
+    else if (buffer == "store.struct") return StoreStruct;
+    else if (buffer == "getelementptr") return GetElementPtr;
     return EmptyToken;
 }
 

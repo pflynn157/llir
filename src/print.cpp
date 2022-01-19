@@ -166,7 +166,7 @@ void Label::print() {
 }
 
 void StringPtr::print() {
-    std::cout << name << "(\"" << val << "\")";
+    std::cout << "$" << name << "(\"" << val << "\")";
 }
 
 void Mem::print() {
