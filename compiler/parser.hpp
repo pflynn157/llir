@@ -11,6 +11,10 @@ public:
     explicit Parser(std::string input, std::string name);
     void parse();
     void print();
+    
+    Module *getModule() {
+        return mod;
+    }
 protected:
     Type *getType(Token token);
     bool buildFunction(Token linkToken);

@@ -156,6 +156,10 @@ bool Parser::buildFunction(Token linkToken) {
     builder->setCurrentFunction(func);
     
     for (int i = 0; i<argTypes.size(); i++) {
+        if (argTypes.at(i) == nullptr || argRegs.at(i) == nullptr) {
+            std::cerr << "Error: Invalid function arguments." << std::endl;
+            return false;
+        }
         func->addArgPair(argTypes.at(i), argRegs.at(i));
     }
     
@@ -272,9 +276,10 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
             } break;
             
             case Id: {
+                std::string name = token.id_val;
                 token = scanner->getNext();
                 if (token.type == LParen) {
-                    funcName = token.id_val;
+                    funcName = name;
                     inFunc = true;
                 } else {
                     // TODO: Label
