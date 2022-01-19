@@ -50,7 +50,7 @@ Token Scanner::getNext() {
         
         rawBuffer += next;
         
-        if (next == '#') {
+        if (next == '#' && !inQuote) {
             std::string comment = "#";
             while (next != '\n' && !reader.eof()) {
                 next = reader.get();
