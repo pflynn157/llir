@@ -233,8 +233,8 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
         case InstrType::Blt:
         case InstrType::Bge:
         case InstrType::Ble: {
-            X86Operand *op1 = compileOperand(instr->getOperand1(), Type::createI32Type(), prefix);
-            X86Operand *op2 = compileOperand(instr->getOperand2(), Type::createI32Type(), prefix);
+            X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
             X86Cmp *cmp = new X86Cmp(op1, op2);
             file->addCode(cmp);
             
