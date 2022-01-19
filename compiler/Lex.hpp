@@ -17,6 +17,7 @@ enum TokenType {
     Alloca,
     
     // Datatype Keywords
+    Void,
     I8,
     I16,
     I32,

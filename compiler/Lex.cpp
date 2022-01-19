@@ -203,6 +203,7 @@ TokenType Scanner::getKeyword() {
     if (buffer == "extern") return Extern;
     else if (buffer == "global") return Global;
     else if (buffer == "local") return Local;
+    else if (buffer == "void") return Void;
     else if (buffer == "i8") return I8;
     else if (buffer == "i16") return I16;
     else if (buffer == "i32") return I32;

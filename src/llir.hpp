@@ -201,6 +201,11 @@ public:
         }
     }
     
+    void addArgPair(Type *type, Reg *reg) {
+        args.push_back(type);
+        varRegs.push_back(reg);
+    }
+    
     void addBlock(Block *block) {
         block->setID(blockID);
         ++blockID;

@@ -32,6 +32,7 @@ void Parser::parse() {
 
 Type *Parser::getType(Token token) {
     switch (token.type) {
+        case Void: return Type::createVoidType();
         case I8: return Type::createI8Type();
         case I16: return Type::createI16Type();
         case I32: return Type::createI32Type();
@@ -49,10 +50,19 @@ Type *Parser::getType(Token token) {
 bool Parser::buildFunction(Token linkToken) {
     // First, build the type
     Token token = scanner->getNext();
+    int ptrLevel = 0;
+    while (token.type != Eof && token.type == Pointer) {
+        ++ptrLevel;
+        token = scanner->getNext();
+    }
     Type *type = getType(token);
     if (type == nullptr) {
-        std::cerr << "Error: Invalid token." << std::endl;
+        std::cerr << "Error: Invalid type for function." << std::endl;
         return false;
+    }
+    
+    for (int i = 0; i<ptrLevel; i++) {
+        type = new PointerType(type);
     }
     
     // The next token should be an ID
@@ -70,8 +80,58 @@ bool Parser::buildFunction(Token linkToken) {
         std::cerr << "Error: Expected \'(\'." << std::endl;
         return false;
     }
+    
+    // The syntax for arguments is: %<reg>:<type>
+    std::vector<Reg *> argRegs;
+    std::vector<Type *> argTypes;
+    
+    token = scanner->getNext();
     while (token.type != RParen && token.type != Eof) {
+        Token regToken = scanner->getNext();
+        Token colon = scanner->getNext();
+        if (token.type != Mod || colon.type != Colon) {
+            std::cerr << "Error: Invalid register syntax." << std::endl;
+            return false;
+        }
+        
+        Reg *reg;
+        switch (regToken.type) {
+            case Id: reg = new Reg(regToken.id_val); break;
+            case Int32: reg = new Reg(std::to_string(regToken.i32_val)); break;
+            
+            default: {
+                std::cerr << "Error: Invalid register syntax in function argument." << std::endl;
+                return false;
+            }
+        }
+        
+        // Now, the data type
+        int ptrCount = 0;
         token = scanner->getNext();
+        while (token.type != Eof && token.type == Pointer) {
+            ++ptrCount;
+            token = scanner->getNext();
+        }
+        
+        Type *type = getType(token);
+        if (type == nullptr) {
+            std::cerr << "Error: Invalid type for function." << std::endl;
+            return false;
+        }
+        
+        for (int i = 0; i<ptrLevel; i++) {
+            type = new PointerType(type);
+        }
+        
+        // Add to the function
+        argRegs.push_back(reg);
+        argTypes.push_back(type);
+        
+        // Move on, but make sure we have proper syntax
+        token = scanner->getNext();
+        if (token.type == Comma) {
+            token = scanner->getNext();
+        }
     }
     
     // Finally, determine if we have a function body
@@ -94,6 +154,10 @@ bool Parser::buildFunction(Token linkToken) {
     Function *func = Function::Create(name, link, type);
     mod->addFunction(func);
     builder->setCurrentFunction(func);
+    
+    for (int i = 0; i<argTypes.size(); i++) {
+        func->addArgPair(argTypes.at(i), argRegs.at(i));
+    }
     
     if (token.type == SemiColon) {
         // TODO
