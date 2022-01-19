@@ -10,10 +10,10 @@ entry:
   %2 = beq i32 %1, 1, true0;
   br void false0;
 true0:
-  call void puts(STR0("True"));
+  call void puts($STR0("True"));
   br void end0;
 false0:
-  call void puts(STR1("False"));
+  call void puts($STR1("False"));
   br void end0;
 end0:
   ret i32 0;

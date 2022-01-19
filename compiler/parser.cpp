@@ -359,6 +359,11 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
         case Bge: instr = new Instruction(InstrType::Bge); break;
         case Ble: instr = new Instruction(InstrType::Ble); break;
         
+        case And: instr = new Instruction(InstrType::And); break;
+        case Or: instr = new Instruction(InstrType::Or); break;
+        case Xor: instr = new Instruction(InstrType::Xor); break;
+        case Not: instr = new Instruction(InstrType::Not); break;
+        
         default: {
             std::cerr << "Error: Unknown instruction." << std::endl;
             return false;

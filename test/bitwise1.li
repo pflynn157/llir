@@ -1,13 +1,7 @@
 #module a.out
 
-extern *i8 malloc(%0:*i8);
-extern void println(%0:*i8);
-extern void print(%0:*i8);
-extern i32 strlen(%0:*i8);
-extern i32 stringcmp(%0:*i8, %1:*i8);
-extern *i8 strcat_str(%0:*i8, %1:*i8);
-extern *i8 strcat_char(%0:*i8, %1:i8);
 extern void printf(%0:*i8, %1:i32);
+
 global i32 main() {
 entry:
   %0 = alloca i32 ;
@@ -25,10 +19,10 @@ entry:
   %9 = xor i32 %8, 10;
   store i32 %9, %7;
   %10 = load i32 %1;
-  void println(STR0("X1: %d"), %10);
+  call void printf($STR0("X1: %d\n"), %10);
   %11 = load i32 %4;
-  void println(STR1("X2: %d"), %11);
+  call void printf($STR1("X2: %d\n"), %11);
   %12 = load i32 %7;
-  void println(STR2("X3: %d"), %12);
+  call void printf($STR2("X3: %d\n"), %12);
   ret i32 0;
 }

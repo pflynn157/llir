@@ -32,6 +32,10 @@ enum TokenType {
     LoadStruct,
     StoreStruct,
     GetElementPtr,
+    And,
+    Or,
+    Xor,
+    Not,
     
     // Datatype Keywords
     Void,
