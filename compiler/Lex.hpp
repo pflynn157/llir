@@ -14,6 +14,7 @@ enum TokenType {
     Global,
     Local,
     Ret,
+    Alloca,
     
     // Datatype Keywords
     I8,
@@ -36,7 +37,8 @@ enum TokenType {
     LCBrace,
     RCBrace,
     Comma,
-    Pointer
+    Pointer,
+    Mod
 };
 
 struct Token {

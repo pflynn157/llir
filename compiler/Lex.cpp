@@ -193,7 +193,8 @@ bool Scanner::isSymbol(char c) {
         case '{':
         case '}':
         case ',':
-        case '*': return true;
+        case '*':
+        case '%': return true;
     }
     return false;
 }
@@ -207,6 +208,7 @@ TokenType Scanner::getKeyword() {
     else if (buffer == "i32") return I32;
     else if (buffer == "i64") return I64;
     else if (buffer == "ret") return Ret;
+    else if (buffer == "alloca") return Alloca;
     return EmptyToken;
 }
 
@@ -221,6 +223,7 @@ TokenType Scanner::getSymbol(char c) {
         case '}': return RCBrace;
         case ',': return Comma;
         case '*': return Pointer;
+        case '%': return Mod;
     }
     return EmptyToken;
 }

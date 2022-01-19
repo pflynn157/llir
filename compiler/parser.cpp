@@ -125,13 +125,47 @@ bool Parser::buildBody() {
                 builder->createBlock(name);
             } break;
             
-            // TODO: Destination operands
+            // Destination operands
+            case Mod: buildDestInstruction(); break;
             
+            // Otherwise, all other instructions
             default: buildInstruction(token);
         }
     
         token = scanner->getNext();
     }
+    
+    return true;
+}
+
+//
+// Builds a destination operand (an instruction with an assignment)
+//
+bool Parser::buildDestInstruction() {
+    // First, build register name
+    Token token = scanner->getNext();
+    Reg *name;
+    
+    switch (token.type) {
+        case Id: name = new Reg(token.id_val); break;
+        case Int32: name = new Reg(std::to_string(token.i32_val)); break;
+        
+        default: {
+            std::cerr << "Error: Invalid token in register naming." << std::endl;
+            return false;
+        }
+    }
+    
+    // Make sure the next token is an assignment
+    token = scanner->getNext();
+    if (token.type != Assign) {
+        std::cerr << "Error: Expected \'=\' in assignment." << std::endl;
+        return false;
+    }
+    
+    // Now, we can build the rest of the instruction
+    token = scanner->getNext();
+    buildInstruction(token, name);
     
     return true;
 }
@@ -172,6 +206,8 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
             instr = new Instruction(InstrType::Ret);
             if (!operands.empty()) instr->setOperand1(operands.at(0));
         } break;
+        
+        case Alloca: instr = new Instruction(InstrType::Alloca); break;
         
         default: {}
     }
