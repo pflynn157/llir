@@ -102,17 +102,7 @@ Token Scanner::getNext() {
         }
         
         if (inQuote) {
-            if (next == '\\') {
-                next = reader.get();
-                rawBuffer += next;
-                switch (next) {
-                    case 'n': buffer += '\n'; break;
-                    case 't': buffer += '\t'; break;
-                    default: buffer += '\\' + next;
-                }
-            } else {
-                buffer += next;
-            }
+            buffer += next;
             continue;
         }
         
@@ -194,7 +184,8 @@ bool Scanner::isSymbol(char c) {
         case '}':
         case ',':
         case '*':
-        case '%': return true;
+        case '%':
+        case '$': return true;
     }
     return false;
 }
@@ -210,6 +201,13 @@ TokenType Scanner::getKeyword() {
     else if (buffer == "i64") return I64;
     else if (buffer == "ret") return Ret;
     else if (buffer == "alloca") return Alloca;
+    else if (buffer == "load") return Load;
+    else if (buffer == "store") return Store;
+    else if (buffer == "add") return Add;
+    else if (buffer == "sub") return Sub;
+    else if (buffer == "smul") return SMul;
+    else if (buffer == "sdiv") return SDiv;
+    else if (buffer == "call") return Call;
     return EmptyToken;
 }
 
@@ -225,6 +223,7 @@ TokenType Scanner::getSymbol(char c) {
         case ',': return Comma;
         case '*': return Pointer;
         case '%': return Mod;
+        case '$': return StrSym;
     }
     return EmptyToken;
 }

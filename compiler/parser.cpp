@@ -248,13 +248,78 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
     
     // Operands
     std::vector<Operand *> operands;
+    std::string funcName = "";
+    bool inFunc = false;
     
     token = scanner->getNext();
     while (token.type != Eof && token.type != SemiColon) {
         switch (token.type) {
             case Int32: operands.push_back(new Imm(token.i32_val)); break;
             
-            default: {}
+            case Mod: {
+                token = scanner->getNext();
+                Reg *reg;
+                if (token.type == Id) {
+                    reg = new Reg(token.id_val);
+                } else if (token.type == Int32) {
+                    reg = new Reg(std::to_string(token.i32_val));
+                } else {
+                    std::cerr << "Error: Invalid register." << std::endl;
+                    return false;
+                }
+                
+                operands.push_back(reg);
+            } break;
+            
+            case Id: {
+                token = scanner->getNext();
+                if (token.type == LParen) {
+                    funcName = token.id_val;
+                    inFunc = true;
+                } else {
+                    // TODO: Label
+                }
+            } break;
+            
+            case StrSym: {
+                Token nameToken = scanner->getNext();
+                Token lp = scanner->getNext();
+                Token valToken = scanner->getNext();
+                Token rp = scanner->getNext();
+                
+                // Do all the syntax checks
+                if (nameToken.type != Id) {
+                    std::cerr << "Error: Expected string constant name." << std::endl;
+                    return false;
+                }
+                if (lp.type != LParen || rp.type != RParen) {
+                    std::cerr << "Error: String values should be surrounded with \'(\' and \')\'." << std::endl;
+                    return false;
+                }
+                if (valToken.type != String) {
+                    std::cerr << "Error: Expected string literal." << std::endl;
+                    return false;
+                }
+                
+                // If all passes, we can build
+                StringPtr *ptr = new StringPtr(nameToken.id_val, valToken.id_val);
+                mod->addStringPtr(ptr);
+                operands.push_back(ptr);
+            } break;
+            
+            case RParen: {
+                if (inFunc) {
+                    inFunc = false;
+                } else {
+                    std::cerr << "Error: Invalid argument token." << std::endl;
+                    return false;
+                }
+            } break;
+            
+            default: {
+                std::cerr << "Error: Invalid argument token." << std::endl;
+                return false;
+            }
         }
         
         token = scanner->getNext();
@@ -266,18 +331,30 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
     // Now, build the instruction
     Instruction *instr;
     switch (instrType.type) {
-        case Ret: {
-            instr = new Instruction(InstrType::Ret);
-            if (!operands.empty()) instr->setOperand1(operands.at(0));
-        } break;
-        
+        case Ret: instr = new Instruction(InstrType::Ret); break;
         case Alloca: instr = new Instruction(InstrType::Alloca); break;
+        case Load: instr = new Instruction(InstrType::Load); break;
+        case Store: instr = new Instruction(InstrType::Store); break;
+        case Add: instr = new Instruction(InstrType::Add); break;
+        case Sub: instr = new Instruction(InstrType::Sub); break;
+        case SMul: instr = new Instruction(InstrType::SMul); break;
+        case SDiv: instr = new Instruction(InstrType::SDiv); break;
+        case Call: instr = new FunctionCall(funcName, operands); break;
         
-        default: {}
+        default: {
+            std::cerr << "Error: Unknown instruction." << std::endl;
+            return false;
+        }
     }
     
     instr->setDataType(type);
     if (dest) instr->setDest(dest);
+    
+    if (instrType.type != Call) {
+        if (operands.size() >= 1) instr->setOperand1(operands.at(0));
+        if (operands.size() >= 2) instr->setOperand2(operands.at(1));
+        if (operands.size() >= 3) instr->setOperand3(operands.at(2));
+    }
     
     builder->addInstruction(instr);
     

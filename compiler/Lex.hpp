@@ -15,6 +15,13 @@ enum TokenType {
     Local,
     Ret,
     Alloca,
+    Load,
+    Store,
+    Add,
+    Sub,
+    SMul,
+    SDiv,
+    Call,
     
     // Datatype Keywords
     Void,
@@ -39,7 +46,8 @@ enum TokenType {
     RCBrace,
     Comma,
     Pointer,
-    Mod
+    Mod,
+    StrSym
 };
 
 struct Token {

@@ -137,9 +137,10 @@ void FunctionCall::print() {
         dest->print();
         std::cout << " = ";
     }
+    std::cout << "call ";
     if (dataType) {
-    dataType->print();
-    std::cout << " ";
+        dataType->print();
+        std::cout << " ";
     }
     
     std::cout << name << "(";
