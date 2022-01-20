@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cstdlib>
 
-#include <amd64.hpp>
+#include <amd64/amd64.hpp>
 #include <llir.hpp>
 
 namespace LLIR {

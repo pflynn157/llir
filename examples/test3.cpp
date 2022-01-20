@@ -5,7 +5,7 @@
 
 #include <llir.hpp>
 #include <irbuilder.hpp>
-#include <amd64.hpp>
+#include <amd64/amd64.hpp>
 using namespace LLIR;
 
 int main(int argc, char **argv) {

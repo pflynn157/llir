@@ -4,7 +4,7 @@
 #include <map>
 
 #include <llir.hpp>
-#include <x86ir.hpp>
+#include <amd64/x86ir.hpp>
 
 namespace LLIR {
 
