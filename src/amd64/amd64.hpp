@@ -2,6 +2,7 @@
 
 #include <string>
 #include <map>
+#include <memory>
 
 #include <llir.hpp>
 #include <amd64/x86ir.hpp>
@@ -14,7 +15,7 @@ public:
     ~Amd64Writer();
     void compile();
     void compileInstruction(Instruction *instr, std::string prefix);
-    X86Operand *compileOperand(Operand *src, Type *type, std::string prefix);
+    X86Operand *compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix);
     void dump();
     void writeToFile();
     void writeToFile(std::string path);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <llir.hpp>
 
 namespace LLIR {
@@ -23,46 +25,46 @@ public:
     //
     // Operand builders
     //
-    Operand *createI8(int8_t val);
-    Operand *createI16(int16_t val);
-    Operand *createI32(int val);
-    Operand *createI64(int64_t val);
-    Operand *createString(std::string val);
+    std::shared_ptr<Operand> createI8(int8_t val);
+    std::shared_ptr<Operand> createI16(int16_t val);
+    std::shared_ptr<Operand> createI32(int val);
+    std::shared_ptr<Operand> createI64(int64_t val);
+    std::shared_ptr<Operand> createString(std::string val);
     
     //
     // Instruction builders
     //
-    Reg *createAlloca(Type *type);
-    Instruction *createStore(Type *type, Operand *op, Operand *dest);
-    Instruction *createStructStore(Type *type, Operand *ptr, int index, Operand *val);
-    Reg *createLoad(Type *type, Operand *src);
-    Reg *createStructLoad(Type *type, Operand *src, int index);
-    Operand *createGEP(Type *type, Operand *ptr, Operand *index);
-    Operand *createAdd(Type *type, Operand *op1, Operand *op2);
-    Operand *createSub(Type *type, Operand *op1, Operand *op2);
-    Operand *createSMul(Type *type, Operand *op1, Operand *op2);
-    Operand *createSDiv(Type *type, Operand *op1, Operand *op2);
-    Operand *createAnd(Type *type, Operand *op1, Operand *op2);
-    Operand *createOr(Type *type, Operand *op1, Operand *op2);
-    Operand *createXor(Type *type, Operand *op1, Operand *op2);
-    Operand *createNeg(Type *type, Operand *op1);
-    Operand *createBeq(Type *type, Operand *op1, Operand *op2, Block *destBlock);
-    Operand *createBne(Type *type, Operand *op1, Operand *op2, Block *destBlock);
-    Operand *createBgt(Type *type, Operand *op1, Operand *op2, Block *destBlock);
-    Operand *createBlt(Type *type, Operand *op1, Operand *op2, Block *destBlock);
-    Operand *createBge(Type *type, Operand *op1, Operand *op2, Block *destBlock);
-    Operand *createBle(Type *type, Operand *op1, Operand *op2, Block *destBlock);
+    std::shared_ptr<Reg> createAlloca(Type *type);
+    Instruction *createStore(Type *type, std::shared_ptr<Operand> op, std::shared_ptr<Operand> dest);
+    Instruction *createStructStore(Type *type, std::shared_ptr<Operand> ptr, int index, std::shared_ptr<Operand> val);
+    std::shared_ptr<Reg> createLoad(Type *type, std::shared_ptr<Operand> src);
+    std::shared_ptr<Reg> createStructLoad(Type *type, std::shared_ptr<Operand> src, int index);
+    std::shared_ptr<Operand> createGEP(Type *type, std::shared_ptr<Operand> ptr, std::shared_ptr<Operand> index);
+    std::shared_ptr<Operand> createAdd(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createSub(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createSMul(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createSDiv(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createAnd(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createOr(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createXor(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2);
+    std::shared_ptr<Operand> createNeg(Type *type, std::shared_ptr<Operand> op1);
+    std::shared_ptr<Operand> createBeq(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
+    std::shared_ptr<Operand> createBne(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
+    std::shared_ptr<Operand> createBgt(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
+    std::shared_ptr<Operand> createBlt(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
+    std::shared_ptr<Operand> createBge(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
+    std::shared_ptr<Operand> createBle(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock);
     Instruction *createBr(Block *block);
-    Instruction *createVoidCall(std::string name, std::vector<Operand *> args);
-    Reg *createCall(Type *type, std::string name, std::vector<Operand *> args);
+    Instruction *createVoidCall(std::string name, std::vector<std::shared_ptr<Operand> > args);
+    std::shared_ptr<Reg> createCall(Type *type, std::string name, std::vector<std::shared_ptr<Operand> > args);
     Instruction *createRetVoid();
-    Instruction *createRet(Type *type, Operand *op);
+    Instruction *createRet(Type *type, std::shared_ptr<Operand> op);
     
     void addInstruction(Instruction *instr) {
         currentBlock->addInstruction(instr);
     }
 protected:
-    Operand *createBinaryOp(Type *type, Operand *op1, Operand *op2, InstrType iType, Block *destBlock = nullptr);
+    std::shared_ptr<Operand> createBinaryOp(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, InstrType iType, Block *destBlock = nullptr);
 private:
     Module *mod;
     Function *currentFunc;

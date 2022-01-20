@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 #include <parser.hpp>
 #include <amd64/amd64.hpp>
@@ -31,7 +32,7 @@ int main(int argc, char **argv) {
         }
     }
     
-    Parser *parser = new Parser(input, output);
+    auto parser = std::make_shared<Parser>(input, output);
     parser->parse();
     if (print) parser->print();
     
@@ -56,7 +57,6 @@ int main(int argc, char **argv) {
     system(command2.c_str());
     
     // Clean up
-    delete parser;
     delete writer;
     
     return 0;

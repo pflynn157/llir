@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <Lex.hpp>
 #include <llir.hpp>
 #include <irbuilder.hpp>
@@ -22,7 +24,7 @@ protected:
     bool buildFunction(Token linkToken);
     bool buildBody();
     bool buildDestInstruction();
-    bool buildInstruction(Token instrType, Operand *dest = nullptr);
+    bool buildInstruction(Token instrType, std::shared_ptr<Operand> dest = nullptr);
 private:
     Scanner *scanner;
     Module *mod;

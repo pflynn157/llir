@@ -29,23 +29,23 @@ Block *IRBuilder::getInsertPoint() {
     return currentBlock;
 }
 
-Operand *IRBuilder::createI8(int8_t val) {
-    return new Imm(val);
+std::shared_ptr<Operand> IRBuilder::createI8(int8_t val) {
+    return std::make_shared<Imm>(val);
 }
 
-Operand *IRBuilder::createI16(int16_t val) {
-    return new Imm(val);
+std::shared_ptr<Operand> IRBuilder::createI16(int16_t val) {
+    return std::make_shared<Imm>(val);
 }
 
-Operand *IRBuilder::createI32(int val) {
-    return new Imm(val);
+std::shared_ptr<Operand> IRBuilder::createI32(int val) {
+    return std::make_shared<Imm>(val);
 }
 
-Operand *IRBuilder::createI64(int64_t val) {
-    return new Imm(val);
+std::shared_ptr<Operand> IRBuilder::createI64(int64_t val) {
+    return std::make_shared<Imm>(val);
 }
 
-Operand *IRBuilder::createString(std::string val) {
+std::shared_ptr<Operand> IRBuilder::createString(std::string val) {
     std::string name = "STR" + std::to_string(lblCounter);
     ++lblCounter;
     
@@ -55,17 +55,17 @@ Operand *IRBuilder::createString(std::string val) {
         else val2 += c;
     }
     
-    StringPtr *ptr = new StringPtr(name, val2);
-    mod->addStringPtr(ptr);
+    std::shared_ptr<StringPtr> ptr = std::make_shared<StringPtr>(name, val2);
+    mod->addStringPtr(ptr.get());
     
     return ptr;
 }
 
-Reg *IRBuilder::createAlloca(Type *type) {
+std::shared_ptr<Reg> IRBuilder::createAlloca(Type *type) {
     Instruction *alloc = new Instruction(InstrType::Alloca);
     alloc->setDataType(type);
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    auto dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     alloc->setDest(dest);
     
@@ -73,7 +73,7 @@ Reg *IRBuilder::createAlloca(Type *type) {
     return dest;
 }
 
-Instruction *IRBuilder::createStore(Type *type, Operand *op, Operand *dest) {
+Instruction *IRBuilder::createStore(Type *type, std::shared_ptr<Operand> op, std::shared_ptr<Operand> dest) {
     Instruction *store = new Instruction(InstrType::Store);
     store->setDataType(type);
     store->setOperand1(op);
@@ -82,23 +82,23 @@ Instruction *IRBuilder::createStore(Type *type, Operand *op, Operand *dest) {
     return store;
 }
 
-Instruction *IRBuilder::createStructStore(Type *type, Operand *ptr, int index, Operand *val) {
+Instruction *IRBuilder::createStructStore(Type *type, std::shared_ptr<Operand> ptr, int index, std::shared_ptr<Operand> val) {
     Instruction *op = new Instruction(InstrType::StructStore);
     op->setDataType(type);
     op->setOperand1(ptr);
-    op->setOperand2(new Imm(index));
+    op->setOperand2(std::make_shared<Imm>(index));
     op->setOperand3(val);
     
     currentBlock->addInstruction(op);
     return op;
 }
 
-Reg *IRBuilder::createLoad(Type *type, Operand *src) {
+std::shared_ptr<Reg> IRBuilder::createLoad(Type *type, std::shared_ptr<Operand> src) {
     Instruction *load = new Instruction(InstrType::Load);
     load->setDataType(type);
     load->setOperand1(src);
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    auto dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     load->setDest(dest);
     
@@ -106,13 +106,13 @@ Reg *IRBuilder::createLoad(Type *type, Operand *src) {
     return dest;
 }
 
-Reg *IRBuilder::createStructLoad(Type *type, Operand *src, int index) {
+std::shared_ptr<Reg> IRBuilder::createStructLoad(Type *type, std::shared_ptr<Operand> src, int index) {
     Instruction *load = new Instruction(InstrType::StructLoad);
     load->setDataType(type);
     load->setOperand1(src);
-    load->setOperand2(new Imm(index));
+    load->setOperand2(std::make_shared<Imm>(index));
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    auto dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     load->setDest(dest);
     
@@ -120,19 +120,19 @@ Reg *IRBuilder::createStructLoad(Type *type, Operand *src, int index) {
     return dest;
 }
 
-Operand *IRBuilder::createBinaryOp(Type *type, Operand *op1, Operand *op2, InstrType iType, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBinaryOp(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, InstrType iType, Block *destBlock) {
     if (op1->getType() == OpType::Imm && op2->getType() == OpType::Imm) {
-        Imm *imm1 = static_cast<Imm *>(op1);
-        Imm *imm2 = static_cast<Imm *>(op2);
+        std::shared_ptr<Imm> imm1 = std::dynamic_pointer_cast<Imm>(op1);
+        std::shared_ptr<Imm> imm2 = std::dynamic_pointer_cast<Imm>(op2);
         
         switch (iType) {
-            case InstrType::Add: return new Imm(imm1->getValue() + imm2->getValue());
-            case InstrType::Sub: return new Imm(imm1->getValue() - imm2->getValue());
-            case InstrType::SMul: return new Imm(imm1->getValue() * imm2->getValue());
-            case InstrType::SDiv: return new Imm(imm1->getValue() / imm2->getValue());
-            case InstrType::And: return new Imm(imm1->getValue() & imm2->getValue());
-            case InstrType::Or: return new Imm(imm1->getValue() | imm2->getValue());
-            case InstrType::Xor: return new Imm(imm1->getValue() ^ imm2->getValue());
+            case InstrType::Add: return std::make_shared<Imm>(imm1->getValue() + imm2->getValue());
+            case InstrType::Sub: return std::make_shared<Imm>(imm1->getValue() - imm2->getValue());
+            case InstrType::SMul: return std::make_shared<Imm>(imm1->getValue() * imm2->getValue());
+            case InstrType::SDiv: return std::make_shared<Imm>(imm1->getValue() / imm2->getValue());
+            case InstrType::And: return std::make_shared<Imm>(imm1->getValue() & imm2->getValue());
+            case InstrType::Or: return std::make_shared<Imm>(imm1->getValue() | imm2->getValue());
+            case InstrType::Xor: return std::make_shared<Imm>(imm1->getValue() ^ imm2->getValue());
             
             default: {}
         }
@@ -143,9 +143,9 @@ Operand *IRBuilder::createBinaryOp(Type *type, Operand *op1, Operand *op2, Instr
     op->setOperand1(op1);
     op->setOperand2(op2);
     
-    if (destBlock != nullptr) op->setOperand3(new Label(destBlock->getName()));
+    if (destBlock != nullptr) op->setOperand3(std::make_shared<Label>(destBlock->getName()));
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    std::shared_ptr<Reg> dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     op->setDest(dest);
     
@@ -153,41 +153,41 @@ Operand *IRBuilder::createBinaryOp(Type *type, Operand *op1, Operand *op2, Instr
     return dest;
 }
 
-Operand *IRBuilder::createGEP(Type *type, Operand *ptr, Operand *index) {
+std::shared_ptr<Operand> IRBuilder::createGEP(Type *type, std::shared_ptr<Operand> ptr, std::shared_ptr<Operand> index) {
     return createBinaryOp(type, ptr, index, InstrType::GEP);
 }
 
-Operand *IRBuilder::createAdd(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createAdd(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::Add);
 }
 
-Operand *IRBuilder::createSub(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createSub(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::Sub);
 }
 
-Operand *IRBuilder::createSMul(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createSMul(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::SMul);
 }
 
-Operand *IRBuilder::createSDiv(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createSDiv(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::SDiv);
 }
 
-Operand *IRBuilder::createAnd(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createAnd(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::And);
 }
 
-Operand *IRBuilder::createOr(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createOr(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::Or);
 }
 
-Operand *IRBuilder::createXor(Type *type, Operand *op1, Operand *op2) {
+std::shared_ptr<Operand> IRBuilder::createXor(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2) {
     return createBinaryOp(type, op1, op2, InstrType::Xor);
 }
 
-Operand *IRBuilder::createNeg(Type *type, Operand *op1) {
+std::shared_ptr<Operand> IRBuilder::createNeg(Type *type, std::shared_ptr<Operand> op1) {
     if (op1->getType() == OpType::Imm) {
-        Imm *imm = static_cast<Imm *>(op1);
+        std::shared_ptr<Imm> imm = std::dynamic_pointer_cast<Imm>(op1);
         int val = imm->getValue() * -1;
         imm->setValue(val);
         return imm;    
@@ -197,7 +197,7 @@ Operand *IRBuilder::createNeg(Type *type, Operand *op1) {
     op->setDataType(type);
     op->setOperand1(op1);
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    std::shared_ptr<Reg> dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     op->setDest(dest);
     
@@ -205,16 +205,16 @@ Operand *IRBuilder::createNeg(Type *type, Operand *op1) {
     return dest;
 }
 
-Operand *IRBuilder::createBeq(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBeq(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     if (op1->getType() == OpType::Imm && op2->getType() == OpType::Imm) {
-        Imm *imm1 = static_cast<Imm *>(op1);
-        Imm *imm2 = static_cast<Imm *>(op2);
+        std::shared_ptr<Imm> imm1 = std::dynamic_pointer_cast<Imm>(op1);
+        std::shared_ptr<Imm> imm2 = std::dynamic_pointer_cast<Imm>(op2);
         if (imm1->getValue() == imm2->getValue()) {
-            Label *lbl = new Label(destBlock->getName());
+            auto lbl = std::make_shared<Label>(destBlock->getName());
             Instruction *op = new Instruction(InstrType::Br);
             op->setOperand1(lbl);
             
-            Reg *dest = new Reg(std::to_string(regCounter));
+            std::shared_ptr<Reg> dest = std::make_shared<Reg>(std::to_string(regCounter));
             ++regCounter;
             op->setDest(dest);
             
@@ -225,45 +225,45 @@ Operand *IRBuilder::createBeq(Type *type, Operand *op1, Operand *op2, Block *des
     return createBinaryOp(type, op1, op2, InstrType::Beq, destBlock);
 }
 
-Operand *IRBuilder::createBne(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBne(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     return createBinaryOp(type, op1, op2, InstrType::Bne, destBlock);
 }
 
-Operand *IRBuilder::createBgt(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBgt(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     return createBinaryOp(type, op1, op2, InstrType::Bgt, destBlock);
 }
 
-Operand *IRBuilder::createBlt(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBlt(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     return createBinaryOp(type, op1, op2, InstrType::Blt, destBlock);
 }
 
-Operand *IRBuilder::createBge(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBge(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     return createBinaryOp(type, op1, op2, InstrType::Bge, destBlock);
 }
 
-Operand *IRBuilder::createBle(Type *type, Operand *op1, Operand *op2, Block *destBlock) {
+std::shared_ptr<Operand> IRBuilder::createBle(Type *type, std::shared_ptr<Operand> op1, std::shared_ptr<Operand> op2, Block *destBlock) {
     return createBinaryOp(type, op1, op2, InstrType::Ble, destBlock);
 }
 
 Instruction *IRBuilder::createBr(Block *block) {
-    Label *lbl = new Label(block->getName());
+    auto lbl = std::make_shared<Label>(block->getName());
     Instruction *op = new Instruction(InstrType::Br);
     op->setOperand1(lbl);
     currentBlock->addInstruction(op);
     return op;
 }
 
-Instruction *IRBuilder::createVoidCall(std::string name, std::vector<Operand *> args) {
+Instruction *IRBuilder::createVoidCall(std::string name, std::vector<std::shared_ptr<Operand> > args) {
     FunctionCall *fc = new FunctionCall(name, args);
     currentBlock->addInstruction(fc);
     return fc;
 }
 
-Reg *IRBuilder::createCall(Type *type, std::string name, std::vector<Operand *> args) {
+std::shared_ptr<Reg> IRBuilder::createCall(Type *type, std::string name, std::vector<std::shared_ptr<Operand> > args) {
     FunctionCall *fc = new FunctionCall(name, args);
     fc->setDataType(type);
     
-    Reg *dest = new Reg(std::to_string(regCounter));
+    auto dest = std::make_shared<Reg>(std::to_string(regCounter));
     ++regCounter;
     fc->setDest(dest);
     
@@ -278,7 +278,7 @@ Instruction *IRBuilder::createRetVoid() {
     return ret;
 }
 
-Instruction *IRBuilder::createRet(Type *type, Operand *op) {
+Instruction *IRBuilder::createRet(Type *type, std::shared_ptr<Operand> op) {
     Instruction *ret = new Instruction(InstrType::Ret);
     ret->setDataType(type);
     ret->setOperand1(op);

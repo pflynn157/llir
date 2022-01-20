@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include <parser.hpp>
 
@@ -239,10 +240,9 @@ bool Parser::buildDestInstruction() {
     }
     
     // Now, we can build the rest of the instruction
-    Reg *reg = new Reg(name);
+    auto reg = std::make_shared<Reg>(name);
     token = scanner->getNext();
     if (!buildInstruction(token, reg)) {
-        delete reg;
         return false;
     }
     
@@ -252,7 +252,7 @@ bool Parser::buildDestInstruction() {
 //
 // Builds an instruction
 //
-bool Parser::buildInstruction(Token instrType, Operand *dest) {
+bool Parser::buildInstruction(Token instrType, std::shared_ptr<Operand> dest) {
     // The type
     Token token = scanner->getNext();
     int ptrLevel = 0;
@@ -262,7 +262,6 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
     }
     Type *type = getType(token);
     if (type == nullptr) {
-        delete dest;
         std::cerr << "Error: Invalid type for function." << std::endl;
         return false;
     }
@@ -272,22 +271,22 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
     }
     
     // Operands
-    std::vector<Operand *> operands;
+    std::vector<std::shared_ptr<Operand>> operands;
     std::string funcName = "";
     bool inFunc = false;
     
     token = scanner->getNext();
     while (token.type != Eof && token.type != SemiColon) {
         switch (token.type) {
-            case Int32: operands.push_back(new Imm(token.i32_val)); break;
+            case Int32: operands.push_back(std::make_shared<Imm>(token.i32_val)); break;
             
             case Mod: {
                 token = scanner->getNext();
-                Reg *reg;
+                std::shared_ptr<Reg> reg;
                 if (token.type == Id) {
-                    reg = new Reg(token.id_val);
+                    reg = std::make_shared<Reg>(token.id_val);
                 } else if (token.type == Int32) {
-                    reg = new Reg(std::to_string(token.i32_val));
+                    reg = std::make_shared<Reg>(std::to_string(token.i32_val));
                 } else {
                     std::cerr << "Error: Invalid register." << std::endl;
                     return false;
@@ -304,7 +303,8 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
                     inFunc = true;
                 } else {
                     scanner->rewind(token);
-                    operands.push_back(new Label(name));
+                    auto lbl = std::make_shared<Label>(name);
+                    operands.push_back(lbl);
                 }
             } break;
             
@@ -331,7 +331,9 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
                 // If all passes, we can build
                 StringPtr *ptr = new StringPtr(nameToken.id_val, valToken.id_val);
                 mod->addStringPtr(ptr);
-                operands.push_back(ptr);
+                
+                std::shared_ptr<StringPtr> ptr2 = std::make_shared<StringPtr>(nameToken.id_val, valToken.id_val);
+                operands.push_back(ptr2);
             } break;
             
             case RParen: {

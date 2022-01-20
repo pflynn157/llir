@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include <llir_operand.hpp>
 
@@ -165,58 +166,56 @@ public:
         dataType = new Type(DataType::Void);
     }
     
-    ~Instruction() {
+    /*~Instruction() {
         if (dataType) delete dataType;
         if (dest) delete dest;
         if (src1) delete src1;
         if (src2) delete src2;
         if (src3) delete src3;
-    }
+    }*/
     
     void setDataType(Type *d) {
         if (dataType) delete dataType;
         dataType = d;
     }
     
-    void setDest(Operand *d) { dest = d; }
-    void setOperand1(Operand *o) { src1 = o; }
-    void setOperand2(Operand *o) { src2 = o; }
-    void setOperand3(Operand *o) { src3 = o; }
+    void setDest(std::shared_ptr<Operand> d) { dest = d; }
+    void setOperand1(std::shared_ptr<Operand> o) { src1 = o; }
+    void setOperand2(std::shared_ptr<Operand> o) { src2 = o; }
+    void setOperand3(std::shared_ptr<Operand> o) { src3 = o; }
     
     InstrType getType() { return type; }
     Type *getDataType() { return dataType; }
-    Operand *getDest() { return dest; }
-    Operand *getOperand1() { return src1; }
-    Operand *getOperand2() { return src2; }
-    Operand *getOperand3() { return src3; }
+    std::shared_ptr<Operand> getDest() { return dest; }
+    std::shared_ptr<Operand> getOperand1() { return src1; }
+    std::shared_ptr<Operand> getOperand2() { return src2; }
+    std::shared_ptr<Operand> getOperand3() { return src3; }
     
     virtual void print();
 protected:
     Type *dataType;
     InstrType type = InstrType::None;
-    Operand *dest = nullptr;
-    Operand *src1 = nullptr;
-    Operand *src2 = nullptr;
-    Operand *src3 = nullptr;
+    std::shared_ptr<Operand> dest;
+    std::shared_ptr<Operand> src1, src2, src3;
 };
 
 // Represents function calls
 class FunctionCall : public Instruction {
 public:
-    explicit FunctionCall(std::string name, std::vector<Operand *> args) : Instruction(InstrType::Call) {
+    explicit FunctionCall(std::string name, std::vector<std::shared_ptr<Operand>> args) : Instruction(InstrType::Call) {
         this->name = name;
         this->args = args;
     }
     
-    void setArgs(std::vector<Operand *> args) { this->args = args; }
+    void setArgs(std::vector<std::shared_ptr<Operand>> args) { this->args = args; }
     
     std::string getName() { return name; }
-    std::vector<Operand *> getArgs() { return args; }
+    std::vector<std::shared_ptr<Operand>> getArgs() { return args; }
     
     void print();
 private:
     std::string name = "";
-    std::vector<Operand *> args;
+    std::vector<std::shared_ptr<Operand>> args;
 };
 
 //

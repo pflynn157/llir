@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <memory>
 
 #include <amd64/amd64.hpp>
 #include <llir.hpp>
@@ -198,12 +199,12 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
             X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
             X86Operand *dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
-            X86Operand *rax = compileOperand(new HReg(0), instr->getDataType(), prefix);
+            X86Operand *rax = compileOperand(std::make_shared<HReg>(0), instr->getDataType(), prefix);
             X86Operand *fop2;
             bool pop = false;
             if (op2->getType() == X86Type::Imm) {
-                X86Operand *fop2_long = compileOperand(new HReg(-1), Type::createI64Type(), prefix);
-                fop2 = compileOperand(new HReg(-1), instr->getDataType(), prefix);
+                X86Operand *fop2_long = compileOperand(std::make_shared<HReg>(-1), Type::createI64Type(), prefix);
+                fop2 = compileOperand(std::make_shared<HReg>(-1), instr->getDataType(), prefix);
                 X86Mov *mov1 = new X86Mov(fop2, op2);
                 file->addCode(mov1);
                 pop = true;
@@ -263,7 +264,7 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
             Function *callee = mod->getFunctionByName(fc->getName());
             
             int pos = 0;
-            for (Operand *arg : fc->getArgs()) {
+            for (std::shared_ptr<Operand> arg : fc->getArgs()) {
                 // TODO: Some better argument detection for the registers would be ideal
                 Type *argType = Type::createI32Type();
                 if (pos < callee->getArgCount()) argType = callee->getArgType(pos);
@@ -319,14 +320,14 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
                 stackPos += getIntSizeForType(instr->getDataType());
             }
             
-            Mem *mem = static_cast<Mem *>(instr->getDest());
+            std::shared_ptr<Mem> mem = std::dynamic_pointer_cast<Mem>(instr->getDest());
             memMap[mem->getName()] = stackPos;
         } break;
         
         case InstrType::StructLoad: {
             // First, compile the operands
             X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            int position = static_cast<Imm *>(instr->getOperand2())->getValue();
+            int position = std::dynamic_pointer_cast<Imm >(instr->getOperand2())->getValue();
             
             // Now, calculate the element position
             StructType *type = static_cast<StructType *>(instr->getDataType());
@@ -396,7 +397,7 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
         case InstrType::StructStore: {
             // First, compile the operands
             X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            int position = static_cast<Imm *>(instr->getOperand2())->getValue();
+            int position = std::dynamic_pointer_cast<Imm>(instr->getOperand2())->getValue();
             
             // Now, calculate the element position
             StructType *type = static_cast<StructType *>(instr->getDataType());
@@ -424,17 +425,17 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
     }
 }
 
-X86Operand *Amd64Writer::compileOperand(Operand *src, Type *type, std::string prefix) {
+X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix) {
     switch (src->getType()) {
         // Return an immediate operand
         case OpType::Imm: {
-            Imm *imm = static_cast<Imm *>(src);
+            std::shared_ptr<Imm> imm = std::dynamic_pointer_cast<Imm >(src);
             return new X86Imm(imm->getValue());
         }
         
         // Return a memory operand
         case OpType::Mem: {
-            Mem *mem = static_cast<Mem *>(src);
+            std::shared_ptr<Mem> mem = std::dynamic_pointer_cast<Mem>(src);
             int pos = memMap[mem->getName()];
             X86Mem *mem2 = new X86Mem(new X86Imm(0 - pos));
             mem2->setSizeAttr(getSizeForType(type));
@@ -443,7 +444,7 @@ X86Operand *Amd64Writer::compileOperand(Operand *src, Type *type, std::string pr
         
         // Return a hardware register
         case OpType::HReg: {
-            HReg *reg = static_cast<HReg *>(src);
+            std::shared_ptr<HReg> reg = std::dynamic_pointer_cast<HReg>(src);
             X86Reg rType = regMap[reg->getNum()];
             
             switch (type->getType()) {
@@ -461,7 +462,7 @@ X86Operand *Amd64Writer::compileOperand(Operand *src, Type *type, std::string pr
         
         // Return an argument register
         case OpType::AReg: {
-            AReg *reg = static_cast<AReg *>(src);
+            std::shared_ptr<AReg> reg = std::dynamic_pointer_cast<AReg>(src);
             X86Reg rType = argRegMap[reg->getNum()];
             
             switch (type->getType()) {
@@ -479,7 +480,7 @@ X86Operand *Amd64Writer::compileOperand(Operand *src, Type *type, std::string pr
         
         // Return a pointer register
         case OpType::PReg: {
-            PReg *reg = static_cast<PReg *>(src);
+            std::shared_ptr<PReg> reg = std::dynamic_pointer_cast<PReg>(src);
             X86Reg rType = regMap[reg->getNum()];
             X86RegPtr *reg2 = new X86RegPtr(rType);
             reg2->setSizeAttr(getSizeForType(type));
@@ -488,13 +489,13 @@ X86Operand *Amd64Writer::compileOperand(Operand *src, Type *type, std::string pr
         
         // A string operand
         case OpType::String: {
-            StringPtr *ptr = static_cast<StringPtr *>(src);
+            std::shared_ptr<StringPtr> ptr = std::dynamic_pointer_cast<StringPtr>(src);
             return new X86String(ptr->getName());
         }
         
         // A label reference
         case OpType::Label: {
-            Label *lbl = static_cast<Label *>(src);
+            std::shared_ptr<Label> lbl = std::dynamic_pointer_cast<Label>(src);
             return new X86LabelRef(prefix + lbl->getName());
         }
         

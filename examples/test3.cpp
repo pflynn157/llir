@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <memory>
 
 #include <llir.hpp>
 #include <irbuilder.hpp>
@@ -21,7 +22,7 @@ int main(int argc, char **argv) {
     builder->setCurrentFunction(mainFunc);
     builder->createBlock("entry");
     
-    Operand *i32 = builder->createI32(0);
+    std::shared_ptr<Operand> i32 = builder->createI32(0);
     builder->createRet(i32Type, i32);
     
     mod->print();
