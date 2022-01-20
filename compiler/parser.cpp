@@ -9,6 +9,13 @@ Parser::Parser(std::string input, std::string name) {
     builder = new IRBuilder(mod);
 }
 
+// Clean up the mess that we undoubtly made
+Parser::~Parser() {
+    delete scanner;
+    delete mod;
+    delete builder;
+}
+
 void Parser::parse() {
     Token token = scanner->getNext();
     
@@ -212,11 +219,11 @@ bool Parser::buildBody() {
 bool Parser::buildDestInstruction() {
     // First, build register name
     Token token = scanner->getNext();
-    Reg *name;
+    std::string name = "";
     
     switch (token.type) {
-        case Id: name = new Reg(token.id_val); break;
-        case Int32: name = new Reg(std::to_string(token.i32_val)); break;
+        case Id: name = token.id_val; break;
+        case Int32: name = std::to_string(token.i32_val); break;
         
         default: {
             std::cerr << "Error: Invalid token in register naming." << std::endl;
@@ -232,8 +239,12 @@ bool Parser::buildDestInstruction() {
     }
     
     // Now, we can build the rest of the instruction
+    Reg *reg = new Reg(name);
     token = scanner->getNext();
-    buildInstruction(token, name);
+    if (!buildInstruction(token, reg)) {
+        delete reg;
+        return false;
+    }
     
     return true;
 }
@@ -251,6 +262,7 @@ bool Parser::buildInstruction(Token instrType, Operand *dest) {
     }
     Type *type = getType(token);
     if (type == nullptr) {
+        delete dest;
         std::cerr << "Error: Invalid type for function." << std::endl;
         return false;
     }

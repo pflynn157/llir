@@ -76,23 +76,6 @@ class X86Data;
 class X86Instr;
 class X86Operand;
 
-// Represents an x86 file
-class X86File {
-public:
-    explicit X86File(std::string name) {
-        this->name = name;
-    }
-    
-    void addData(X86Data *d) { data.push_back(d); }
-    void addCode(X86Instr *c) { code.push_back(c); }
-    
-    std::string print(AsmType type = AsmType::GAS);
-private:
-    std::string name = "";
-    std::vector<X86Data *> data;
-    std::vector<X86Instr *> code;
-};
-
 //
 // Represents an x86 data item
 //
@@ -112,6 +95,22 @@ private:
 };
 
 //
+// Represents an X86 operand
+//
+class X86Operand {
+public:
+    explicit X86Operand(X86Type type) {
+        this->type = type;
+    }
+    
+    X86Type getType() { return type; }
+    
+    virtual std::string print() { return ""; }
+protected:
+    X86Type type = X86Type::None;
+};
+
+//
 // Represents an X86 instruction
 // This is the base of all X86 instructions
 //
@@ -119,6 +118,11 @@ class X86Instr {
 public:
     explicit X86Instr(X86Type type) {
         this->type = type;
+    }
+    
+    ~X86Instr() {
+        if (op1) delete op1;
+        if (op2) delete op2;
     }
     
     void setOperand1(X86Operand *op1) { this->op1 = op1; }
@@ -134,6 +138,36 @@ protected:
     X86Operand *op1 = nullptr;
     X86Operand *op2 = nullptr;
 };
+
+// Represents an x86 file
+class X86File {
+public:
+    explicit X86File(std::string name) {
+        this->name = name;
+    }
+    
+    ~X86File() {
+        for (X86Data *d : data) {
+            if (d) delete d;
+        }
+        for (X86Instr *i : code) {
+            if (i) delete i;
+        }
+    }
+    
+    void addData(X86Data *d) { data.push_back(d); }
+    void addCode(X86Instr *c) { code.push_back(c); }
+    
+    std::string print(AsmType type = AsmType::GAS);
+private:
+    std::string name = "";
+    std::vector<X86Data *> data;
+    std::vector<X86Instr *> code;
+};
+
+//
+// The following are the X86 instruction representations
+//
 
 // The labels
 class X86Label : public X86Instr {
@@ -338,20 +372,8 @@ public:
 };
 
 //
-// Represents an X86 operand
+// The base of all operands
 //
-class X86Operand {
-public:
-    explicit X86Operand(X86Type type) {
-        this->type = type;
-    }
-    
-    X86Type getType() { return type; }
-    
-    virtual std::string print() { return ""; }
-protected:
-    X86Type type = X86Type::None;
-};
 
 // Represents a reference to a label
 class X86LabelRef : public X86Operand {

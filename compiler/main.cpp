@@ -55,5 +55,9 @@ int main(int argc, char **argv) {
     system(command1.c_str());
     system(command2.c_str());
     
+    // Clean up
+    delete parser;
+    delete writer;
+    
     return 0;
 }

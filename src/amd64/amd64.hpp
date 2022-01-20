@@ -11,6 +11,7 @@ namespace LLIR {
 class Amd64Writer {
 public:
     explicit Amd64Writer(Module *mod);
+    ~Amd64Writer();
     void compile();
     void compileInstruction(Instruction *instr, std::string prefix);
     X86Operand *compileOperand(Operand *src, Type *type, std::string prefix);

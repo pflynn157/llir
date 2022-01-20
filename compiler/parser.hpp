@@ -9,6 +9,8 @@ using namespace LLIR;
 class Parser {
 public:
     explicit Parser(std::string input, std::string name);
+    ~Parser();
+    
     void parse();
     void print();
     

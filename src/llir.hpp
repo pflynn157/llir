@@ -116,6 +116,10 @@ public:
         this->baseType = new Type(type);
     }
     
+    ~PointerType() {
+        delete baseType;
+    }
+    
     static PointerType *createVoidPtrType() { return new PointerType(DataType::Void); }
     static PointerType *createI8PtrType() { return new PointerType(DataType::I8); }
     static PointerType *createI16PtrType() { return new PointerType(DataType::I16); }
@@ -137,6 +141,12 @@ public:
         this->elementTypes = elementTypes;
     }
     
+    ~StructType() {
+        for (Type *t : elementTypes) {
+            if (t) delete t;
+        }
+    }
+    
     std::vector<Type *> getElementTypes() { return elementTypes; }
     
     void print();
@@ -146,12 +156,82 @@ private:
 };
 
 //
+// The base class for instructions
+//
+class Instruction {
+public:
+    explicit Instruction(InstrType type) {
+        this->type = type;
+        dataType = new Type(DataType::Void);
+    }
+    
+    ~Instruction() {
+        if (dataType) delete dataType;
+        if (dest) delete dest;
+        if (src1) delete src1;
+        if (src2) delete src2;
+        if (src3) delete src3;
+    }
+    
+    void setDataType(Type *d) {
+        if (dataType) delete dataType;
+        dataType = d;
+    }
+    
+    void setDest(Operand *d) { dest = d; }
+    void setOperand1(Operand *o) { src1 = o; }
+    void setOperand2(Operand *o) { src2 = o; }
+    void setOperand3(Operand *o) { src3 = o; }
+    
+    InstrType getType() { return type; }
+    Type *getDataType() { return dataType; }
+    Operand *getDest() { return dest; }
+    Operand *getOperand1() { return src1; }
+    Operand *getOperand2() { return src2; }
+    Operand *getOperand3() { return src3; }
+    
+    virtual void print();
+protected:
+    Type *dataType;
+    InstrType type = InstrType::None;
+    Operand *dest = nullptr;
+    Operand *src1 = nullptr;
+    Operand *src2 = nullptr;
+    Operand *src3 = nullptr;
+};
+
+// Represents function calls
+class FunctionCall : public Instruction {
+public:
+    explicit FunctionCall(std::string name, std::vector<Operand *> args) : Instruction(InstrType::Call) {
+        this->name = name;
+        this->args = args;
+    }
+    
+    void setArgs(std::vector<Operand *> args) { this->args = args; }
+    
+    std::string getName() { return name; }
+    std::vector<Operand *> getArgs() { return args; }
+    
+    void print();
+private:
+    std::string name = "";
+    std::vector<Operand *> args;
+};
+
+//
 // Represents a basic block
 //
 class Block {
 public:
     explicit Block(std::string name) {
         this->name = name;
+    }
+    
+    ~Block() {
+        for (Instruction *i : instrs) {
+            if (i) delete i;
+        }
     }
     
     void addInstruction(Instruction *i) { instrs.push_back(i); }
@@ -180,6 +260,19 @@ public:
         this->name = name;
         this->linkage = linkage;
         dataType = new Type(DataType::Void);
+    }
+    
+    ~Function() {
+        if (dataType) delete dataType;
+        for (Block *block : blocks) {
+            if (block) delete block;
+        }
+        for (Reg *reg : varRegs) {
+            if (reg) delete reg;
+        }
+        for (Type *t : args) {
+            if (t) delete t;
+        }
     }
     
     static Function *Create(std::string name, Linkage linkage, Type *dataType) {
@@ -256,6 +349,15 @@ public:
         this->name = name;
     }
     
+    ~Module() {
+        for (Function *f : functions) {
+            if (f) delete f;
+        }
+        /*for (StringPtr *ptr : strings) {
+            if (ptr) delete ptr;
+        }*/
+    }
+    
     void addFunction(Function *func) { functions.push_back(func); }
     void addStringPtr(StringPtr *ptr) { strings.push_back(ptr); }
     
@@ -279,62 +381,6 @@ private:
     std::string name = "";
     std::vector<Function *> functions;
     std::vector<StringPtr *> strings;
-};
-
-//
-// The base class for instructions
-//
-class Instruction {
-public:
-    explicit Instruction(InstrType type) {
-        this->type = type;
-        dataType = new Type(DataType::Void);
-    }
-    
-    void setDataType(Type *d) {
-        if (dataType) delete dataType;
-        dataType = d;
-    }
-    
-    void setDest(Operand *d) { dest = d; }
-    void setOperand1(Operand *o) { src1 = o; }
-    void setOperand2(Operand *o) { src2 = o; }
-    void setOperand3(Operand *o) { src3 = o; }
-    
-    InstrType getType() { return type; }
-    Type *getDataType() { return dataType; }
-    Operand *getDest() { return dest; }
-    Operand *getOperand1() { return src1; }
-    Operand *getOperand2() { return src2; }
-    Operand *getOperand3() { return src3; }
-    
-    virtual void print();
-protected:
-    Type *dataType;
-    InstrType type = InstrType::None;
-    Operand *dest = nullptr;
-    Operand *src1 = nullptr;
-    Operand *src2 = nullptr;
-    Operand *src3 = nullptr;
-};
-
-// Represents function calls
-class FunctionCall : public Instruction {
-public:
-    explicit FunctionCall(std::string name, std::vector<Operand *> args) : Instruction(InstrType::Call) {
-        this->name = name;
-        this->args = args;
-    }
-    
-    void setArgs(std::vector<Operand *> args) { this->args = args; }
-    
-    std::string getName() { return name; }
-    std::vector<Operand *> getArgs() { return args; }
-    
-    void print();
-private:
-    std::string name = "";
-    std::vector<Operand *> args;
 };
 
 } // end namespace LLIR

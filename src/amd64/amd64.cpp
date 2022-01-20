@@ -28,6 +28,10 @@ Amd64Writer::Amd64Writer(Module *mod) {
     argRegMap[5] = X86Reg::R9;
 }
 
+Amd64Writer::~Amd64Writer() {
+    delete file;
+}
+
 void Amd64Writer::compile() {
     // Data section
     for (int i = 0; i<mod->getStringCount(); i++) {
