@@ -147,23 +147,23 @@ public:
         this->name = name;
     }
     
-    ~X86File() {
+    /*~X86File() {
         for (X86Data *d : data) {
             if (d) delete d;
         }
-        for (X86Instr *i : code) {
+        for (std::shared_ptr<X86Instr *> i : code) {
             if (i) delete i;
         }
-    }
+    }*/
     
     void addData(X86Data *d) { data.push_back(d); }
-    void addCode(X86Instr *c) { code.push_back(c); }
+    void addCode(std::shared_ptr<X86Instr> c) { code.push_back(c); }
     
     std::string print(AsmType type = AsmType::GAS);
 private:
     std::string name = "";
     std::vector<X86Data *> data;
-    std::vector<X86Instr *> code;
+    std::vector<std::shared_ptr<X86Instr>> code;
 };
 
 //

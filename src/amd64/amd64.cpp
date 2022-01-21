@@ -46,7 +46,7 @@ void Amd64Writer::compile() {
         Function *func = mod->getFunction(i);
         switch (func->getLinkage()) {
             case Linkage::Global: {
-                X86GlobalFunc *x86Func = new X86GlobalFunc(func->getName());
+                auto x86Func = std::make_shared<X86GlobalFunc>(func->getName());
                 file->addCode(x86Func);
             } break;
             
@@ -61,11 +61,11 @@ void Amd64Writer::compile() {
         // Setup the stack
         std::shared_ptr<X86Imm> stackImm = std::make_shared<X86Imm>(0);
         
-        X86Push *p = new X86Push(std::make_shared<X86Reg64>(X86Reg::BP));
+        auto p = std::make_shared<X86Push>(std::make_shared<X86Reg64>(X86Reg::BP));
         file->addCode(p);
-        X86Mov *mov = new X86Mov(std::make_shared<X86Reg64>(X86Reg::BP), std::make_shared<X86Reg64>(X86Reg::SP));
+        auto mov = std::make_shared<X86Mov>(std::make_shared<X86Reg64>(X86Reg::BP), std::make_shared<X86Reg64>(X86Reg::SP));
         file->addCode(mov);
-        X86Sub *sub = new X86Sub(std::make_shared<X86Reg64>(X86Reg::SP), stackImm);
+        auto sub = std::make_shared<X86Sub>(std::make_shared<X86Reg64>(X86Reg::SP), stackImm);
         file->addCode(sub);
         
         // Blocks
@@ -74,7 +74,7 @@ void Amd64Writer::compile() {
         for (int j = 0; j<func->getBlockCount(); j++) {
             Block *block = func->getBlock(j);
             if (j != 0) {
-                file->addCode(new X86Label(prefix + block->getName()));
+                file->addCode(std::make_shared<X86Label>(prefix + block->getName()));
             }
             
             // Instructions
@@ -94,8 +94,8 @@ void Amd64Writer::compile() {
         stackPos = 0;
         
         // Clean up the stack and leave
-        file->addCode(new X86Leave);
-        file->addCode(new X86Ret);
+        file->addCode(std::make_shared<X86Leave>());
+        file->addCode(std::make_shared<X86Ret>());
     }
 }
 
@@ -105,8 +105,8 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         
         case InstrType::Ret: {
             if (instr->getDataType()->getType() == DataType::Void) {
-                file->addCode(new X86Leave);
-                file->addCode(new X86Ret);
+                file->addCode(std::make_shared<X86Leave>());
+                file->addCode(std::make_shared<X86Ret>());
                 break;
             }
         
@@ -124,13 +124,13 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 default: {}
             }
             
-            X86Mov *mov = new X86Mov(dest, src);
+            auto mov = std::make_shared<X86Mov>(dest, src);
             file->addCode(mov);
         } break;
         
         case InstrType::RetVoid: {
-            file->addCode(new X86Leave);
-            file->addCode(new X86Ret);
+            file->addCode(std::make_shared<X86Leave>());
+            file->addCode(std::make_shared<X86Ret>());
         } break;
         
         // Math
@@ -150,13 +150,13 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 fop2 = op2;
             }
             
-            X86Instr *instr2;
+            std::shared_ptr<X86Instr> instr2;
             switch (instr->getType()) {
-                case InstrType::Add: instr2 = new X86Add(fop1, fop2); break;
-                case InstrType::Sub: instr2 = new X86Sub(fop1, fop2); break;
-                case InstrType::And: instr2 = new X86And(fop1, fop2); break;
-                case InstrType::Or: instr2 = new X86Or(fop1, fop2); break;
-                case InstrType::Xor: instr2 = new X86Xor(fop1, fop2); break;
+                case InstrType::Add: instr2 = std::make_shared<X86Add>(fop1, fop2); break;
+                case InstrType::Sub: instr2 = std::make_shared<X86Sub>(fop1, fop2); break;
+                case InstrType::And: instr2 = std::make_shared<X86And>(fop1, fop2); break;
+                case InstrType::Or: instr2 = std::make_shared<X86Or>(fop1, fop2); break;
+                case InstrType::Xor: instr2 = std::make_shared<X86Xor>(fop1, fop2); break;
                 
                 default: {}
             }
@@ -166,7 +166,7 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             // Now, we need a move so we're in the right register
             // I love x86
             std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
-            X86Mov *mov = new X86Mov(dest, fop1);
+            auto mov = std::make_shared<X86Mov>(dest, fop1);
             file->addCode(mov);
         } break;
         
@@ -186,7 +186,7 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 fop2 = op2;
             }
             
-            X86IMul *imul = new X86IMul(dest, op1, op2);
+            auto imul = std::make_shared<X86IMul>(dest, op1, op2);
             file->addCode(imul);
         } break;
         
@@ -205,29 +205,29 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             if (op2->getType() == X86Type::Imm) {
                 std::shared_ptr<X86Operand> fop2_long = compileOperand(std::make_shared<HReg>(-1), Type::createI64Type(), prefix);
                 fop2 = compileOperand(std::make_shared<HReg>(-1), instr->getDataType(), prefix);
-                X86Mov *mov1 = new X86Mov(fop2, op2);
+                auto mov1 = std::make_shared<X86Mov>(fop2, op2);
                 file->addCode(mov1);
                 pop = true;
             } else {
                 fop2 = op2;
             }
             
-            X86Mov *mov = new X86Mov(op1, rax);
+            auto mov = std::make_shared<X86Mov>(op1, rax);
             file->addCode(mov);
             
-            X86Cdq *cdq = new X86Cdq;
+            auto cdq = std::make_shared<X86Cdq>();
             file->addCode(cdq);
             
-            X86IDiv *idiv = new X86IDiv(fop2);
+            auto idiv = std::make_shared<X86IDiv>(fop2);
             file->addCode(idiv);
             
-            X86Mov *mov2 = new X86Mov(dest, rax);
+            auto mov2 = std::make_shared<X86Mov>(dest, rax);
             file->addCode(mov2);
         } break;
         
         case InstrType::Br: {
             std::shared_ptr<X86Operand> label = compileOperand(instr->getOperand1(), nullptr, prefix);
-            X86Jmp *jmp = new X86Jmp(label, X86Type::Jmp);
+            auto jmp = std::make_shared<X86Jmp>(label, X86Type::Jmp);
             file->addCode(jmp);
         } break;
         
@@ -240,18 +240,18 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         case InstrType::Ble: {
             std::shared_ptr<X86Operand> op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             std::shared_ptr<X86Operand> op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
-            X86Cmp *cmp = new X86Cmp(op1, op2);
+            auto cmp = std::make_shared<X86Cmp>(op1, op2);
             file->addCode(cmp);
             
             std::shared_ptr<X86Operand> label = compileOperand(instr->getOperand3(), nullptr, prefix);
-            X86Instr *jmp;
+            std::shared_ptr<X86Instr> jmp;
             switch (instr->getType()) {
-                case InstrType::Beq: jmp = new X86Jmp(label, X86Type::Je); break;
-                case InstrType::Bne: jmp = new X86Jmp(label, X86Type::Jne); break;
-                case InstrType::Bgt: jmp = new X86Jmp(label, X86Type::Jg); break;
-                case InstrType::Blt: jmp = new X86Jmp(label, X86Type::Jl); break;
-                case InstrType::Bge: jmp = new X86Jmp(label, X86Type::Jge); break;
-                case InstrType::Ble: jmp = new X86Jmp(label, X86Type::Jle); break;
+                case InstrType::Beq: jmp = std::make_shared<X86Jmp>(label, X86Type::Je); break;
+                case InstrType::Bne: jmp = std::make_shared<X86Jmp>(label, X86Type::Jne); break;
+                case InstrType::Bgt: jmp = std::make_shared<X86Jmp>(label, X86Type::Jg); break;
+                case InstrType::Blt: jmp = std::make_shared<X86Jmp>(label, X86Type::Jl); break;
+                case InstrType::Bge: jmp = std::make_shared<X86Jmp>(label, X86Type::Jge); break;
+                case InstrType::Ble: jmp = std::make_shared<X86Jmp>(label, X86Type::Jle); break;
                 
                 default: {}
             }
@@ -291,24 +291,24 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 if (argType->getType() == DataType::Ptr) {
                     PointerType *ptr = static_cast<PointerType *>(argType);
                     if (ptr->getBaseType()->getType() == DataType::Struct) {
-                        X86Lea *lea = new X86Lea(dest, op);
+                        auto lea = std::make_shared<X86Lea>(dest, op);
                         file->addCode(lea);
                     } else {
-                        X86Mov *mov = new X86Mov(dest, op);
+                        auto mov = std::make_shared<X86Mov>(dest, op);
                         file->addCode(mov);
                     }
                 } else {
                     if (op->getType() == X86Type::Reg8 || op->getType() == X86Type::Reg16) {
-                        X86Movsx *mov = new X86Movsx(dest, op);
+                        auto mov = std::make_shared<X86Movsx>(dest, op);
                         file->addCode(mov);
                     } else {
-                        X86Mov *mov = new X86Mov(dest, op);
+                        auto mov = std::make_shared<X86Mov>(dest, op);
                         file->addCode(mov);
                     }
                 }
             }
             
-            X86Call *call = new X86Call(fc->getName());
+            auto call = std::make_shared<X86Call>(fc->getName());
             file->addCode(call);
         } break;
         
@@ -342,14 +342,14 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             
             // Now, do the moves
             std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), elementType, prefix);
-            X86Mov *mov = new X86Mov(dest, mem);
+            auto mov = std::make_shared<X86Mov>(dest, mem);
             file->addCode(mov);
         } break;
         
         case InstrType::Load: {
             std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
-            X86Mov *mov = new X86Mov(dest, src);
+            auto mov = std::make_shared<X86Mov>(dest, src);
             file->addCode(mov);
         } break;
         
@@ -380,17 +380,17 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 indexImm->setValue(val * offset);
                 index = indexImm;
             } else {
-                X86IMul *mul = new X86IMul(index, index, std::make_shared<X86Imm>(offset));
+                auto mul = std::make_shared<X86IMul>(index, index, std::make_shared<X86Imm>(offset));
                 file->addCode(mul);
             }
             
-            X86Add *add = new X86Add(src, index);
+            auto add = std::make_shared<X86Add>(src, index);
             file->addCode(add);
             
             // The destination needs to be converted to a regular register
             std::shared_ptr<X86RegPtr> dest = std::dynamic_pointer_cast<X86RegPtr>(compileOperand(instr->getDest(), instr->getDataType(), prefix));
             std::shared_ptr<X86Reg64> dest2 = std::make_shared<X86Reg64>(dest->getType());
-            X86Mov *mov = new X86Mov(dest2, src);
+            auto mov = std::make_shared<X86Mov>(dest2, src);
             file->addCode(mov);
         } break;
         
@@ -412,14 +412,14 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             
             // Now, do the moves
             std::shared_ptr<X86Operand> dest = compileOperand(instr->getOperand3(), elementType, prefix);
-            X86Mov *mov = new X86Mov(mem, dest);
+            auto mov = std::make_shared<X86Mov>(mem, dest);
             file->addCode(mov);
         } break;
         
         case InstrType::Store: {
             std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             std::shared_ptr<X86Operand> dest = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
-            X86Mov *mov = new X86Mov(dest, src);
+            auto mov = std::make_shared<X86Mov>(dest, src);
             file->addCode(mov);
         } break;
     }

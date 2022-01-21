@@ -18,7 +18,7 @@ std::string X86File::print(AsmType type) {
         file += "\n";
         file += ".text\n";
         
-        for (X86Instr *ln : code) {
+        for (auto ln : code) {
             switch (ln->getType()) {
                 case X86Type::Label:
                 case X86Type::Extern:
