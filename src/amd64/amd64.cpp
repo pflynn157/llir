@@ -59,13 +59,13 @@ void Amd64Writer::compile() {
         }
         
         // Setup the stack
-        X86Imm *stackImm = new X86Imm(0);
+        std::shared_ptr<X86Imm> stackImm = std::make_shared<X86Imm>(0);
         
-        X86Push *p = new X86Push(new X86Reg64(X86Reg::BP));
+        X86Push *p = new X86Push(std::make_shared<X86Reg64>(X86Reg::BP));
         file->addCode(p);
-        X86Mov *mov = new X86Mov(new X86Reg64(X86Reg::BP), new X86Reg64(X86Reg::SP));
+        X86Mov *mov = new X86Mov(std::make_shared<X86Reg64>(X86Reg::BP), std::make_shared<X86Reg64>(X86Reg::SP));
         file->addCode(mov);
-        X86Sub *sub = new X86Sub(new X86Reg64(X86Reg::SP), stackImm);
+        X86Sub *sub = new X86Sub(std::make_shared<X86Reg64>(X86Reg::SP), stackImm);
         file->addCode(sub);
         
         // Blocks
@@ -111,15 +111,15 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             }
         
             Type *type = instr->getDataType();
-            X86Operand *src = compileOperand(instr->getOperand1(), type, prefix);
-            X86Operand *dest;
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), type, prefix);
+            std::shared_ptr<X86Operand> dest;
             switch (type->getType()) {
-                case DataType::I8: dest = new X86Reg8(X86Reg::AX); break;
-                case DataType::I16: dest = new X86Reg16(X86Reg::AX); break;
-                case DataType::I32: dest = new X86Reg32(X86Reg::AX); break;
+                case DataType::I8: dest = std::make_shared<X86Reg8>(X86Reg::AX); break;
+                case DataType::I16: dest = std::make_shared<X86Reg16>(X86Reg::AX); break;
+                case DataType::I32: dest = std::make_shared<X86Reg32>(X86Reg::AX); break;
                 case DataType::Struct:
                 case DataType::Ptr:
-                case DataType::I64: dest = new X86Reg64(X86Reg::AX); break;
+                case DataType::I64: dest = std::make_shared<X86Reg64>(X86Reg::AX); break;
                 
                 default: {}
             }
@@ -139,9 +139,9 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         case InstrType::And:
         case InstrType::Or:
         case InstrType::Xor: {
-            X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
-            X86Operand *fop1, *fop2;
+            std::shared_ptr<X86Operand> op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> fop1, fop2;
             if (op1->getType() == X86Type::Imm) {
                 fop2 = op1;
                 fop1 = op2;
@@ -165,7 +165,7 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             
             // Now, we need a move so we're in the right register
             // I love x86
-            X86Operand *dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
             X86Mov *mov = new X86Mov(dest, fop1);
             file->addCode(mov);
         } break;
@@ -174,10 +174,10 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         // This is like the only instruction that makes sense with the three operands
         case InstrType::UMul:
         case InstrType::SMul: {
-            X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
-            X86Operand *dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
-            X86Operand *fop1, *fop2;
+            std::shared_ptr<X86Operand> op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> fop1, fop2;
             if (op1->getType() == X86Type::Imm) {
                 fop2 = op1;
                 fop1 = op2;
@@ -196,14 +196,14 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         case InstrType::SDiv:
         case InstrType::URem:
         case InstrType::SRem: {
-            X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
-            X86Operand *dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
-            X86Operand *rax = compileOperand(std::make_shared<HReg>(0), instr->getDataType(), prefix);
-            X86Operand *fop2;
+            std::shared_ptr<X86Operand> op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> rax = compileOperand(std::make_shared<HReg>(0), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> fop2;
             bool pop = false;
             if (op2->getType() == X86Type::Imm) {
-                X86Operand *fop2_long = compileOperand(std::make_shared<HReg>(-1), Type::createI64Type(), prefix);
+                std::shared_ptr<X86Operand> fop2_long = compileOperand(std::make_shared<HReg>(-1), Type::createI64Type(), prefix);
                 fop2 = compileOperand(std::make_shared<HReg>(-1), instr->getDataType(), prefix);
                 X86Mov *mov1 = new X86Mov(fop2, op2);
                 file->addCode(mov1);
@@ -226,7 +226,7 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         } break;
         
         case InstrType::Br: {
-            X86Operand *label = compileOperand(instr->getOperand1(), nullptr, prefix);
+            std::shared_ptr<X86Operand> label = compileOperand(instr->getOperand1(), nullptr, prefix);
             X86Jmp *jmp = new X86Jmp(label, X86Type::Jmp);
             file->addCode(jmp);
         } break;
@@ -238,12 +238,12 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         case InstrType::Blt:
         case InstrType::Bge:
         case InstrType::Ble: {
-            X86Operand *op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> op1 = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> op2 = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
             X86Cmp *cmp = new X86Cmp(op1, op2);
             file->addCode(cmp);
             
-            X86Operand *label = compileOperand(instr->getOperand3(), nullptr, prefix);
+            std::shared_ptr<X86Operand> label = compileOperand(instr->getOperand3(), nullptr, prefix);
             X86Instr *jmp;
             switch (instr->getType()) {
                 case InstrType::Beq: jmp = new X86Jmp(label, X86Type::Je); break;
@@ -268,25 +268,25 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
                 // TODO: Some better argument detection for the registers would be ideal
                 Type *argType = Type::createI32Type();
                 if (pos < callee->getArgCount()) argType = callee->getArgType(pos);
-                X86Operand *op = compileOperand(arg, argType, prefix);
+                std::shared_ptr<X86Operand> op = compileOperand(arg, argType, prefix);
                 
                 X86Reg regType = argRegMap[pos];
                 ++pos;
                 
-                X86Operand *dest = new X86Reg32(regType);
+                std::shared_ptr<X86Operand> dest = std::make_shared<X86Reg32>(regType);
                 switch (argType->getType()) {
                     case DataType::Void: break;
                     case DataType::I8:
                     case DataType::I16:
-                    case DataType::I32: dest = new X86Reg32(regType); break;
+                    case DataType::I32: dest = std::make_shared<X86Reg32>(regType); break;
                     case DataType::Struct:
                     case DataType::Ptr:
-                    case DataType::I64: dest = new X86Reg64(regType); break;
+                    case DataType::I64: dest = std::make_shared<X86Reg64>(regType); break;
                     case DataType::F32:
                     case DataType::F64: break;
                 }
                 if (op->getType() == X86Type::String)
-                    dest = new X86Reg64(regType);
+                    dest = std::make_shared<X86Reg64>(regType);
                     
                 if (argType->getType() == DataType::Ptr) {
                     PointerType *ptr = static_cast<PointerType *>(argType);
@@ -326,7 +326,7 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
         
         case InstrType::StructLoad: {
             // First, compile the operands
-            X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             int position = std::dynamic_pointer_cast<Imm >(instr->getOperand2())->getValue();
             
             // Now, calculate the element position
@@ -335,27 +335,27 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             position *= getIntSizeForType(elementType);
             
             // Update the source with the correct position
-            X86Mem *mem = static_cast<X86Mem *>(src);
+            std::shared_ptr<X86Mem> mem = std::dynamic_pointer_cast<X86Mem>(src);
             mem->setSizeAttr(getSizeForType(elementType));
-            X86Imm *offset = static_cast<X86Imm *>(mem->getOffset());
+            std::shared_ptr<X86Imm> offset = std::dynamic_pointer_cast<X86Imm>(mem->getOffset());
             offset->setValue(offset->getValue() + position);
             
             // Now, do the moves
-            X86Operand *dest = compileOperand(instr->getDest(), elementType, prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), elementType, prefix);
             X86Mov *mov = new X86Mov(dest, mem);
             file->addCode(mov);
         } break;
         
         case InstrType::Load: {
-            X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getDest(), instr->getDataType(), prefix);
             X86Mov *mov = new X86Mov(dest, src);
             file->addCode(mov);
         } break;
         
         case InstrType::GEP: {
-            X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *index = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> index = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
             
             // Check the index, and calculate the proper offset
             int offset = 1;
@@ -375,12 +375,12 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             }
                 
             if (index->getType() == X86Type::Imm) {
-                X86Imm *indexImm = static_cast<X86Imm *>(index);
+                std::shared_ptr<X86Imm> indexImm = std::dynamic_pointer_cast<X86Imm>(index);
                 int val = indexImm->getValue();
                 indexImm->setValue(val * offset);
                 index = indexImm;
             } else {
-                X86IMul *mul = new X86IMul(index, index, new X86Imm(offset));
+                X86IMul *mul = new X86IMul(index, index, std::make_shared<X86Imm>(offset));
                 file->addCode(mul);
             }
             
@@ -388,15 +388,15 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             file->addCode(add);
             
             // The destination needs to be converted to a regular register
-            X86RegPtr *dest = static_cast<X86RegPtr *>(compileOperand(instr->getDest(), instr->getDataType(), prefix));
-            X86Reg64 *dest2 = new X86Reg64(dest->getType());
+            std::shared_ptr<X86RegPtr> dest = std::dynamic_pointer_cast<X86RegPtr>(compileOperand(instr->getDest(), instr->getDataType(), prefix));
+            std::shared_ptr<X86Reg64> dest2 = std::make_shared<X86Reg64>(dest->getType());
             X86Mov *mov = new X86Mov(dest2, src);
             file->addCode(mov);
         } break;
         
         case InstrType::StructStore: {
             // First, compile the operands
-            X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
             int position = std::dynamic_pointer_cast<Imm>(instr->getOperand2())->getValue();
             
             // Now, calculate the element position
@@ -405,39 +405,39 @@ void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::st
             position *= getIntSizeForType(elementType);
             
             // Update the source with the correct position
-            X86Mem *mem = static_cast<X86Mem *>(src);
+            std::shared_ptr<X86Mem> mem = std::dynamic_pointer_cast<X86Mem>(src);
             mem->setSizeAttr(getSizeForType(elementType));
-            X86Imm *offset = static_cast<X86Imm *>(mem->getOffset());
+            std::shared_ptr<X86Imm> offset = std::dynamic_pointer_cast<X86Imm>(mem->getOffset());
             offset->setValue(offset->getValue() + position);
             
             // Now, do the moves
-            X86Operand *dest = compileOperand(instr->getOperand3(), elementType, prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getOperand3(), elementType, prefix);
             X86Mov *mov = new X86Mov(mem, dest);
             file->addCode(mov);
         } break;
         
         case InstrType::Store: {
-            X86Operand *src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
-            X86Operand *dest = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> src = compileOperand(instr->getOperand1(), instr->getDataType(), prefix);
+            std::shared_ptr<X86Operand> dest = compileOperand(instr->getOperand2(), instr->getDataType(), prefix);
             X86Mov *mov = new X86Mov(dest, src);
             file->addCode(mov);
         } break;
     }
 }
 
-X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix) {
+std::shared_ptr<X86Operand> Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix) {
     switch (src->getType()) {
         // Return an immediate operand
         case OpType::Imm: {
             std::shared_ptr<Imm> imm = std::dynamic_pointer_cast<Imm >(src);
-            return new X86Imm(imm->getValue());
+            return std::make_shared<X86Imm>(imm->getValue());
         }
         
         // Return a memory operand
         case OpType::Mem: {
             std::shared_ptr<Mem> mem = std::dynamic_pointer_cast<Mem>(src);
             int pos = memMap[mem->getName()];
-            X86Mem *mem2 = new X86Mem(new X86Imm(0 - pos));
+            std::shared_ptr<X86Mem> mem2 = std::make_shared<X86Mem>(std::make_shared<X86Imm>(0 - pos));
             mem2->setSizeAttr(getSizeForType(type));
             return mem2;
         }
@@ -449,12 +449,12 @@ X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type
             
             switch (type->getType()) {
                 case DataType::Void: break;
-                case DataType::I8: return new X86Reg8(rType);
-                case DataType::I16: return new X86Reg16(rType);
-                case DataType::I32: return new X86Reg32(rType);
+                case DataType::I8: return std::make_shared<X86Reg8>(rType);
+                case DataType::I16: return std::make_shared<X86Reg16>(rType);
+                case DataType::I32: return std::make_shared<X86Reg32>(rType);
                 case DataType::Struct:
                 case DataType::Ptr:
-                case DataType::I64: return new X86Reg64(rType);
+                case DataType::I64: return std::make_shared<X86Reg64>(rType);
                 case DataType::F32:
                 case DataType::F64: break;
             }
@@ -467,12 +467,12 @@ X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type
             
             switch (type->getType()) {
                 case DataType::Void: break;
-                case DataType::I8: return new X86Reg8(rType);
-                case DataType::I16: return new X86Reg16(rType);
-                case DataType::I32: return new X86Reg32(rType);
+                case DataType::I8: return std::make_shared<X86Reg8>(rType);
+                case DataType::I16: return std::make_shared<X86Reg16>(rType);
+                case DataType::I32: return std::make_shared<X86Reg32>(rType);
                 case DataType::Struct:
                 case DataType::Ptr:
-                case DataType::I64: return new X86Reg64(rType);
+                case DataType::I64: return std::make_shared<X86Reg64>(rType);
                 case DataType::F32:
                 case DataType::F64: break;
             }
@@ -482,7 +482,7 @@ X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type
         case OpType::PReg: {
             std::shared_ptr<PReg> reg = std::dynamic_pointer_cast<PReg>(src);
             X86Reg rType = regMap[reg->getNum()];
-            X86RegPtr *reg2 = new X86RegPtr(rType);
+            std::shared_ptr<X86RegPtr> reg2 = std::make_shared<X86RegPtr>(rType);
             reg2->setSizeAttr(getSizeForType(type));
             return reg2;
         } break;
@@ -490,13 +490,13 @@ X86Operand *Amd64Writer::compileOperand(std::shared_ptr<Operand> src, Type *type
         // A string operand
         case OpType::String: {
             std::shared_ptr<StringPtr> ptr = std::dynamic_pointer_cast<StringPtr>(src);
-            return new X86String(ptr->getName());
+            return std::make_shared<X86String>(ptr->getName());
         }
         
         // A label reference
         case OpType::Label: {
             std::shared_ptr<Label> lbl = std::dynamic_pointer_cast<Label>(src);
-            return new X86LabelRef(prefix + lbl->getName());
+            return std::make_shared<X86LabelRef>(prefix + lbl->getName());
         }
         
         default: return nullptr;

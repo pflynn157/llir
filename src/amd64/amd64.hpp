@@ -15,7 +15,7 @@ public:
     ~Amd64Writer();
     void compile();
     void compileInstruction(std::shared_ptr<Instruction> instr, std::string prefix);
-    X86Operand *compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix);
+    std::shared_ptr<X86Operand> compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix);
     void dump();
     void writeToFile();
     void writeToFile(std::string path);

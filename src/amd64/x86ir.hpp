@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace LLIR {
 
@@ -120,23 +121,23 @@ public:
         this->type = type;
     }
     
-    ~X86Instr() {
+    /*~X86Instr() {
         if (op1) delete op1;
         if (op2) delete op2;
-    }
+    }*/
     
-    void setOperand1(X86Operand *op1) { this->op1 = op1; }
-    void setOperand2(X86Operand *op2) { this->op2 = op2; }
+    void setOperand1(std::shared_ptr<X86Operand> op1) { this->op1 = op1; }
+    void setOperand2(std::shared_ptr<X86Operand> op2) { this->op2 = op2; }
     
     X86Type getType() { return type; }
-    X86Operand *getOperand1() { return op1; }
-    X86Operand *getOperand2() { return op2; }
+    std::shared_ptr<X86Operand> getOperand1() { return op1; }
+    std::shared_ptr<X86Operand> getOperand2() { return op2; }
     
     virtual std::string print() { return "nop"; }
 protected:
     X86Type type = X86Type::None;
-    X86Operand *op1 = nullptr;
-    X86Operand *op2 = nullptr;
+    std::shared_ptr<X86Operand> op1 = nullptr;
+    std::shared_ptr<X86Operand> op2 = nullptr;
 };
 
 // Represents an x86 file
@@ -199,7 +200,7 @@ protected:
 class X86Push : public X86Instr {
 public:
     explicit X86Push() : X86Instr(X86Type::Push) {}
-    explicit X86Push(X86Operand *op) : X86Instr(X86Type::Push) {
+    explicit X86Push(std::shared_ptr<X86Operand> op) : X86Instr(X86Type::Push) {
         op1 = op;
     }
     
@@ -209,7 +210,7 @@ public:
 // An MOV instruction
 class X86Mov : public X86Instr {
 public:
-    explicit X86Mov(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Mov) {
+    explicit X86Mov(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Mov) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -220,7 +221,7 @@ public:
 // An MOVSX instruction
 class X86Movsx : public X86Instr {
 public:
-    explicit X86Movsx(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Movsx) {
+    explicit X86Movsx(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Movsx) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -231,7 +232,7 @@ public:
 // An LEA instruction
 class X86Lea : public X86Instr {
 public:
-    explicit X86Lea(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Lea) {
+    explicit X86Lea(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Lea) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -242,7 +243,7 @@ public:
 // An ADD instruction
 class X86Add : public X86Instr {
 public:
-    explicit X86Add(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Add) {
+    explicit X86Add(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Add) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -253,7 +254,7 @@ public:
 // A SUB instruction
 class X86Sub : public X86Instr {
 public:
-    explicit X86Sub(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Sub) {
+    explicit X86Sub(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Sub) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -264,7 +265,7 @@ public:
 // An AND instruction
 class X86And : public X86Instr {
 public:
-    explicit X86And(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::And) {
+    explicit X86And(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::And) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -275,7 +276,7 @@ public:
 // An OR instruction
 class X86Or : public X86Instr {
 public:
-    explicit X86Or(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Or) {
+    explicit X86Or(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Or) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -286,7 +287,7 @@ public:
 // A XOR instruction
 class X86Xor : public X86Instr {
 public:
-    explicit X86Xor(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Xor) {
+    explicit X86Xor(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Xor) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -297,7 +298,7 @@ public:
 // A CMP instruction
 class X86Cmp : public X86Instr {
 public:
-    explicit X86Cmp(X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::Cmp) {
+    explicit X86Cmp(std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::Cmp) {
         this->op1 = op1;
         this->op2 = op2;
     }
@@ -308,7 +309,7 @@ public:
 // An IMUL instruction
 class X86IMul : public X86Instr {
 public:
-    explicit X86IMul(X86Operand *dest, X86Operand *op1, X86Operand *op2) : X86Instr(X86Type::IMul) {
+    explicit X86IMul(std::shared_ptr<X86Operand> dest, std::shared_ptr<X86Operand> op1, std::shared_ptr<X86Operand> op2) : X86Instr(X86Type::IMul) {
         this->dest = dest;
         this->op1 = op1;
         this->op2 = op2;
@@ -316,13 +317,13 @@ public:
     
     std::string print();
 private:
-    X86Operand *dest;
+    std::shared_ptr<X86Operand> dest;
 };
 
 // An IDIV instruction
 class X86IDiv : public X86Instr {
 public:
-    explicit X86IDiv(X86Operand *op1) : X86Instr(X86Type::IDiv) {
+    explicit X86IDiv(std::shared_ptr<X86Operand> op1) : X86Instr(X86Type::IDiv) {
         this->op1 = op1;
     }
     
@@ -331,7 +332,7 @@ public:
 
 class X86Jmp : public X86Instr {
 public:
-    explicit X86Jmp(X86Operand *lbl, X86Type jType) : X86Instr(jType) {
+    explicit X86Jmp(std::shared_ptr<X86Operand> lbl, X86Type jType) : X86Instr(jType) {
         this->op1 = lbl;
     }
     
@@ -473,23 +474,23 @@ protected:
 // Represents a memory location
 class X86Mem : public X86Operand {
 public:
-    explicit X86Mem(X86Operand *base, X86Operand *offset) : X86Operand(X86Type::Mem) {
+    explicit X86Mem(std::shared_ptr<X86Operand> base, std::shared_ptr<X86Operand> offset) : X86Operand(X86Type::Mem) {
         this->base = base;
         this->offset = offset;
     }
     
-    explicit X86Mem(X86Operand *offset) : X86Operand(X86Type::Mem) {
+    explicit X86Mem(std::shared_ptr<X86Operand> offset) : X86Operand(X86Type::Mem) {
         this->offset = offset;
-        this->base = new X86Reg64(X86Reg::BP);
+        this->base = std::make_shared<X86Reg64>(X86Reg::BP);
     }
     
-    X86Operand *getOffset() { return offset; }
+    std::shared_ptr<X86Operand> getOffset() { return offset; }
     
     void setSizeAttr(std::string sizeAttr) { this->sizeAttr = sizeAttr; }
     
     std::string print();
 private:
-    X86Operand *base, *offset;
+    std::shared_ptr<X86Operand> base, offset;
     std::string sizeAttr = "";
 };
 
