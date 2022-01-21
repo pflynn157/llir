@@ -68,7 +68,7 @@ void Function::print() {
 
 void Block::print() {
     std::cout << name << ":" << std::endl;
-    for (Instruction *i : instrs) {
+    for (auto i : instrs) {
         std::cout << "  ";
         i->print();
     }

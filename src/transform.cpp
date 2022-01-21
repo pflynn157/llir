@@ -76,7 +76,7 @@ void Module::transform() {
             
             // Now, take care of the rest of the instructions
             for (int j = 0; j<block->getInstrCount(); j++) {
-                Instruction *instr = block->getInstruction(j);
+                std::shared_ptr<Instruction> instr = block->getInstruction(j);
                 switch (instr->getType()) {
                     case InstrType::Alloca: {
                         std::shared_ptr<Reg> reg = std::dynamic_pointer_cast<Reg>(instr->getDest());
@@ -125,7 +125,7 @@ void Module::transform() {
                     case InstrType::Call: {
                         regCount = 0;
                     
-                        FunctionCall *fc = static_cast<FunctionCall *>(instr);
+                        std::shared_ptr<FunctionCall> fc = std::dynamic_pointer_cast<FunctionCall>(instr);
                         std::vector<std::shared_ptr<Operand>> args;
                         for (std::shared_ptr<Operand> arg : fc->getArgs()) {
                             std::shared_ptr<Operand> op = checkOperand(arg);

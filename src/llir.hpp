@@ -227,25 +227,25 @@ public:
         this->name = name;
     }
     
-    ~Block() {
+    /*~Block() {
         for (Instruction *i : instrs) {
             if (i) delete i;
         }
-    }
+    }*/
     
-    void addInstruction(Instruction *i) { instrs.push_back(i); }
+    void addInstruction(std::shared_ptr<Instruction> i) { instrs.push_back(i); }
     void setID(int id) { this->id = id; }
     
     std::string getName() { return name; }
     int getID() { return id; }
     
     int getInstrCount() { return instrs.size(); }
-    Instruction *getInstruction(int pos) { return instrs.at(pos); }
+    std::shared_ptr<Instruction> getInstruction(int pos) { return instrs.at(pos); }
     
     void print();
 private:
     std::string name = "";
-    std::vector<Instruction *> instrs;
+    std::vector<std::shared_ptr<Instruction>> instrs;
     int id = 0;
 };
 

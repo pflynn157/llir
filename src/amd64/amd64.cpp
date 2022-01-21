@@ -99,7 +99,7 @@ void Amd64Writer::compile() {
     }
 }
 
-void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
+void Amd64Writer::compileInstruction(std::shared_ptr<Instruction> instr, std::string prefix) {
     switch (instr->getType()) {
         case InstrType::None: break;
         
@@ -260,7 +260,7 @@ void Amd64Writer::compileInstruction(Instruction *instr, std::string prefix) {
         } break;
         
         case InstrType::Call: {
-            FunctionCall *fc = static_cast<FunctionCall *>(instr);
+            std::shared_ptr<FunctionCall> fc = std::dynamic_pointer_cast<FunctionCall>(instr);
             Function *callee = mod->getFunctionByName(fc->getName());
             
             int pos = 0;

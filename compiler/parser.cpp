@@ -358,34 +358,34 @@ bool Parser::buildInstruction(Token instrType, std::shared_ptr<Operand> dest) {
     }
     
     // Now, build the instruction
-    Instruction *instr;
+    std::shared_ptr<Instruction> instr;
     switch (instrType.type) {
-        case Ret: instr = new Instruction(InstrType::Ret); break;
-        case Alloca: instr = new Instruction(InstrType::Alloca); break;
-        case Load: instr = new Instruction(InstrType::Load); break;
-        case Store: instr = new Instruction(InstrType::Store); break;
-        case LoadStruct: instr = new Instruction(InstrType::StructLoad); break;
-        case StoreStruct: instr = new Instruction(InstrType::StructStore); break;
-        case GetElementPtr: instr = new Instruction(InstrType::GEP); break;
+        case Ret: instr = std::make_shared<Instruction>(InstrType::Ret); break;
+        case Alloca: instr = std::make_shared<Instruction>(InstrType::Alloca); break;
+        case Load: instr = std::make_shared<Instruction>(InstrType::Load); break;
+        case Store: instr = std::make_shared<Instruction>(InstrType::Store); break;
+        case LoadStruct: instr = std::make_shared<Instruction>(InstrType::StructLoad); break;
+        case StoreStruct: instr = std::make_shared<Instruction>(InstrType::StructStore); break;
+        case GetElementPtr: instr = std::make_shared<Instruction>(InstrType::GEP); break;
         
-        case Add: instr = new Instruction(InstrType::Add); break;
-        case Sub: instr = new Instruction(InstrType::Sub); break;
-        case SMul: instr = new Instruction(InstrType::SMul); break;
-        case SDiv: instr = new Instruction(InstrType::SDiv); break;
-        case Call: instr = new FunctionCall(funcName, operands); break;
+        case Add: instr = std::make_shared<Instruction>(InstrType::Add); break;
+        case Sub: instr = std::make_shared<Instruction>(InstrType::Sub); break;
+        case SMul: instr = std::make_shared<Instruction>(InstrType::SMul); break;
+        case SDiv: instr = std::make_shared<Instruction>(InstrType::SDiv); break;
+        case Call: instr = std::make_shared<FunctionCall>(funcName, operands); break;
         
-        case Br: instr = new Instruction(InstrType::Br); break;
-        case Beq: instr = new Instruction(InstrType::Beq); break;
-        case Bne: instr = new Instruction(InstrType::Bne); break;
-        case Bgt: instr = new Instruction(InstrType::Bgt); break;
-        case Blt: instr = new Instruction(InstrType::Blt); break;
-        case Bge: instr = new Instruction(InstrType::Bge); break;
-        case Ble: instr = new Instruction(InstrType::Ble); break;
+        case Br: instr = std::make_shared<Instruction>(InstrType::Br); break;
+        case Beq: instr = std::make_shared<Instruction>(InstrType::Beq); break;
+        case Bne: instr = std::make_shared<Instruction>(InstrType::Bne); break;
+        case Bgt: instr = std::make_shared<Instruction>(InstrType::Bgt); break;
+        case Blt: instr = std::make_shared<Instruction>(InstrType::Blt); break;
+        case Bge: instr = std::make_shared<Instruction>(InstrType::Bge); break;
+        case Ble: instr = std::make_shared<Instruction>(InstrType::Ble); break;
         
-        case And: instr = new Instruction(InstrType::And); break;
-        case Or: instr = new Instruction(InstrType::Or); break;
-        case Xor: instr = new Instruction(InstrType::Xor); break;
-        case Not: instr = new Instruction(InstrType::Not); break;
+        case And: instr = std::make_shared<Instruction>(InstrType::And); break;
+        case Or: instr = std::make_shared<Instruction>(InstrType::Or); break;
+        case Xor: instr = std::make_shared<Instruction>(InstrType::Xor); break;
+        case Not: instr = std::make_shared<Instruction>(InstrType::Not); break;
         
         default: {
             std::cerr << "Error: Unknown instruction." << std::endl;

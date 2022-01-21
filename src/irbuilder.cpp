@@ -62,7 +62,7 @@ std::shared_ptr<Operand> IRBuilder::createString(std::string val) {
 }
 
 std::shared_ptr<Reg> IRBuilder::createAlloca(Type *type) {
-    Instruction *alloc = new Instruction(InstrType::Alloca);
+    std::shared_ptr<Instruction> alloc = std::make_shared<Instruction>(InstrType::Alloca);
     alloc->setDataType(type);
     
     auto dest = std::make_shared<Reg>(std::to_string(regCounter));
@@ -73,8 +73,8 @@ std::shared_ptr<Reg> IRBuilder::createAlloca(Type *type) {
     return dest;
 }
 
-Instruction *IRBuilder::createStore(Type *type, std::shared_ptr<Operand> op, std::shared_ptr<Operand> dest) {
-    Instruction *store = new Instruction(InstrType::Store);
+std::shared_ptr<Instruction> IRBuilder::createStore(Type *type, std::shared_ptr<Operand> op, std::shared_ptr<Operand> dest) {
+    std::shared_ptr<Instruction> store = std::make_shared<Instruction>(InstrType::Store);
     store->setDataType(type);
     store->setOperand1(op);
     store->setOperand2(dest);
@@ -82,8 +82,8 @@ Instruction *IRBuilder::createStore(Type *type, std::shared_ptr<Operand> op, std
     return store;
 }
 
-Instruction *IRBuilder::createStructStore(Type *type, std::shared_ptr<Operand> ptr, int index, std::shared_ptr<Operand> val) {
-    Instruction *op = new Instruction(InstrType::StructStore);
+std::shared_ptr<Instruction> IRBuilder::createStructStore(Type *type, std::shared_ptr<Operand> ptr, int index, std::shared_ptr<Operand> val) {
+    std::shared_ptr<Instruction> op = std::make_shared<Instruction>(InstrType::StructStore);
     op->setDataType(type);
     op->setOperand1(ptr);
     op->setOperand2(std::make_shared<Imm>(index));
@@ -94,7 +94,7 @@ Instruction *IRBuilder::createStructStore(Type *type, std::shared_ptr<Operand> p
 }
 
 std::shared_ptr<Reg> IRBuilder::createLoad(Type *type, std::shared_ptr<Operand> src) {
-    Instruction *load = new Instruction(InstrType::Load);
+    std::shared_ptr<Instruction> load = std::make_shared<Instruction>(InstrType::Load);
     load->setDataType(type);
     load->setOperand1(src);
     
@@ -107,7 +107,7 @@ std::shared_ptr<Reg> IRBuilder::createLoad(Type *type, std::shared_ptr<Operand> 
 }
 
 std::shared_ptr<Reg> IRBuilder::createStructLoad(Type *type, std::shared_ptr<Operand> src, int index) {
-    Instruction *load = new Instruction(InstrType::StructLoad);
+    std::shared_ptr<Instruction> load = std::make_shared<Instruction>(InstrType::StructLoad);
     load->setDataType(type);
     load->setOperand1(src);
     load->setOperand2(std::make_shared<Imm>(index));
@@ -138,7 +138,7 @@ std::shared_ptr<Operand> IRBuilder::createBinaryOp(Type *type, std::shared_ptr<O
         }
     }
     
-    Instruction *op = new Instruction(iType);
+    std::shared_ptr<Instruction> op = std::make_shared<Instruction>(iType);
     op->setDataType(type);
     op->setOperand1(op1);
     op->setOperand2(op2);
@@ -193,7 +193,7 @@ std::shared_ptr<Operand> IRBuilder::createNeg(Type *type, std::shared_ptr<Operan
         return imm;    
     }
     
-    Instruction *op = new Instruction(InstrType::Not);
+    std::shared_ptr<Instruction> op = std::make_shared<Instruction>(InstrType::Not);
     op->setDataType(type);
     op->setOperand1(op1);
     
@@ -211,7 +211,7 @@ std::shared_ptr<Operand> IRBuilder::createBeq(Type *type, std::shared_ptr<Operan
         std::shared_ptr<Imm> imm2 = std::dynamic_pointer_cast<Imm>(op2);
         if (imm1->getValue() == imm2->getValue()) {
             auto lbl = std::make_shared<Label>(destBlock->getName());
-            Instruction *op = new Instruction(InstrType::Br);
+            std::shared_ptr<Instruction> op = std::make_shared<Instruction>(InstrType::Br);
             op->setOperand1(lbl);
             
             std::shared_ptr<Reg> dest = std::make_shared<Reg>(std::to_string(regCounter));
@@ -245,22 +245,22 @@ std::shared_ptr<Operand> IRBuilder::createBle(Type *type, std::shared_ptr<Operan
     return createBinaryOp(type, op1, op2, InstrType::Ble, destBlock);
 }
 
-Instruction *IRBuilder::createBr(Block *block) {
+std::shared_ptr<Instruction> IRBuilder::createBr(Block *block) {
     auto lbl = std::make_shared<Label>(block->getName());
-    Instruction *op = new Instruction(InstrType::Br);
+    std::shared_ptr<Instruction> op = std::make_shared<Instruction>(InstrType::Br);
     op->setOperand1(lbl);
     currentBlock->addInstruction(op);
     return op;
 }
 
-Instruction *IRBuilder::createVoidCall(std::string name, std::vector<std::shared_ptr<Operand> > args) {
-    FunctionCall *fc = new FunctionCall(name, args);
+std::shared_ptr<Instruction> IRBuilder::createVoidCall(std::string name, std::vector<std::shared_ptr<Operand> > args) {
+    std::shared_ptr<FunctionCall> fc = std::make_shared<FunctionCall>(name, args);
     currentBlock->addInstruction(fc);
     return fc;
 }
 
 std::shared_ptr<Reg> IRBuilder::createCall(Type *type, std::string name, std::vector<std::shared_ptr<Operand> > args) {
-    FunctionCall *fc = new FunctionCall(name, args);
+    std::shared_ptr<FunctionCall> fc = std::make_shared<FunctionCall>(name, args);
     fc->setDataType(type);
     
     auto dest = std::make_shared<Reg>(std::to_string(regCounter));
@@ -271,15 +271,15 @@ std::shared_ptr<Reg> IRBuilder::createCall(Type *type, std::string name, std::ve
     return dest;
 }
 
-Instruction *IRBuilder::createRetVoid() {
-    Instruction *ret = new Instruction(InstrType::Ret);
+std::shared_ptr<Instruction> IRBuilder::createRetVoid() {
+    std::shared_ptr<Instruction> ret = std::make_shared<Instruction>(InstrType::Ret);
     ret->setDataType(Type::createVoidType());
     currentBlock->addInstruction(ret);
     return ret;
 }
 
-Instruction *IRBuilder::createRet(Type *type, std::shared_ptr<Operand> op) {
-    Instruction *ret = new Instruction(InstrType::Ret);
+std::shared_ptr<Instruction> IRBuilder::createRet(Type *type, std::shared_ptr<Operand> op) {
+    std::shared_ptr<Instruction> ret = std::make_shared<Instruction>(InstrType::Ret);
     ret->setDataType(type);
     ret->setOperand1(op);
     currentBlock->addInstruction(ret);

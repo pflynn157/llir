@@ -14,7 +14,7 @@ public:
     explicit Amd64Writer(Module *mod);
     ~Amd64Writer();
     void compile();
-    void compileInstruction(Instruction *instr, std::string prefix);
+    void compileInstruction(std::shared_ptr<Instruction> instr, std::string prefix);
     X86Operand *compileOperand(std::shared_ptr<Operand> src, Type *type, std::string prefix);
     void dump();
     void writeToFile();
