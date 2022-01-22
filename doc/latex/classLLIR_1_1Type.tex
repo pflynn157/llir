@@ -2,7 +2,17 @@
 \label{classLLIR_1_1Type}\index{LLIR::Type@{LLIR::Type}}
 
 
-Inheritance diagram for L\+L\+IR\+::Type\+:\nopagebreak
+Type-\/ The base of all data types.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::Type\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,12 +22,10 @@ Inheritance diagram for L\+L\+IR\+::Type\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Type_a82aeb1616f8e65eaf82881be5f4dd7a8}} 
-{\bfseries Type} (Data\+Type type)
-\item 
-\mbox{\label{classLLIR_1_1Type_a7938db7f0fa6a7b4c2b917a86ab4db24}} 
-Data\+Type {\bfseries get\+Type} ()
-\item 
+\textbf{ Type} (Data\+Type type)
+\begin{DoxyCompactList}\small\item\em Create a new type. \end{DoxyCompactList}\item 
+Data\+Type \textbf{ get\+Type} ()
+\begin{DoxyCompactList}\small\item\em Returns what kind of type you have. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Type_ae2c08fa19fcf1d7b3c2bbaac2716173b}} 
 virtual void {\bfseries print} ()
 \end{DoxyCompactItemize}
@@ -45,6 +53,42 @@ static \textbf{ Type} $\ast$ {\bfseries create\+I64\+Type} ()
 \mbox{\label{classLLIR_1_1Type_ad025d4d9099bc6c421e683415563a834}} 
 Data\+Type {\bfseries type} = Data\+Type\+::\+Void
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Type-\/ The base of all data types. 
+
+This class represents the basic integer types, and forms the base of more advanced types such as the \doxyref{Pointer\+Type}{p.}{classLLIR_1_1PointerType} and the Structure \doxyref{Type}{p.}{classLLIR_1_1Type} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Type_a82aeb1616f8e65eaf82881be5f4dd7a8}} 
+\index{LLIR::Type@{LLIR::Type}!Type@{Type}}
+\index{Type@{Type}!LLIR::Type@{LLIR::Type}}
+\doxysubsubsection{Type()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Type\+::\+Type (\begin{DoxyParamCaption}\item[{Data\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Create a new type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The \char`\"{}type\char`\"{} of our type \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Type_a7938db7f0fa6a7b4c2b917a86ab4db24}} 
+\index{LLIR::Type@{LLIR::Type}!getType@{getType}}
+\index{getType@{getType}!LLIR::Type@{LLIR::Type}}
+\doxysubsubsection{getType()}
+{\footnotesize\ttfamily Data\+Type L\+L\+I\+R\+::\+Type\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns what kind of type you have. 
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classLLIR_1_1X86Mem.html#a91610720ba78074725a76dd6d7ef09d4":[0,0,0,36,0],
-"classLLIR_1_1X86Mem.html#aa7ac85897dd94d212b83dfa1df11e5d2":[0,0,0,36,4],
 "classLLIR_1_1X86Mem.html#aeac45fd4d2ed6373f7b575951ef8845e":[0,0,0,36,2],
 "classLLIR_1_1X86Mov.html":[0,0,0,37],
 "classLLIR_1_1X86Mov.html#a39dd739e8f50a61f0dca8764ab4925b4":[0,0,0,37,0],

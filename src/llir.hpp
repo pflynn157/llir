@@ -7,7 +7,10 @@
 
 namespace LLIR {
 
-// Enumerations
+/*! \brief The inner representation of Types
+ *
+ * This denotes the "type" of Type objects
+ */
 enum class DataType {
     Void,
     I8,
@@ -80,11 +83,17 @@ class Operand;
 class Reg;
 class StringPtr;
 
-//
-// Represents a data type
-//
+/*! \brief Type- The base of all data types
+ *
+ * This class represents the basic integer types, and forms the base of more advanced types such
+ * as the PointerType and the Structure Type
+ */
 class Type {
 public:
+    /*! \brief Create a new type
+     *
+     * @param type The "type" of our type
+     */
     explicit Type(DataType type) {
         this->type = type;
     }
@@ -96,6 +105,9 @@ public:
     static Type *createI32Type() { return new Type(DataType::I32); }
     static Type *createI64Type() { return new Type(DataType::I64); }
     
+    /*! \brief Returns what kind of type you have
+     *
+     */
     DataType getType() { return type; }
     
     virtual void print();
@@ -104,10 +116,25 @@ protected:
     DataType type = DataType::Void;
 };
 
+/*! \brief Represents a pointer
+ *
+ * This class is used to represents pointers. This class can be used recursively with other Types or
+ * other Pointer Types.
+ */
 class PointerType : public Type {
 public:
+    /*! \brief Create a new Pointer Type
+     *
+     * Creates a new pointer type with another Type (or PointerType) object as the base.
+     */
     explicit PointerType(Type *baseType);
+    
+    /*! \brief Create a new Pointer Type
+     *
+     * Creates a new pointer type based on a value from the type enumeration
+     */
     explicit PointerType(DataType type);
+    
     ~PointerType();
     
     static PointerType *createVoidPtrType() { return new PointerType(DataType::Void); }
@@ -116,6 +143,9 @@ public:
     static PointerType *createI32PtrType() { return new PointerType(DataType::I32); }
     static PointerType *createI64PtrType() { return new PointerType(DataType::I64); }
     
+    /*! \brief Returns the base type of the pointer
+     *
+     */
     Type *getBaseType() { return baseType; }
     
     void print();
@@ -123,11 +153,23 @@ private:
     Type *baseType = nullptr;
 };
 
+/*! \brief Represents a structure
+ *
+ * This class is used to represent structured type. Members of a structure type are
+ * represented by an internal array of types.
+ */
 class StructType : public Type {
 public:
+    /*! \brief Create a new structure type
+     *
+     * @param name The name of the structure
+     * @param elementTypes The types of each member
+     */
     explicit StructType(std::string name, std::vector<Type *> elementTypes);
     ~StructType();
     
+    /*! \brief Returns a list of the element types
+     */
     std::vector<Type *> getElementTypes();
     
     void print();

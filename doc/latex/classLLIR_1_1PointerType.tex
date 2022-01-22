@@ -2,7 +2,17 @@
 \label{classLLIR_1_1PointerType}\index{LLIR::PointerType@{LLIR::PointerType}}
 
 
-Inheritance diagram for L\+L\+IR\+::Pointer\+Type\+:\nopagebreak
+Represents a pointer.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::Pointer\+Type\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +21,8 @@ Inheritance diagram for L\+L\+IR\+::Pointer\+Type\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for L\+L\+IR\+::Pointer\+Type\+:\nopagebreak
+Collaboration diagram for L\+L\+IR\+::Pointer\+Type\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,15 +32,12 @@ Collaboration diagram for L\+L\+IR\+::Pointer\+Type\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1PointerType_a3293bfbe235119ed267a0f0f48f16023}} 
-{\bfseries Pointer\+Type} (\textbf{ Type} $\ast$base\+Type)
-\item 
-\mbox{\label{classLLIR_1_1PointerType_aedaeaf15b1acb17358fa2339b3480850}} 
-{\bfseries Pointer\+Type} (Data\+Type type)
-\item 
-\mbox{\label{classLLIR_1_1PointerType_a024a428cabd0e520363d585d4e59eb39}} 
-\textbf{ Type} $\ast$ {\bfseries get\+Base\+Type} ()
-\item 
+\textbf{ Pointer\+Type} (\textbf{ Type} $\ast$base\+Type)
+\begin{DoxyCompactList}\small\item\em Create a new Pointer \doxyref{Type}{p.}{classLLIR_1_1Type}. \end{DoxyCompactList}\item 
+\textbf{ Pointer\+Type} (Data\+Type type)
+\begin{DoxyCompactList}\small\item\em Create a new Pointer \doxyref{Type}{p.}{classLLIR_1_1Type}. \end{DoxyCompactList}\item 
+\textbf{ Type} $\ast$ \textbf{ get\+Base\+Type} ()
+\begin{DoxyCompactList}\small\item\em Returns the base type of the pointer. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1PointerType_a1e297c5f81f8e01faf4e8af016fced33}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
@@ -54,7 +62,49 @@ static \textbf{ Pointer\+Type} $\ast$ {\bfseries create\+I64\+Ptr\+Type} ()
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+Represents a pointer. 
+
+This class is used to represents pointers. This class can be used recursively with other Types or other Pointer Types. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1PointerType_a3293bfbe235119ed267a0f0f48f16023}} 
+\index{LLIR::PointerType@{LLIR::PointerType}!PointerType@{PointerType}}
+\index{PointerType@{PointerType}!LLIR::PointerType@{LLIR::PointerType}}
+\doxysubsubsection{PointerType()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Pointer\+Type\+::\+Pointer\+Type (\begin{DoxyParamCaption}\item[{\textbf{ Type} $\ast$}]{base\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Create a new Pointer \doxyref{Type}{p.}{classLLIR_1_1Type}. 
+
+Creates a new pointer type with another \doxyref{Type}{p.}{classLLIR_1_1Type} (or \doxyref{Pointer\+Type}{p.}{classLLIR_1_1PointerType}) object as the base. \mbox{\label{classLLIR_1_1PointerType_aedaeaf15b1acb17358fa2339b3480850}} 
+\index{LLIR::PointerType@{LLIR::PointerType}!PointerType@{PointerType}}
+\index{PointerType@{PointerType}!LLIR::PointerType@{LLIR::PointerType}}
+\doxysubsubsection{PointerType()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Pointer\+Type\+::\+Pointer\+Type (\begin{DoxyParamCaption}\item[{Data\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Create a new Pointer \doxyref{Type}{p.}{classLLIR_1_1Type}. 
+
+Creates a new pointer type based on a value from the type enumeration 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1PointerType_a024a428cabd0e520363d585d4e59eb39}} 
+\index{LLIR::PointerType@{LLIR::PointerType}!getBaseType@{getBaseType}}
+\index{getBaseType@{getBaseType}!LLIR::PointerType@{LLIR::PointerType}}
+\doxysubsubsection{getBaseType()}
+{\footnotesize\ttfamily \textbf{ Type}$\ast$ L\+L\+I\+R\+::\+Pointer\+Type\+::get\+Base\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the base type of the pointer. 
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 src/llir.\+hpp\item 
+src/llir.\+cpp\item 
 src/print.\+cpp\end{DoxyCompactItemize}

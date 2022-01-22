@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classLLIR_1_1Type.html" title=" " alt="" coords="5,31,92,57"/>
-<area shape="rect" id="node2" href="$classLLIR_1_1PointerType.html" title=" " alt="" coords="140,5,273,32"/>
-<area shape="rect" id="node3" href="$classLLIR_1_1StructType.html" title=" " alt="" coords="144,56,269,83"/>
+<area shape="rect" id="node1" href="$classLLIR_1_1Type.html" title="Type&#45; The base of all data types." alt="" coords="5,31,92,57"/>
+<area shape="rect" id="node2" href="$classLLIR_1_1PointerType.html" title="Represents a pointer." alt="" coords="140,5,273,32"/>
+<area shape="rect" id="node3" href="$classLLIR_1_1StructType.html" title="Represents a structure." alt="" coords="144,56,269,83"/>
 </map>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['setcurrentfunction_175',['setCurrentFunction',['../classLLIR_1_1IRBuilder.html#aa520edda1f69f2d2648f596bb9dac9a4',1,'LLIR::IRBuilder']]],
-  ['setinsertpoint_176',['setInsertPoint',['../classLLIR_1_1IRBuilder.html#a7c4d263dce2681db294d72f0114dadec',1,'LLIR::IRBuilder']]]
+  ['pointertype_181',['PointerType',['../classLLIR_1_1PointerType.html#a3293bfbe235119ed267a0f0f48f16023',1,'LLIR::PointerType::PointerType(Type *baseType)'],['../classLLIR_1_1PointerType.html#aedaeaf15b1acb17358fa2339b3480850',1,'LLIR::PointerType::PointerType(DataType type)']]]
 ];

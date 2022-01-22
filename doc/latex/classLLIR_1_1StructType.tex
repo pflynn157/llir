@@ -2,7 +2,17 @@
 \label{classLLIR_1_1StructType}\index{LLIR::StructType@{LLIR::StructType}}
 
 
-Inheritance diagram for L\+L\+IR\+::Struct\+Type\+:\nopagebreak
+Represents a structure.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::Struct\+Type\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +21,8 @@ Inheritance diagram for L\+L\+IR\+::Struct\+Type\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for L\+L\+IR\+::Struct\+Type\+:\nopagebreak
+Collaboration diagram for L\+L\+IR\+::Struct\+Type\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,19 +32,44 @@ Collaboration diagram for L\+L\+IR\+::Struct\+Type\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1StructType_a0cb24b7f9cc9d3b439ad220cc92901ee}} 
-{\bfseries Struct\+Type} (std\+::string name, std\+::vector$<$ \textbf{ Type} $\ast$ $>$ element\+Types)
-\item 
-\mbox{\label{classLLIR_1_1StructType_aa881656041c2ab829c17205526b58ded}} 
-std\+::vector$<$ \textbf{ Type} $\ast$ $>$ {\bfseries get\+Element\+Types} ()
-\item 
+\textbf{ Struct\+Type} (std\+::string name, std\+::vector$<$ \textbf{ Type} $\ast$ $>$ element\+Types)
+\begin{DoxyCompactList}\small\item\em Create a new structure type. \end{DoxyCompactList}\item 
+\mbox{\label{classLLIR_1_1StructType_a17c7be23410e62a0679db69c8efed115}} 
+std\+::vector$<$ \textbf{ Type} $\ast$ $>$ \textbf{ get\+Element\+Types} ()
+\begin{DoxyCompactList}\small\item\em Returns a list of the element types. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1StructType_a2db80bee9a9a79d5192fa6a96bc38c7e}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
+\doxysubsection{Detailed Description}
+Represents a structure. 
+
+This class is used to represent structured type. Members of a structure type are represented by an internal array of types. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1StructType_a0cb24b7f9cc9d3b439ad220cc92901ee}} 
+\index{LLIR::StructType@{LLIR::StructType}!StructType@{StructType}}
+\index{StructType@{StructType}!LLIR::StructType@{LLIR::StructType}}
+\doxysubsubsection{StructType()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Struct\+Type\+::\+Struct\+Type (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::vector$<$ \textbf{ Type} $\ast$ $>$}]{element\+Types }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Create a new structure type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the structure \\
+\hline
+{\em element\+Types} & The types of each member \\
+\hline
+\end{DoxyParams}
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
 src/llir.\+hpp\item 
+src/llir.\+cpp\item 
 src/print.\+cpp\end{DoxyCompactItemize}

@@ -91,24 +91,29 @@ $(document).ready(function(){initNavTree('classLLIR_1_1Type.html',''); initResiz
 <div class="title">LLIR::Type Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Type- The base of all data types.  
+ <a href="classLLIR_1_1Type.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="llir_8hpp_source.html">llir.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for LLIR::Type:</div>
 <div class="dyncontent">
 <div class="center"><img src="classLLIR_1_1Type__inherit__graph.png" border="0" usemap="#LLIR_1_1Type_inherit__map" alt="Inheritance graph"/></div>
 <map name="LLIR_1_1Type_inherit__map" id="LLIR_1_1Type_inherit__map">
-<area shape="rect" title=" " alt="" coords="105,5,191,32"/>
-<area shape="rect" href="classLLIR_1_1PointerType.html" title=" " alt="" coords="5,80,139,107"/>
-<area shape="rect" href="classLLIR_1_1StructType.html" title=" " alt="" coords="163,80,288,107"/>
+<area shape="rect" title="Type&#45; The base of all data types." alt="" coords="105,5,191,32"/>
+<area shape="rect" href="classLLIR_1_1PointerType.html" title="Represents a pointer." alt="" coords="5,80,139,107"/>
+<area shape="rect" href="classLLIR_1_1StructType.html" title="Represents a structure." alt="" coords="163,80,288,107"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a82aeb1616f8e65eaf82881be5f4dd7a8"><td class="memItemLeft" align="right" valign="top"><a id="a82aeb1616f8e65eaf82881be5f4dd7a8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> (DataType type)</td></tr>
+<tr class="memitem:a82aeb1616f8e65eaf82881be5f4dd7a8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Type.html#a82aeb1616f8e65eaf82881be5f4dd7a8">Type</a> (DataType type)</td></tr>
+<tr class="memdesc:a82aeb1616f8e65eaf82881be5f4dd7a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new type.  <a href="classLLIR_1_1Type.html#a82aeb1616f8e65eaf82881be5f4dd7a8">More...</a><br /></td></tr>
 <tr class="separator:a82aeb1616f8e65eaf82881be5f4dd7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7938db7f0fa6a7b4c2b917a86ab4db24"><td class="memItemLeft" align="right" valign="top"><a id="a7938db7f0fa6a7b4c2b917a86ab4db24"></a>
-DataType&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> ()</td></tr>
+<tr class="memitem:a7938db7f0fa6a7b4c2b917a86ab4db24"><td class="memItemLeft" align="right" valign="top">DataType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24">getType</a> ()</td></tr>
+<tr class="memdesc:a7938db7f0fa6a7b4c2b917a86ab4db24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns what kind of type you have.  <a href="classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24">More...</a><br /></td></tr>
 <tr class="separator:a7938db7f0fa6a7b4c2b917a86ab4db24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2c08fa19fcf1d7b3c2bbaac2716173b"><td class="memItemLeft" align="right" valign="top"><a id="ae2c08fa19fcf1d7b3c2bbaac2716173b"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
@@ -138,6 +143,72 @@ Protected Attributes</h2></td></tr>
 DataType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = DataType::Void</td></tr>
 <tr class="separator:ad025d4d9099bc6c421e683415563a834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Type- The base of all data types. </p>
+<p>This class represents the basic integer types, and forms the base of more advanced types such as the <a class="el" href="classLLIR_1_1PointerType.html" title="Represents a pointer.">PointerType</a> and the Structure <a class="el" href="classLLIR_1_1Type.html" title="Type- The base of all data types.">Type</a> </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a82aeb1616f8e65eaf82881be5f4dd7a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82aeb1616f8e65eaf82881be5f4dd7a8">&#9670;&nbsp;</a></span>Type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LLIR::Type::Type </td>
+          <td>(</td>
+          <td class="paramtype">DataType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create a new type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The "type" of our type </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7938db7f0fa6a7b4c2b917a86ab4db24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7938db7f0fa6a7b4c2b917a86ab4db24">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataType LLIR::Type::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns what kind of type you have. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="llir_8hpp_source.html">llir.hpp</a></li>
 <li>src/print.cpp</li>
