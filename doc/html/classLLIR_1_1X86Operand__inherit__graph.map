@@ -1,0 +1,12 @@
+<map id="LLIR::X86Operand" name="LLIR::X86Operand">
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,143,235"/>
+<area shape="rect" id="node2" href="$classLLIR_1_1X86Imm.html" title=" " alt="" coords="204,5,316,32"/>
+<area shape="rect" id="node3" href="$classLLIR_1_1X86LabelRef.html" title=" " alt="" coords="191,56,329,83"/>
+<area shape="rect" id="node4" href="$classLLIR_1_1X86Mem.html" title=" " alt="" coords="203,107,317,133"/>
+<area shape="rect" id="node5" href="$classLLIR_1_1X86Reg16.html" title=" " alt="" coords="199,157,321,184"/>
+<area shape="rect" id="node6" href="$classLLIR_1_1X86Reg32.html" title=" " alt="" coords="199,208,321,235"/>
+<area shape="rect" id="node7" href="$classLLIR_1_1X86Reg64.html" title=" " alt="" coords="199,259,321,285"/>
+<area shape="rect" id="node8" href="$classLLIR_1_1X86Reg8.html" title=" " alt="" coords="203,309,317,336"/>
+<area shape="rect" id="node9" href="$classLLIR_1_1X86RegPtr.html" title=" " alt="" coords="197,360,323,387"/>
+<area shape="rect" id="node10" href="$classLLIR_1_1X86String.html" title=" " alt="" coords="200,411,320,437"/>
+</map>

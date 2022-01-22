@@ -1,0 +1,65 @@
+\doxysection{L\+L\+IR\+::Function Class Reference}
+\label{classLLIR_1_1Function}\index{LLIR::Function@{LLIR::Function}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classLLIR_1_1Function_ad4cfbe173a207f16e10c3e5ce9bcb183}} 
+{\bfseries Function} (std\+::string name, Linkage linkage)
+\item 
+\mbox{\label{classLLIR_1_1Function_a8a166e61a2f50d41123927dcbdc73af8}} 
+void {\bfseries set\+Data\+Type} (\textbf{ Type} $\ast$d)
+\item 
+\mbox{\label{classLLIR_1_1Function_af66f31ec9afec7bd92a842518b8f83b0}} 
+void {\bfseries set\+Args} (std\+::vector$<$ \textbf{ Type} $\ast$ $>$ args)
+\item 
+\mbox{\label{classLLIR_1_1Function_a28ac674c6d5acb64396c9a291697888c}} 
+void {\bfseries add\+Arg\+Pair} (\textbf{ Type} $\ast$type, \textbf{ Reg} $\ast$reg)
+\item 
+\mbox{\label{classLLIR_1_1Function_af29aca143a0a6523e45181193ecca515}} 
+void {\bfseries add\+Block} (\textbf{ Block} $\ast$block)
+\item 
+\mbox{\label{classLLIR_1_1Function_a391fa20247ecbc46ec1ad3b291261ec2}} 
+void {\bfseries add\+Block\+After} (\textbf{ Block} $\ast$block, \textbf{ Block} $\ast$new\+Block)
+\item 
+\mbox{\label{classLLIR_1_1Function_a7168befb523ebaefdd60508b2cf1c595}} 
+void {\bfseries set\+Stack\+Size} (int size)
+\item 
+\mbox{\label{classLLIR_1_1Function_a05027977342a61cf842dbc645e7e39a1}} 
+std\+::string {\bfseries get\+Name} ()
+\item 
+\mbox{\label{classLLIR_1_1Function_a0ed6c58268abe807577a58ba50efe4af}} 
+Linkage {\bfseries get\+Linkage} ()
+\item 
+\mbox{\label{classLLIR_1_1Function_a4cd4c8465526f287914ef54763528876}} 
+int {\bfseries get\+Stack\+Size} ()
+\item 
+\mbox{\label{classLLIR_1_1Function_ab30b8ea11b09f8ebdbe0b65710b25969}} 
+int {\bfseries get\+Block\+Count} ()
+\item 
+\mbox{\label{classLLIR_1_1Function_a5d983a10fb23054dc649f67b1a801f57}} 
+\textbf{ Block} $\ast$ {\bfseries get\+Block} (int pos)
+\item 
+\mbox{\label{classLLIR_1_1Function_ab0a20c75c75da160ceb76f14579b8cd0}} 
+int {\bfseries get\+Arg\+Count} ()
+\item 
+\mbox{\label{classLLIR_1_1Function_af5f9ab02c4e34072c5d270cb9f9aa378}} 
+\textbf{ Type} $\ast$ {\bfseries get\+Arg\+Type} (int pos)
+\item 
+\mbox{\label{classLLIR_1_1Function_abeed6fd52a2e5049a70d1450d447fe7c}} 
+\textbf{ Reg} $\ast$ {\bfseries get\+Arg} (int pos)
+\item 
+\mbox{\label{classLLIR_1_1Function_a58e66d75f7f5474dcef1faf85da24315}} 
+void {\bfseries print} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classLLIR_1_1Function_a89ef99ddb9ffe1f7de5d01a86f98b78c}} 
+static \textbf{ Function} $\ast$ {\bfseries Create} (std\+::string name, Linkage linkage, \textbf{ Type} $\ast$data\+Type)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/llir.\+hpp\item 
+src/print.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,11 @@
+<map id="LLIR::Operand" name="LLIR::Operand">
+<area shape="rect" id="node1" title=" " alt="" coords="5,183,117,209"/>
+<area shape="rect" id="node2" href="$classLLIR_1_1AReg.html" title=" " alt="" coords="177,5,267,32"/>
+<area shape="rect" id="node3" href="$classLLIR_1_1HReg.html" title=" " alt="" coords="176,56,268,83"/>
+<area shape="rect" id="node4" href="$classLLIR_1_1Imm.html" title=" " alt="" coords="179,107,265,133"/>
+<area shape="rect" id="node5" href="$classLLIR_1_1Label.html" title=" " alt="" coords="176,157,268,184"/>
+<area shape="rect" id="node6" href="$classLLIR_1_1Mem.html" title=" " alt="" coords="177,208,267,235"/>
+<area shape="rect" id="node7" href="$classLLIR_1_1PReg.html" title=" " alt="" coords="177,259,267,285"/>
+<area shape="rect" id="node8" href="$classLLIR_1_1Reg.html" title=" " alt="" coords="181,309,263,336"/>
+<area shape="rect" id="node9" href="$classLLIR_1_1StringPtr.html" title=" " alt="" coords="165,360,279,387"/>
+</map>

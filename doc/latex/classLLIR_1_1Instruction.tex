@@ -1,0 +1,89 @@
+\doxysection{L\+L\+IR\+::Instruction Class Reference}
+\label{classLLIR_1_1Instruction}\index{LLIR::Instruction@{LLIR::Instruction}}
+
+
+Inheritance diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classLLIR_1_1Instruction__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{classLLIR_1_1Instruction__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classLLIR_1_1Instruction_afd8e73a53d9ac990695c4b42c449c688}} 
+{\bfseries Instruction} (Instr\+Type type)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a8a994ec348f10e929e3ccc6f2aec212a}} 
+void {\bfseries set\+Data\+Type} (\textbf{ Type} $\ast$d)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a257feb612952dbd75cb1540e8f7b0153}} 
+void {\bfseries set\+Dest} (\textbf{ Operand} $\ast$d)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a6907c73bc2a3e1944650255b97f082cf}} 
+void {\bfseries set\+Operand1} (\textbf{ Operand} $\ast$o)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a3cfa83b65813cf6b93da81c4f0d2df27}} 
+void {\bfseries set\+Operand2} (\textbf{ Operand} $\ast$o)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_aadb7f9af6a3f6d96e496822b2002f73e}} 
+void {\bfseries set\+Operand3} (\textbf{ Operand} $\ast$o)
+\item 
+\mbox{\label{classLLIR_1_1Instruction_ad91efd9553a31245e470dd173f747d30}} 
+Instr\+Type {\bfseries get\+Type} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_aba7ea59c7d823051a7383a0b254e7cd8}} 
+\textbf{ Type} $\ast$ {\bfseries get\+Data\+Type} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a413f727ffe24d1c94c67a37c373976af}} 
+\textbf{ Operand} $\ast$ {\bfseries get\+Dest} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a4481078bf90a205a228df498ef707635}} 
+\textbf{ Operand} $\ast$ {\bfseries get\+Operand1} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_ad0869e60ac8e9bdb475ee2bda8b22488}} 
+\textbf{ Operand} $\ast$ {\bfseries get\+Operand2} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a1b6adee3f3bd7c9a9009eab7c68843ec}} 
+\textbf{ Operand} $\ast$ {\bfseries get\+Operand3} ()
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a047eb44ffa11c9f058a5b58e632200c2}} 
+virtual void {\bfseries print} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a1db865b24d81ee10d15c8369939fafb5}} 
+\textbf{ Type} $\ast$ {\bfseries data\+Type}
+\item 
+\mbox{\label{classLLIR_1_1Instruction_ae8ab126c2e7ab1af546394d4a9a54751}} 
+Instr\+Type {\bfseries type} = Instr\+Type\+::\+None
+\item 
+\mbox{\label{classLLIR_1_1Instruction_a11b06aae1e1bc046517ab66945657d9e}} 
+\textbf{ Operand} $\ast$ {\bfseries dest} = nullptr
+\item 
+\mbox{\label{classLLIR_1_1Instruction_acd17ae036270ad210fb02608f7503a98}} 
+\textbf{ Operand} $\ast$ {\bfseries src1} = nullptr
+\item 
+\mbox{\label{classLLIR_1_1Instruction_af83bfb7da4b3d3af524614f7c4b2dc87}} 
+\textbf{ Operand} $\ast$ {\bfseries src2} = nullptr
+\item 
+\mbox{\label{classLLIR_1_1Instruction_abe782ca14abff9391fed88687b54eba1}} 
+\textbf{ Operand} $\ast$ {\bfseries src3} = nullptr
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/llir.\+hpp\item 
+src/print.\+cpp\end{DoxyCompactItemize}
