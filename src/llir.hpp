@@ -106,19 +106,9 @@ protected:
 
 class PointerType : public Type {
 public:
-    explicit PointerType(Type *baseType) {
-        this->type = DataType::Ptr;
-        this->baseType = baseType;
-    }
-    
-    explicit PointerType(DataType type) {
-        this->type = DataType::Ptr;
-        this->baseType = new Type(type);
-    }
-    
-    ~PointerType() {
-        delete baseType;
-    }
+    explicit PointerType(Type *baseType);
+    explicit PointerType(DataType type);
+    ~PointerType();
     
     static PointerType *createVoidPtrType() { return new PointerType(DataType::Void); }
     static PointerType *createI8PtrType() { return new PointerType(DataType::I8); }
@@ -135,19 +125,10 @@ private:
 
 class StructType : public Type {
 public:
-    explicit StructType(std::string name, std::vector<Type *> elementTypes) {
-        this->type = DataType::Struct;
-        this->name = name;
-        this->elementTypes = elementTypes;
-    }
+    explicit StructType(std::string name, std::vector<Type *> elementTypes);
+    ~StructType();
     
-    ~StructType() {
-        for (Type *t : elementTypes) {
-            if (t) delete t;
-        }
-    }
-    
-    std::vector<Type *> getElementTypes() { return elementTypes; }
+    std::vector<Type *> getElementTypes();
     
     void print();
 private:
@@ -160,35 +141,21 @@ private:
 //
 class Instruction {
 public:
-    explicit Instruction(InstrType type) {
-        this->type = type;
-        dataType = new Type(DataType::Void);
-    }
+    explicit Instruction(InstrType type);
+    ~Instruction();
     
-    ~Instruction() {
-        if (dataType) delete dataType;
-        if (dest) delete dest;
-        if (src1) delete src1;
-        if (src2) delete src2;
-        if (src3) delete src3;
-    }
+    void setDataType(Type *d);
+    void setDest(Operand *d);
+    void setOperand1(Operand *o);
+    void setOperand2(Operand *o);
+    void setOperand3(Operand *o);
     
-    void setDataType(Type *d) {
-        if (dataType) delete dataType;
-        dataType = d;
-    }
-    
-    void setDest(Operand *d) { dest = d; }
-    void setOperand1(Operand *o) { src1 = o; }
-    void setOperand2(Operand *o) { src2 = o; }
-    void setOperand3(Operand *o) { src3 = o; }
-    
-    InstrType getType() { return type; }
-    Type *getDataType() { return dataType; }
-    Operand *getDest() { return dest; }
-    Operand *getOperand1() { return src1; }
-    Operand *getOperand2() { return src2; }
-    Operand *getOperand3() { return src3; }
+    InstrType getType();
+    Type *getDataType();
+    Operand *getDest();
+    Operand *getOperand1();
+    Operand *getOperand2();
+    Operand *getOperand3();
     
     virtual void print();
 protected:
@@ -203,15 +170,11 @@ protected:
 // Represents function calls
 class FunctionCall : public Instruction {
 public:
-    explicit FunctionCall(std::string name, std::vector<Operand *> args) : Instruction(InstrType::Call) {
-        this->name = name;
-        this->args = args;
-    }
+    explicit FunctionCall(std::string name, std::vector<Operand *> args);
     
-    void setArgs(std::vector<Operand *> args) { this->args = args; }
-    
-    std::string getName() { return name; }
-    std::vector<Operand *> getArgs() { return args; }
+    void setArgs(std::vector<Operand *> args);
+    std::string getName();
+    std::vector<Operand *> getArgs();
     
     void print();
 private:
@@ -224,24 +187,17 @@ private:
 //
 class Block {
 public:
-    explicit Block(std::string name) {
-        this->name = name;
-    }
+    explicit Block(std::string name);
+    ~Block();
     
-    ~Block() {
-        for (Instruction *i : instrs) {
-            if (i) delete i;
-        }
-    }
+    void addInstruction(Instruction *i);
+    void setID(int id);
     
-    void addInstruction(Instruction *i) { instrs.push_back(i); }
-    void setID(int id) { this->id = id; }
+    std::string getName();
+    int getID();
     
-    std::string getName() { return name; }
-    int getID() { return id; }
-    
-    int getInstrCount() { return instrs.size(); }
-    Instruction *getInstruction(int pos) { return instrs.at(pos); }
+    int getInstrCount();
+    Instruction *getInstruction(int pos);
     
     void print();
 private:
@@ -256,24 +212,8 @@ private:
 // TODO: We can probably get rid of stack
 class Function {
 public:
-    explicit Function(std::string name, Linkage linkage) {
-        this->name = name;
-        this->linkage = linkage;
-        dataType = new Type(DataType::Void);
-    }
-    
-    ~Function() {
-        if (dataType) delete dataType;
-        for (Block *block : blocks) {
-            if (block) delete block;
-        }
-        for (Reg *reg : varRegs) {
-            if (reg) delete reg;
-        }
-        for (Type *t : args) {
-            if (t) delete t;
-        }
-    }
+    explicit Function(std::string name, Linkage linkage);
+    ~Function();
     
     static Function *Create(std::string name, Linkage linkage, Type *dataType) {
         Function *func = new Function(name, linkage);
@@ -281,52 +221,22 @@ public:
         return func;
     }
     
-    void setDataType(Type *d) {
-        if (dataType) delete dataType;
-        dataType = d;
-    }
+    void setDataType(Type *d);
+    void setArgs(std::vector<Type *> args);
+    void addArgPair(Type *type, Reg *reg);
+    void addBlock(Block *block);
     
-    void setArgs(std::vector<Type *> args) {
-        this->args = args;
-        for (int i = 0; i<args.size(); i++) {
-            Reg *reg = new Reg(std::to_string(i));
-            varRegs.push_back(reg);
-        }
-    }
+    void addBlockAfter(Block *block, Block *newBlock);
     
-    void addArgPair(Type *type, Reg *reg) {
-        args.push_back(type);
-        varRegs.push_back(reg);
-    }
+    std::string getName();
+    Linkage getLinkage();
     
-    void addBlock(Block *block) {
-        block->setID(blockID);
-        ++blockID;
-        blocks.push_back(block);
-    }
+    int getBlockCount();
+    Block *getBlock(int pos);
     
-    void addBlockAfter(Block *block, Block *newBlock) {
-        for (int i = 0; i<blocks.size(); i++) {
-            if (block->getID() == blocks.at(i)->getID()) {
-                blocks.insert(blocks.begin() + i + 1, newBlock);
-                newBlock->setID(blockID);
-                ++blockID;
-            }
-        }
-    }
-    
-    void setStackSize(int size) { stackSize = size; }
-    
-    std::string getName() { return name; }
-    Linkage getLinkage() { return linkage; }
-    int getStackSize() { return stackSize; }
-    
-    int getBlockCount() { return blocks.size(); }
-    Block *getBlock(int pos) { return blocks.at(pos); }
-    
-    int getArgCount() { return args.size(); }
-    Type *getArgType(int pos) { return args.at(pos); }
-    Reg *getArg(int pos) { return varRegs.at(pos); }
+    int getArgCount();
+    Type *getArgType(int pos);
+    Reg *getArg(int pos);
     
     void print();
 private:
@@ -336,7 +246,6 @@ private:
     std::vector<Block *> blocks;
     std::vector<Type *> args;
     std::vector<Reg *> varRegs;
-    int stackSize = 0;
     int blockID = 1;
 };
 
@@ -345,34 +254,19 @@ private:
 //
 class Module {
 public:
-    explicit Module(std::string name) {
-        this->name = name;
-    }
+    explicit Module(std::string name);
+    ~Module();
     
-    ~Module() {
-        for (Function *f : functions) {
-            if (f) delete f;
-        }
-        /*for (StringPtr *ptr : strings) {
-            if (ptr) delete ptr;
-        }*/
-    }
+    void addFunction(Function *func);
+    void addStringPtr(StringPtr *ptr);
     
-    void addFunction(Function *func) { functions.push_back(func); }
-    void addStringPtr(StringPtr *ptr) { strings.push_back(ptr); }
+    std::string getName();
+    int getFunctionCount();
+    Function *getFunction(int pos);
+    int getStringCount();
+    StringPtr *getString(int pos);
     
-    std::string getName() { return name; }
-    int getFunctionCount() { return functions.size(); }
-    Function *getFunction(int pos) { return functions.at(pos); }
-    int getStringCount() { return strings.size(); }
-    StringPtr *getString(int pos) { return strings.at(pos); }
-    
-    Function *getFunctionByName(std::string fname) {
-        for (Function *f : functions) {
-            if (f->getName() == fname) return f;
-        }
-        return nullptr;
-    }
+    Function *getFunctionByName(std::string fname);
     
     void transform();
     
@@ -384,3 +278,4 @@ private:
 };
 
 } // end namespace LLIR
+

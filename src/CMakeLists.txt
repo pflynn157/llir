@@ -9,6 +9,7 @@ set(AMD64_SRC
 set(SRC
     ${AMD64_SRC}
     irbuilder.cpp
+    llir.cpp
     print.cpp
     transform.cpp
 )
