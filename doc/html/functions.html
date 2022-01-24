@@ -85,19 +85,41 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>addArgPair()
+: <a class="el" href="classLLIR_1_1Function.html#a28ac674c6d5acb64396c9a291697888c">LLIR::Function</a>
+</li>
 <li>addBlock()
-: <a class="el" href="classLLIR_1_1IRBuilder.html#a1d1a716408274a3f872b1e2eca99d375">LLIR::IRBuilder</a>
+: <a class="el" href="classLLIR_1_1Function.html#af29aca143a0a6523e45181193ecca515">LLIR::Function</a>
+, <a class="el" href="classLLIR_1_1IRBuilder.html#a1d1a716408274a3f872b1e2eca99d375">LLIR::IRBuilder</a>
 </li>
 <li>addBlockAfter()
-: <a class="el" href="classLLIR_1_1IRBuilder.html#a7be681e04c3b358925cb4e050d535fc7">LLIR::IRBuilder</a>
+: <a class="el" href="classLLIR_1_1Function.html#a391fa20247ecbc46ec1ad3b291261ec2">LLIR::Function</a>
+, <a class="el" href="classLLIR_1_1IRBuilder.html#a7be681e04c3b358925cb4e050d535fc7">LLIR::IRBuilder</a>
+</li>
+<li>addFunction()
+: <a class="el" href="classLLIR_1_1Module.html#acb2243d0c9619f0e269a6f93e51ef01d">LLIR::Module</a>
 </li>
 <li>addInstruction()
-: <a class="el" href="classLLIR_1_1IRBuilder.html#af609257dc4f833cdf48c06a148e3a8ad">LLIR::IRBuilder</a>
+: <a class="el" href="classLLIR_1_1Block.html#ada68aa74bd48e00f12f3ef718ef2a48b">LLIR::Block</a>
+, <a class="el" href="classLLIR_1_1IRBuilder.html#af609257dc4f833cdf48c06a148e3a8ad">LLIR::IRBuilder</a>
+</li>
+<li>addStringPtr()
+: <a class="el" href="classLLIR_1_1Module.html#a42844fec95f0cc5cea5252efa455b1b4">LLIR::Module</a>
+</li>
+</ul>
+
+
+<h3><a id="index_b"></a>- b -</h3><ul>
+<li>Block()
+: <a class="el" href="classLLIR_1_1Block.html#a5f9bae16b6215e5962b910352d0a9604">LLIR::Block</a>
 </li>
 </ul>
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>Create()
+: <a class="el" href="classLLIR_1_1Function.html#a89ef99ddb9ffe1f7de5d01a86f98b78c">LLIR::Function</a>
+</li>
 <li>createAdd()
 : <a class="el" href="classLLIR_1_1IRBuilder.html#abb15b6ae9813ee998893cba617a0e588">LLIR::IRBuilder</a>
 </li>
@@ -194,9 +216,37 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </ul>
 
 
+<h3><a id="index_f"></a>- f -</h3><ul>
+<li>Function()
+: <a class="el" href="classLLIR_1_1Function.html#ad4cfbe173a207f16e10c3e5ce9bcb183">LLIR::Function</a>
+</li>
+<li>FunctionCall()
+: <a class="el" href="classLLIR_1_1FunctionCall.html#ac857dbc32cc489e8b4f8b94e594716e7">LLIR::FunctionCall</a>
+</li>
+</ul>
+
+
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getArg()
+: <a class="el" href="classLLIR_1_1Function.html#a56c8da1606ee844407ebf97379ed6b7c">LLIR::Function</a>
+</li>
+<li>getArgCount()
+: <a class="el" href="classLLIR_1_1Function.html#ab0a20c75c75da160ceb76f14579b8cd0">LLIR::Function</a>
+</li>
+<li>getArgs()
+: <a class="el" href="classLLIR_1_1FunctionCall.html#aefd754bde916cffe7da09c31ea1e3e82">LLIR::FunctionCall</a>
+</li>
+<li>getArgType()
+: <a class="el" href="classLLIR_1_1Function.html#a0db33fad114c32c12c544bd37922df9e">LLIR::Function</a>
+</li>
 <li>getBaseType()
 : <a class="el" href="classLLIR_1_1PointerType.html#a024a428cabd0e520363d585d4e59eb39">LLIR::PointerType</a>
+</li>
+<li>getBlock()
+: <a class="el" href="classLLIR_1_1Function.html#a17e387ea83e69b82e99fa43d87d18ec9">LLIR::Function</a>
+</li>
+<li>getBlockCount()
+: <a class="el" href="classLLIR_1_1Function.html#ab30b8ea11b09f8ebdbe0b65710b25969">LLIR::Function</a>
 </li>
 <li>getDataType()
 : <a class="el" href="classLLIR_1_1Instruction.html#ad1250c9cf54835206f663632f47e70e8">LLIR::Instruction</a>
@@ -207,8 +257,35 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>getElementTypes()
 : <a class="el" href="classLLIR_1_1StructType.html#a17c7be23410e62a0679db69c8efed115">LLIR::StructType</a>
 </li>
+<li>getFunction()
+: <a class="el" href="classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0">LLIR::Module</a>
+</li>
+<li>getFunctionByName()
+: <a class="el" href="classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa">LLIR::Module</a>
+</li>
+<li>getFunctionCount()
+: <a class="el" href="classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396">LLIR::Module</a>
+</li>
+<li>getID()
+: <a class="el" href="classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2">LLIR::Block</a>
+</li>
 <li>getInsertPoint()
 : <a class="el" href="classLLIR_1_1IRBuilder.html#add35a8784df12cd374b42e847dd9f56d">LLIR::IRBuilder</a>
+</li>
+<li>getInstrCount()
+: <a class="el" href="classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b">LLIR::Block</a>
+</li>
+<li>getInstruction()
+: <a class="el" href="classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa">LLIR::Block</a>
+</li>
+<li>getLinkage()
+: <a class="el" href="classLLIR_1_1Function.html#a0ed6c58268abe807577a58ba50efe4af">LLIR::Function</a>
+</li>
+<li>getName()
+: <a class="el" href="classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060">LLIR::Block</a>
+, <a class="el" href="classLLIR_1_1Function.html#a05027977342a61cf842dbc645e7e39a1">LLIR::Function</a>
+, <a class="el" href="classLLIR_1_1FunctionCall.html#a2f3397343d50285dfab1e8e7c60b9032">LLIR::FunctionCall</a>
+, <a class="el" href="classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f">LLIR::Module</a>
 </li>
 <li>getOperand1()
 : <a class="el" href="classLLIR_1_1Instruction.html#a3b88c040a3129eb76b71515754e97e12">LLIR::Instruction</a>
@@ -218,6 +295,12 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>getOperand3()
 : <a class="el" href="classLLIR_1_1Instruction.html#a384b6fbe11cd6744fb43913caac5f37a">LLIR::Instruction</a>
+</li>
+<li>getString()
+: <a class="el" href="classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73">LLIR::Module</a>
+</li>
+<li>getStringCount()
+: <a class="el" href="classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8">LLIR::Module</a>
 </li>
 <li>getType()
 : <a class="el" href="classLLIR_1_1Instruction.html#ad91efd9553a31245e470dd173f747d30">LLIR::Instruction</a>
@@ -236,6 +319,13 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </ul>
 
 
+<h3><a id="index_m"></a>- m -</h3><ul>
+<li>Module()
+: <a class="el" href="classLLIR_1_1Module.html#a06a75a8b01218ddb970a8bc86f52df99">LLIR::Module</a>
+</li>
+</ul>
+
+
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>PointerType()
 : <a class="el" href="classLLIR_1_1PointerType.html#a3293bfbe235119ed267a0f0f48f16023">LLIR::PointerType</a>
@@ -244,14 +334,22 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>setArgs()
+: <a class="el" href="classLLIR_1_1Function.html#af66f31ec9afec7bd92a842518b8f83b0">LLIR::Function</a>
+, <a class="el" href="classLLIR_1_1FunctionCall.html#af87880c1bcc92ba111207ab8b612c200">LLIR::FunctionCall</a>
+</li>
 <li>setCurrentFunction()
 : <a class="el" href="classLLIR_1_1IRBuilder.html#aa520edda1f69f2d2648f596bb9dac9a4">LLIR::IRBuilder</a>
 </li>
 <li>setDataType()
-: <a class="el" href="classLLIR_1_1Instruction.html#a8a994ec348f10e929e3ccc6f2aec212a">LLIR::Instruction</a>
+: <a class="el" href="classLLIR_1_1Function.html#a8a166e61a2f50d41123927dcbdc73af8">LLIR::Function</a>
+, <a class="el" href="classLLIR_1_1Instruction.html#a8a994ec348f10e929e3ccc6f2aec212a">LLIR::Instruction</a>
 </li>
 <li>setDest()
 : <a class="el" href="classLLIR_1_1Instruction.html#a257feb612952dbd75cb1540e8f7b0153">LLIR::Instruction</a>
+</li>
+<li>setID()
+: <a class="el" href="classLLIR_1_1Block.html#a62ee07b847d4f992f946ae69045a45ce">LLIR::Block</a>
 </li>
 <li>setInsertPoint()
 : <a class="el" href="classLLIR_1_1IRBuilder.html#a7c4d263dce2681db294d72f0114dadec">LLIR::IRBuilder</a>
@@ -272,6 +370,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_t"></a>- t -</h3><ul>
+<li>transform()
+: <a class="el" href="classLLIR_1_1Module.html#abe6ffad785be5a32853c22ec1cdda36b">LLIR::Module</a>
+</li>
 <li>Type()
 : <a class="el" href="classLLIR_1_1Type.html#a82aeb1616f8e65eaf82881be5f4dd7a8">LLIR::Type</a>
 </li>

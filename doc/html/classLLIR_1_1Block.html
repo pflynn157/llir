@@ -89,34 +89,209 @@ $(document).ready(function(){initNavTree('classLLIR_1_1Block.html',''); initResi
 <div class="title">LLIR::Block Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a basic block in LLIR.  
+ <a href="classLLIR_1_1Block.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="llir_8hpp_source.html">llir.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5f9bae16b6215e5962b910352d0a9604"><td class="memItemLeft" align="right" valign="top"><a id="a5f9bae16b6215e5962b910352d0a9604"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Block</b> (std::string name)</td></tr>
+<tr class="memitem:a5f9bae16b6215e5962b910352d0a9604"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#a5f9bae16b6215e5962b910352d0a9604">Block</a> (std::string name)</td></tr>
+<tr class="memdesc:a5f9bae16b6215e5962b910352d0a9604"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new LLIR block.  <a href="classLLIR_1_1Block.html#a5f9bae16b6215e5962b910352d0a9604">More...</a><br /></td></tr>
 <tr class="separator:a5f9bae16b6215e5962b910352d0a9604"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada68aa74bd48e00f12f3ef718ef2a48b"><td class="memItemLeft" align="right" valign="top"><a id="ada68aa74bd48e00f12f3ef718ef2a48b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addInstruction</b> (<a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> *i)</td></tr>
+<tr class="memitem:ada68aa74bd48e00f12f3ef718ef2a48b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#ada68aa74bd48e00f12f3ef718ef2a48b">addInstruction</a> (<a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> *i)</td></tr>
+<tr class="memdesc:ada68aa74bd48e00f12f3ef718ef2a48b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an instruction to the block.  <a href="classLLIR_1_1Block.html#ada68aa74bd48e00f12f3ef718ef2a48b">More...</a><br /></td></tr>
 <tr class="separator:ada68aa74bd48e00f12f3ef718ef2a48b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62ee07b847d4f992f946ae69045a45ce"><td class="memItemLeft" align="right" valign="top"><a id="a62ee07b847d4f992f946ae69045a45ce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setID</b> (int id)</td></tr>
+<tr class="memitem:a62ee07b847d4f992f946ae69045a45ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#a62ee07b847d4f992f946ae69045a45ce">setID</a> (int id)</td></tr>
+<tr class="memdesc:a62ee07b847d4f992f946ae69045a45ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the unique ID for the block.  <a href="classLLIR_1_1Block.html#a62ee07b847d4f992f946ae69045a45ce">More...</a><br /></td></tr>
 <tr class="separator:a62ee07b847d4f992f946ae69045a45ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab75e98ed44e35819eee7639b3e3ac060"><td class="memItemLeft" align="right" valign="top"><a id="ab75e98ed44e35819eee7639b3e3ac060"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="memitem:ab75e98ed44e35819eee7639b3e3ac060"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060">getName</a> ()</td></tr>
+<tr class="memdesc:ab75e98ed44e35819eee7639b3e3ac060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the block.  <a href="classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060">More...</a><br /></td></tr>
 <tr class="separator:ab75e98ed44e35819eee7639b3e3ac060"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfd81b984de3dfc9585aa36902387bf2"><td class="memItemLeft" align="right" valign="top"><a id="acfd81b984de3dfc9585aa36902387bf2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getID</b> ()</td></tr>
+<tr class="memitem:acfd81b984de3dfc9585aa36902387bf2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2">getID</a> ()</td></tr>
+<tr class="memdesc:acfd81b984de3dfc9585aa36902387bf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the ID of the block.  <a href="classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2">More...</a><br /></td></tr>
 <tr class="separator:acfd81b984de3dfc9585aa36902387bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e036f81f75d5cae7dbc3d434c315f0b"><td class="memItemLeft" align="right" valign="top"><a id="a3e036f81f75d5cae7dbc3d434c315f0b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getInstrCount</b> ()</td></tr>
+<tr class="memitem:a3e036f81f75d5cae7dbc3d434c315f0b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b">getInstrCount</a> ()</td></tr>
+<tr class="memdesc:a3e036f81f75d5cae7dbc3d434c315f0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of instructions in the block.  <a href="classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b">More...</a><br /></td></tr>
 <tr class="separator:a3e036f81f75d5cae7dbc3d434c315f0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5aab809d59c195488e6dcc96938fafa"><td class="memItemLeft" align="right" valign="top"><a id="ae5aab809d59c195488e6dcc96938fafa"></a>
-<a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstruction</b> (int pos)</td></tr>
+<tr class="memitem:ae5aab809d59c195488e6dcc96938fafa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa">getInstruction</a> (int pos)</td></tr>
+<tr class="memdesc:ae5aab809d59c195488e6dcc96938fafa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the instruction at a given position.  <a href="classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa">More...</a><br /></td></tr>
 <tr class="separator:ae5aab809d59c195488e6dcc96938fafa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62f8f600490f6a69e76f61a53ea60ecb"><td class="memItemLeft" align="right" valign="top"><a id="a62f8f600490f6a69e76f61a53ea60ecb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
 <tr class="separator:a62f8f600490f6a69e76f61a53ea60ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a basic block in LLIR. </p>
+<p>Basic blocks form the base of instructions in LLIR. A basic block contains a variable number of instructions, and terminates with either a branch or a return. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5f9bae16b6215e5962b910352d0a9604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9bae16b6215e5962b910352d0a9604">&#9670;&nbsp;</a></span>Block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LLIR::Block::Block </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new LLIR block. </p>
+<p>You should use this constructor directly when you need to create a basic block, but when you do not want it to become the current insert point and/or you wish to insert it somewhere else within the function</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the block. This must be unique. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ada68aa74bd48e00f12f3ef718ef2a48b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada68aa74bd48e00f12f3ef718ef2a48b">&#9670;&nbsp;</a></span>addInstruction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LLIR::Block::addInstruction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> *&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an instruction to the block. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The instruction to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acfd81b984de3dfc9585aa36902387bf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfd81b984de3dfc9585aa36902387bf2">&#9670;&nbsp;</a></span>getID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LLIR::Block::getID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the ID of the block. </p>
+
+</div>
+</div>
+<a id="a3e036f81f75d5cae7dbc3d434c315f0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e036f81f75d5cae7dbc3d434c315f0b">&#9670;&nbsp;</a></span>getInstrCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LLIR::Block::getInstrCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of instructions in the block. </p>
+
+</div>
+</div>
+<a id="ae5aab809d59c195488e6dcc96938fafa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5aab809d59c195488e6dcc96938fafa">&#9670;&nbsp;</a></span>getInstruction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLLIR_1_1Instruction.html">Instruction</a> * LLIR::Block::getInstruction </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the instruction at a given position. </p>
+
+</div>
+</div>
+<a id="ab75e98ed44e35819eee7639b3e3ac060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab75e98ed44e35819eee7639b3e3ac060">&#9670;&nbsp;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string LLIR::Block::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the name of the block. </p>
+
+</div>
+</div>
+<a id="a62ee07b847d4f992f946ae69045a45ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62ee07b847d4f992f946ae69045a45ce">&#9670;&nbsp;</a></span>setID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LLIR::Block::setID </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the unique ID for the block. </p>
+<p>IMPORTANT: You should not use this function directly. It is managed by the parent function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID to set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="llir_8hpp_source.html">llir.hpp</a></li>
 <li>src/llir.cpp</li>

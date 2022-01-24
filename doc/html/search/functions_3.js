@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['instruction_195',['Instruction',['../classLLIR_1_1Instruction.html#afd8e73a53d9ac990695c4b42c449c688',1,'LLIR::Instruction']]],
-  ['irbuilder_196',['IRBuilder',['../classLLIR_1_1IRBuilder.html#a11f8c8d830926338240cf060ebe74947',1,'LLIR::IRBuilder']]]
+  ['function_214',['Function',['../classLLIR_1_1Function.html#ad4cfbe173a207f16e10c3e5ce9bcb183',1,'LLIR::Function']]],
+  ['functioncall_215',['FunctionCall',['../classLLIR_1_1FunctionCall.html#ac857dbc32cc489e8b4f8b94e594716e7',1,'LLIR::FunctionCall']]]
 ];

@@ -1,42 +1,164 @@
 \doxysection{L\+L\+IR\+::Module Class Reference}
 \label{classLLIR_1_1Module}\index{LLIR::Module@{LLIR::Module}}
+
+
+Represents a module (compilation unit) in L\+L\+IR.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Module_a06a75a8b01218ddb970a8bc86f52df99}} 
-{\bfseries Module} (std\+::string name)
-\item 
-\mbox{\label{classLLIR_1_1Module_acb2243d0c9619f0e269a6f93e51ef01d}} 
-void {\bfseries add\+Function} (\textbf{ Function} $\ast$func)
-\item 
-\mbox{\label{classLLIR_1_1Module_a42844fec95f0cc5cea5252efa455b1b4}} 
-void {\bfseries add\+String\+Ptr} (\textbf{ String\+Ptr} $\ast$ptr)
-\item 
-\mbox{\label{classLLIR_1_1Module_a4980b76cfc7ec2bad0b8facec6c5606f}} 
-std\+::string {\bfseries get\+Name} ()
-\item 
-\mbox{\label{classLLIR_1_1Module_a0e3cb288af22dc4317ff21889945e396}} 
-int {\bfseries get\+Function\+Count} ()
-\item 
-\mbox{\label{classLLIR_1_1Module_a3470309d22a0cec04ace8be939fdd9c0}} 
-\textbf{ Function} $\ast$ {\bfseries get\+Function} (int pos)
-\item 
-\mbox{\label{classLLIR_1_1Module_aa9d9897b79b70957e9361987aabd13c8}} 
-int {\bfseries get\+String\+Count} ()
-\item 
-\mbox{\label{classLLIR_1_1Module_aa0b44cf748917c507b05ad9073740e73}} 
-\textbf{ String\+Ptr} $\ast$ {\bfseries get\+String} (int pos)
-\item 
-\mbox{\label{classLLIR_1_1Module_aa1e0c8fd3d0b95217eb01936ae4b8bfa}} 
-\textbf{ Function} $\ast$ {\bfseries get\+Function\+By\+Name} (std\+::string fname)
-\item 
-\mbox{\label{classLLIR_1_1Module_abe6ffad785be5a32853c22ec1cdda36b}} 
-void {\bfseries transform} ()
-\item 
+\textbf{ Module} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Creates a new module. \end{DoxyCompactList}\item 
+void \textbf{ add\+Function} (\textbf{ Function} $\ast$func)
+\begin{DoxyCompactList}\small\item\em Adds a function to the module. \end{DoxyCompactList}\item 
+void \textbf{ add\+String\+Ptr} (\textbf{ String\+Ptr} $\ast$ptr)
+\begin{DoxyCompactList}\small\item\em Adds a global string constant to the module. \end{DoxyCompactList}\item 
+std\+::string \textbf{ get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the module. \end{DoxyCompactList}\item 
+int \textbf{ get\+Function\+Count} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of functions in the module. \end{DoxyCompactList}\item 
+\textbf{ Function} $\ast$ \textbf{ get\+Function} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns a function at a given position in the module. \end{DoxyCompactList}\item 
+int \textbf{ get\+String\+Count} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of string constants in the module. \end{DoxyCompactList}\item 
+\textbf{ String\+Ptr} $\ast$ \textbf{ get\+String} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns a string pointer at a given position. \end{DoxyCompactList}\item 
+\textbf{ Function} $\ast$ \textbf{ get\+Function\+By\+Name} (std\+::string fname)
+\begin{DoxyCompactList}\small\item\em Searches for and returns a function based on a given name. \end{DoxyCompactList}\item 
+void \textbf{ transform} ()
+\begin{DoxyCompactList}\small\item\em Hardware transformation. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Module_a78352e778d2407380626cb9c9a00d830}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Represents a module (compilation unit) in L\+L\+IR. 
+
+A module is the base element of an L\+L\+IR project. A module corresponds to a single compilation unit. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Module_a06a75a8b01218ddb970a8bc86f52df99}} 
+\index{LLIR::Module@{LLIR::Module}!Module@{Module}}
+\index{Module@{Module}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{Module()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Module\+::\+Module (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Creates a new module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the module. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Module_acb2243d0c9619f0e269a6f93e51ef01d}} 
+\index{LLIR::Module@{LLIR::Module}!addFunction@{addFunction}}
+\index{addFunction@{addFunction}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{addFunction()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Module\+::add\+Function (\begin{DoxyParamCaption}\item[{\textbf{ Function} $\ast$}]{func }\end{DoxyParamCaption})}
+
+
+
+Adds a function to the module. 
+
+\mbox{\label{classLLIR_1_1Module_a42844fec95f0cc5cea5252efa455b1b4}} 
+\index{LLIR::Module@{LLIR::Module}!addStringPtr@{addStringPtr}}
+\index{addStringPtr@{addStringPtr}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{addStringPtr()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Module\+::add\+String\+Ptr (\begin{DoxyParamCaption}\item[{\textbf{ String\+Ptr} $\ast$}]{ptr }\end{DoxyParamCaption})}
+
+
+
+Adds a global string constant to the module. 
+
+In most cases, this would correspond the .data section on Linux.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & The pointer to add \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Module_a3470309d22a0cec04ace8be939fdd9c0}} 
+\index{LLIR::Module@{LLIR::Module}!getFunction@{getFunction}}
+\index{getFunction@{getFunction}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getFunction()}
+{\footnotesize\ttfamily \textbf{ Function} $\ast$ L\+L\+I\+R\+::\+Module\+::get\+Function (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns a function at a given position in the module. 
+
+\mbox{\label{classLLIR_1_1Module_aa1e0c8fd3d0b95217eb01936ae4b8bfa}} 
+\index{LLIR::Module@{LLIR::Module}!getFunctionByName@{getFunctionByName}}
+\index{getFunctionByName@{getFunctionByName}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getFunctionByName()}
+{\footnotesize\ttfamily \textbf{ Function} $\ast$ L\+L\+I\+R\+::\+Module\+::get\+Function\+By\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{fname }\end{DoxyParamCaption})}
+
+
+
+Searches for and returns a function based on a given name. 
+
+\mbox{\label{classLLIR_1_1Module_a0e3cb288af22dc4317ff21889945e396}} 
+\index{LLIR::Module@{LLIR::Module}!getFunctionCount@{getFunctionCount}}
+\index{getFunctionCount@{getFunctionCount}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getFunctionCount()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Module\+::get\+Function\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of functions in the module. 
+
+\mbox{\label{classLLIR_1_1Module_a4980b76cfc7ec2bad0b8facec6c5606f}} 
+\index{LLIR::Module@{LLIR::Module}!getName@{getName}}
+\index{getName@{getName}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily std\+::string L\+L\+I\+R\+::\+Module\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the module. 
+
+\mbox{\label{classLLIR_1_1Module_aa0b44cf748917c507b05ad9073740e73}} 
+\index{LLIR::Module@{LLIR::Module}!getString@{getString}}
+\index{getString@{getString}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getString()}
+{\footnotesize\ttfamily \textbf{ String\+Ptr} $\ast$ L\+L\+I\+R\+::\+Module\+::get\+String (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns a string pointer at a given position. 
+
+\mbox{\label{classLLIR_1_1Module_aa9d9897b79b70957e9361987aabd13c8}} 
+\index{LLIR::Module@{LLIR::Module}!getStringCount@{getStringCount}}
+\index{getStringCount@{getStringCount}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{getStringCount()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Module\+::get\+String\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of string constants in the module. 
+
+\mbox{\label{classLLIR_1_1Module_abe6ffad785be5a32853c22ec1cdda36b}} 
+\index{LLIR::Module@{LLIR::Module}!transform@{transform}}
+\index{transform@{transform}!LLIR::Module@{LLIR::Module}}
+\doxysubsubsection{transform()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Module\+::transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Hardware transformation. 
+
+This runs the transform layer. The transform layer is in charge of converting virtual registers to real-\/world hardware elements. This M\+U\+ST be called before using a hardware translation layer. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

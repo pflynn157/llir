@@ -2,6 +2,15 @@
 \label{classLLIR_1_1FunctionCall}\index{LLIR::FunctionCall@{LLIR::FunctionCall}}
 
 
+Represents a function call instruction.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
+
+
 Inheritance diagram for L\+L\+IR\+::Function\+Call\+:
 \nopagebreak
 \begin{figure}[H]
@@ -23,22 +32,81 @@ Collaboration diagram for L\+L\+IR\+::Function\+Call\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1FunctionCall_ac857dbc32cc489e8b4f8b94e594716e7}} 
-{\bfseries Function\+Call} (std\+::string name, std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ args)
-\item 
-\mbox{\label{classLLIR_1_1FunctionCall_af87880c1bcc92ba111207ab8b612c200}} 
-void {\bfseries set\+Args} (std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ args)
-\item 
-\mbox{\label{classLLIR_1_1FunctionCall_a2f3397343d50285dfab1e8e7c60b9032}} 
-std\+::string {\bfseries get\+Name} ()
-\item 
-\mbox{\label{classLLIR_1_1FunctionCall_aefd754bde916cffe7da09c31ea1e3e82}} 
-std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ {\bfseries get\+Args} ()
-\item 
+\textbf{ Function\+Call} (std\+::string name, std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ args)
+\begin{DoxyCompactList}\small\item\em Creates a new function call instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Args} (std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ args)
+\begin{DoxyCompactList}\small\item\em Sets the function arguments. \end{DoxyCompactList}\item 
+std\+::string \textbf{ get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the function. \end{DoxyCompactList}\item 
+std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ \textbf{ get\+Args} ()
+\begin{DoxyCompactList}\small\item\em Returns the arguments of the function. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1FunctionCall_ad9c9440737c28eb429411ac57e783ab7}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Represents a function call instruction. 
+
+An extended form of \doxyref{Instruction}{p.}{classLLIR_1_1Instruction} used to represent function calls 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1FunctionCall_ac857dbc32cc489e8b4f8b94e594716e7}} 
+\index{LLIR::FunctionCall@{LLIR::FunctionCall}!FunctionCall@{FunctionCall}}
+\index{FunctionCall@{FunctionCall}!LLIR::FunctionCall@{LLIR::FunctionCall}}
+\doxysubsubsection{FunctionCall()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Function\+Call\+::\+Function\+Call (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{std\+::vector$<$ \textbf{ Operand} $\ast$ $>$}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Creates a new function call instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the function \\
+\hline
+{\em args} & The function arguments to be passed \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1FunctionCall_aefd754bde916cffe7da09c31ea1e3e82}} 
+\index{LLIR::FunctionCall@{LLIR::FunctionCall}!getArgs@{getArgs}}
+\index{getArgs@{getArgs}!LLIR::FunctionCall@{LLIR::FunctionCall}}
+\doxysubsubsection{getArgs()}
+{\footnotesize\ttfamily std\+::vector$<$ \textbf{ Operand} $\ast$ $>$ L\+L\+I\+R\+::\+Function\+Call\+::get\+Args (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the arguments of the function. 
+
+\mbox{\label{classLLIR_1_1FunctionCall_a2f3397343d50285dfab1e8e7c60b9032}} 
+\index{LLIR::FunctionCall@{LLIR::FunctionCall}!getName@{getName}}
+\index{getName@{getName}!LLIR::FunctionCall@{LLIR::FunctionCall}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily std\+::string L\+L\+I\+R\+::\+Function\+Call\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the function. 
+
+\mbox{\label{classLLIR_1_1FunctionCall_af87880c1bcc92ba111207ab8b612c200}} 
+\index{LLIR::FunctionCall@{LLIR::FunctionCall}!setArgs@{setArgs}}
+\index{setArgs@{setArgs}!LLIR::FunctionCall@{LLIR::FunctionCall}}
+\doxysubsubsection{setArgs()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+Call\+::set\+Args (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \textbf{ Operand} $\ast$ $>$}]{args }\end{DoxyParamCaption})}
+
+
+
+Sets the function arguments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The function arguments to be passed \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

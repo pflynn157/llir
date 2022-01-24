@@ -1,56 +1,251 @@
 \doxysection{L\+L\+IR\+::Function Class Reference}
 \label{classLLIR_1_1Function}\index{LLIR::Function@{LLIR::Function}}
+
+
+Represents a function in L\+L\+IR.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Function_ad4cfbe173a207f16e10c3e5ce9bcb183}} 
-{\bfseries Function} (std\+::string name, Linkage linkage)
-\item 
-\mbox{\label{classLLIR_1_1Function_a8a166e61a2f50d41123927dcbdc73af8}} 
-void {\bfseries set\+Data\+Type} (\textbf{ Type} $\ast$d)
-\item 
-\mbox{\label{classLLIR_1_1Function_af66f31ec9afec7bd92a842518b8f83b0}} 
-void {\bfseries set\+Args} (std\+::vector$<$ \textbf{ Type} $\ast$ $>$ args)
-\item 
-\mbox{\label{classLLIR_1_1Function_a28ac674c6d5acb64396c9a291697888c}} 
-void {\bfseries add\+Arg\+Pair} (\textbf{ Type} $\ast$type, \textbf{ Reg} $\ast$reg)
-\item 
-\mbox{\label{classLLIR_1_1Function_af29aca143a0a6523e45181193ecca515}} 
-void {\bfseries add\+Block} (\textbf{ Block} $\ast$block)
-\item 
-\mbox{\label{classLLIR_1_1Function_a391fa20247ecbc46ec1ad3b291261ec2}} 
-void {\bfseries add\+Block\+After} (\textbf{ Block} $\ast$block, \textbf{ Block} $\ast$new\+Block)
-\item 
-\mbox{\label{classLLIR_1_1Function_a05027977342a61cf842dbc645e7e39a1}} 
-std\+::string {\bfseries get\+Name} ()
-\item 
-\mbox{\label{classLLIR_1_1Function_a0ed6c58268abe807577a58ba50efe4af}} 
-Linkage {\bfseries get\+Linkage} ()
-\item 
-\mbox{\label{classLLIR_1_1Function_ab30b8ea11b09f8ebdbe0b65710b25969}} 
-int {\bfseries get\+Block\+Count} ()
-\item 
-\mbox{\label{classLLIR_1_1Function_a17e387ea83e69b82e99fa43d87d18ec9}} 
-\textbf{ Block} $\ast$ {\bfseries get\+Block} (int pos)
-\item 
-\mbox{\label{classLLIR_1_1Function_ab0a20c75c75da160ceb76f14579b8cd0}} 
-int {\bfseries get\+Arg\+Count} ()
-\item 
-\mbox{\label{classLLIR_1_1Function_a0db33fad114c32c12c544bd37922df9e}} 
-\textbf{ Type} $\ast$ {\bfseries get\+Arg\+Type} (int pos)
-\item 
-\mbox{\label{classLLIR_1_1Function_a56c8da1606ee844407ebf97379ed6b7c}} 
-\textbf{ Reg} $\ast$ {\bfseries get\+Arg} (int pos)
-\item 
+\textbf{ Function} (std\+::string name, Linkage linkage)
+\begin{DoxyCompactList}\small\item\em Creates a new function. \end{DoxyCompactList}\item 
+void \textbf{ set\+Data\+Type} (\textbf{ Type} $\ast$d)
+\begin{DoxyCompactList}\small\item\em Sets the data type (return type) of the function. \end{DoxyCompactList}\item 
+void \textbf{ set\+Args} (std\+::vector$<$ \textbf{ Type} $\ast$ $>$ args)
+\begin{DoxyCompactList}\small\item\em Sets the function arguments of a function. \end{DoxyCompactList}\item 
+void \textbf{ add\+Arg\+Pair} (\textbf{ Type} $\ast$type, \textbf{ Reg} $\ast$reg)
+\begin{DoxyCompactList}\small\item\em Sets an type-\/register pair for the function. \end{DoxyCompactList}\item 
+void \textbf{ add\+Block} (\textbf{ Block} $\ast$block)
+\begin{DoxyCompactList}\small\item\em Adds a block to the function. \end{DoxyCompactList}\item 
+void \textbf{ add\+Block\+After} (\textbf{ Block} $\ast$block, \textbf{ Block} $\ast$new\+Block)
+\begin{DoxyCompactList}\small\item\em Adds a new block after an existing block. \end{DoxyCompactList}\item 
+std\+::string \textbf{ get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the function. \end{DoxyCompactList}\item 
+Linkage \textbf{ get\+Linkage} ()
+\begin{DoxyCompactList}\small\item\em Returns the linkage of the function. \end{DoxyCompactList}\item 
+int \textbf{ get\+Block\+Count} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of blocks in the function. \end{DoxyCompactList}\item 
+\textbf{ Block} $\ast$ \textbf{ get\+Block} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns a block at given position. \end{DoxyCompactList}\item 
+int \textbf{ get\+Arg\+Count} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of arguments for the function. \end{DoxyCompactList}\item 
+\textbf{ Type} $\ast$ \textbf{ get\+Arg\+Type} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns the argument type at a given position. \end{DoxyCompactList}\item 
+\textbf{ Reg} $\ast$ \textbf{ get\+Arg} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns the associated register for an argument at a given position. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Function_a58e66d75f7f5474dcef1faf85da24315}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+static \textbf{ Function} $\ast$ \textbf{ Create} (std\+::string name, Linkage linkage, \textbf{ Type} $\ast$data\+Type)
+\begin{DoxyCompactList}\small\item\em Creates and returns a new function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a function in L\+L\+IR. 
+
+Represents a function in L\+L\+IR. An L\+L\+IR function can be a complete function with a body, or it can be an extern function for linking purposes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Function_ad4cfbe173a207f16e10c3e5ce9bcb183}} 
+\index{LLIR::Function@{LLIR::Function}!Function@{Function}}
+\index{Function@{Function}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{Function()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Function\+::\+Function (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{Linkage}]{linkage }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Creates a new function. 
+
+N\+O\+TE\+: In most cases, you should use the static version of this function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the function \\
+\hline
+{\em linkage} & The linkage type of the function \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Function_a28ac674c6d5acb64396c9a291697888c}} 
+\index{LLIR::Function@{LLIR::Function}!addArgPair@{addArgPair}}
+\index{addArgPair@{addArgPair}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{addArgPair()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+::add\+Arg\+Pair (\begin{DoxyParamCaption}\item[{\textbf{ Type} $\ast$}]{type,  }\item[{\textbf{ Reg} $\ast$}]{reg }\end{DoxyParamCaption})}
+
+
+
+Sets an type-\/register pair for the function. 
+
+This adds an argument of a specific type with an associated register to the function. Note that in most cases, you should not have to use this.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the argument \\
+\hline
+{\em reg} & The associated register for the argument \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Function_af29aca143a0a6523e45181193ecca515}} 
+\index{LLIR::Function@{LLIR::Function}!addBlock@{addBlock}}
+\index{addBlock@{addBlock}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{addBlock()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+::add\+Block (\begin{DoxyParamCaption}\item[{\textbf{ Block} $\ast$}]{block }\end{DoxyParamCaption})}
+
+
+
+Adds a block to the function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & T\+He block to add \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Function_a391fa20247ecbc46ec1ad3b291261ec2}} 
+\index{LLIR::Function@{LLIR::Function}!addBlockAfter@{addBlockAfter}}
+\index{addBlockAfter@{addBlockAfter}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{addBlockAfter()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+::add\+Block\+After (\begin{DoxyParamCaption}\item[{\textbf{ Block} $\ast$}]{block,  }\item[{\textbf{ Block} $\ast$}]{new\+Block }\end{DoxyParamCaption})}
+
+
+
+Adds a new block after an existing block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The current block-\/ the \char`\"{}before\char`\"{} block \\
+\hline
+{\em new\+Block} & The new block to add \\
+\hline
+\end{DoxyParams}
 \mbox{\label{classLLIR_1_1Function_a89ef99ddb9ffe1f7de5d01a86f98b78c}} 
-static \textbf{ Function} $\ast$ {\bfseries Create} (std\+::string name, Linkage linkage, \textbf{ Type} $\ast$data\+Type)
-\end{DoxyCompactItemize}
+\index{LLIR::Function@{LLIR::Function}!Create@{Create}}
+\index{Create@{Create}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{Create()}
+{\footnotesize\ttfamily static \textbf{ Function}$\ast$ L\+L\+I\+R\+::\+Function\+::\+Create (\begin{DoxyParamCaption}\item[{std\+::string}]{name,  }\item[{Linkage}]{linkage,  }\item[{\textbf{ Type} $\ast$}]{data\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Creates and returns a new function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the function \\
+\hline
+{\em linkage} & The linkage type of the function \\
+\hline
+{\em data\+Type} & The data type (return type) of the function \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Function_a56c8da1606ee844407ebf97379ed6b7c}} 
+\index{LLIR::Function@{LLIR::Function}!getArg@{getArg}}
+\index{getArg@{getArg}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getArg()}
+{\footnotesize\ttfamily \textbf{ Reg} $\ast$ L\+L\+I\+R\+::\+Function\+::get\+Arg (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns the associated register for an argument at a given position. 
+
+\mbox{\label{classLLIR_1_1Function_ab0a20c75c75da160ceb76f14579b8cd0}} 
+\index{LLIR::Function@{LLIR::Function}!getArgCount@{getArgCount}}
+\index{getArgCount@{getArgCount}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getArgCount()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Function\+::get\+Arg\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of arguments for the function. 
+
+\mbox{\label{classLLIR_1_1Function_a0db33fad114c32c12c544bd37922df9e}} 
+\index{LLIR::Function@{LLIR::Function}!getArgType@{getArgType}}
+\index{getArgType@{getArgType}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getArgType()}
+{\footnotesize\ttfamily \textbf{ Type} $\ast$ L\+L\+I\+R\+::\+Function\+::get\+Arg\+Type (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns the argument type at a given position. 
+
+\mbox{\label{classLLIR_1_1Function_a17e387ea83e69b82e99fa43d87d18ec9}} 
+\index{LLIR::Function@{LLIR::Function}!getBlock@{getBlock}}
+\index{getBlock@{getBlock}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getBlock()}
+{\footnotesize\ttfamily \textbf{ Block} $\ast$ L\+L\+I\+R\+::\+Function\+::get\+Block (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns a block at given position. 
+
+\mbox{\label{classLLIR_1_1Function_ab30b8ea11b09f8ebdbe0b65710b25969}} 
+\index{LLIR::Function@{LLIR::Function}!getBlockCount@{getBlockCount}}
+\index{getBlockCount@{getBlockCount}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getBlockCount()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Function\+::get\+Block\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of blocks in the function. 
+
+\mbox{\label{classLLIR_1_1Function_a0ed6c58268abe807577a58ba50efe4af}} 
+\index{LLIR::Function@{LLIR::Function}!getLinkage@{getLinkage}}
+\index{getLinkage@{getLinkage}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getLinkage()}
+{\footnotesize\ttfamily Linkage L\+L\+I\+R\+::\+Function\+::get\+Linkage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the linkage of the function. 
+
+\mbox{\label{classLLIR_1_1Function_a05027977342a61cf842dbc645e7e39a1}} 
+\index{LLIR::Function@{LLIR::Function}!getName@{getName}}
+\index{getName@{getName}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily std\+::string L\+L\+I\+R\+::\+Function\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the function. 
+
+\mbox{\label{classLLIR_1_1Function_af66f31ec9afec7bd92a842518b8f83b0}} 
+\index{LLIR::Function@{LLIR::Function}!setArgs@{setArgs}}
+\index{setArgs@{setArgs}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{setArgs()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+::set\+Args (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \textbf{ Type} $\ast$ $>$}]{args }\end{DoxyParamCaption})}
+
+
+
+Sets the function arguments of a function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & The function arguments to set \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Function_a8a166e61a2f50d41123927dcbdc73af8}} 
+\index{LLIR::Function@{LLIR::Function}!setDataType@{setDataType}}
+\index{setDataType@{setDataType}!LLIR::Function@{LLIR::Function}}
+\doxysubsubsection{setDataType()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Function\+::set\+Data\+Type (\begin{DoxyParamCaption}\item[{\textbf{ Type} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Sets the data type (return type) of the function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The type to set \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

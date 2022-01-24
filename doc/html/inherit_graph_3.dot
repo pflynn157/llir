@@ -6,5 +6,5 @@ digraph "Graphical Class Hierarchy"
   rankdir="LR";
   Node0 [label="LLIR::Instruction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1Instruction.html",tooltip="Represents an instruction in LLIR."];
   Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node1 [label="LLIR::FunctionCall",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1FunctionCall.html",tooltip=" "];
+  Node1 [label="LLIR::FunctionCall",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1FunctionCall.html",tooltip="Represents a function call instruction."];
 }

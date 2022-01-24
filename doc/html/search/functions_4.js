@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['pointertype_197',['PointerType',['../classLLIR_1_1PointerType.html#a3293bfbe235119ed267a0f0f48f16023',1,'LLIR::PointerType::PointerType(Type *baseType)'],['../classLLIR_1_1PointerType.html#aedaeaf15b1acb17358fa2339b3480850',1,'LLIR::PointerType::PointerType(DataType type)']]]
+  ['getarg_216',['getArg',['../classLLIR_1_1Function.html#a56c8da1606ee844407ebf97379ed6b7c',1,'LLIR::Function']]],
+  ['getargcount_217',['getArgCount',['../classLLIR_1_1Function.html#ab0a20c75c75da160ceb76f14579b8cd0',1,'LLIR::Function']]],
+  ['getargs_218',['getArgs',['../classLLIR_1_1FunctionCall.html#aefd754bde916cffe7da09c31ea1e3e82',1,'LLIR::FunctionCall']]],
+  ['getargtype_219',['getArgType',['../classLLIR_1_1Function.html#a0db33fad114c32c12c544bd37922df9e',1,'LLIR::Function']]],
+  ['getbasetype_220',['getBaseType',['../classLLIR_1_1PointerType.html#a024a428cabd0e520363d585d4e59eb39',1,'LLIR::PointerType']]],
+  ['getblock_221',['getBlock',['../classLLIR_1_1Function.html#a17e387ea83e69b82e99fa43d87d18ec9',1,'LLIR::Function']]],
+  ['getblockcount_222',['getBlockCount',['../classLLIR_1_1Function.html#ab30b8ea11b09f8ebdbe0b65710b25969',1,'LLIR::Function']]],
+  ['getdatatype_223',['getDataType',['../classLLIR_1_1Instruction.html#ad1250c9cf54835206f663632f47e70e8',1,'LLIR::Instruction']]],
+  ['getdest_224',['getDest',['../classLLIR_1_1Instruction.html#a7318cbd8a337960730f439986bd45276',1,'LLIR::Instruction']]],
+  ['getelementtypes_225',['getElementTypes',['../classLLIR_1_1StructType.html#a17c7be23410e62a0679db69c8efed115',1,'LLIR::StructType']]],
+  ['getfunction_226',['getFunction',['../classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0',1,'LLIR::Module']]],
+  ['getfunctionbyname_227',['getFunctionByName',['../classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa',1,'LLIR::Module']]],
+  ['getfunctioncount_228',['getFunctionCount',['../classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396',1,'LLIR::Module']]],
+  ['getid_229',['getID',['../classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2',1,'LLIR::Block']]],
+  ['getinsertpoint_230',['getInsertPoint',['../classLLIR_1_1IRBuilder.html#add35a8784df12cd374b42e847dd9f56d',1,'LLIR::IRBuilder']]],
+  ['getinstrcount_231',['getInstrCount',['../classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b',1,'LLIR::Block']]],
+  ['getinstruction_232',['getInstruction',['../classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa',1,'LLIR::Block']]],
+  ['getlinkage_233',['getLinkage',['../classLLIR_1_1Function.html#a0ed6c58268abe807577a58ba50efe4af',1,'LLIR::Function']]],
+  ['getname_234',['getName',['../classLLIR_1_1FunctionCall.html#a2f3397343d50285dfab1e8e7c60b9032',1,'LLIR::FunctionCall::getName()'],['../classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060',1,'LLIR::Block::getName()'],['../classLLIR_1_1Function.html#a05027977342a61cf842dbc645e7e39a1',1,'LLIR::Function::getName()'],['../classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f',1,'LLIR::Module::getName()']]],
+  ['getoperand1_235',['getOperand1',['../classLLIR_1_1Instruction.html#a3b88c040a3129eb76b71515754e97e12',1,'LLIR::Instruction']]],
+  ['getoperand2_236',['getOperand2',['../classLLIR_1_1Instruction.html#a87b6a48d7e5178c89e439bd14bb8a4dc',1,'LLIR::Instruction']]],
+  ['getoperand3_237',['getOperand3',['../classLLIR_1_1Instruction.html#a384b6fbe11cd6744fb43913caac5f37a',1,'LLIR::Instruction']]],
+  ['getstring_238',['getString',['../classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73',1,'LLIR::Module']]],
+  ['getstringcount_239',['getStringCount',['../classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8',1,'LLIR::Module']]],
+  ['gettype_240',['getType',['../classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24',1,'LLIR::Type::getType()'],['../classLLIR_1_1Instruction.html#ad91efd9553a31245e470dd173f747d30',1,'LLIR::Instruction::getType()']]]
 ];

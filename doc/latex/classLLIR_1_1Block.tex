@@ -1,32 +1,134 @@
 \doxysection{L\+L\+IR\+::Block Class Reference}
 \label{classLLIR_1_1Block}\index{LLIR::Block@{LLIR::Block}}
+
+
+Represents a basic block in L\+L\+IR.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Block_a5f9bae16b6215e5962b910352d0a9604}} 
-{\bfseries Block} (std\+::string name)
-\item 
-\mbox{\label{classLLIR_1_1Block_ada68aa74bd48e00f12f3ef718ef2a48b}} 
-void {\bfseries add\+Instruction} (\textbf{ Instruction} $\ast$i)
-\item 
-\mbox{\label{classLLIR_1_1Block_a62ee07b847d4f992f946ae69045a45ce}} 
-void {\bfseries set\+ID} (int id)
-\item 
-\mbox{\label{classLLIR_1_1Block_ab75e98ed44e35819eee7639b3e3ac060}} 
-std\+::string {\bfseries get\+Name} ()
-\item 
-\mbox{\label{classLLIR_1_1Block_acfd81b984de3dfc9585aa36902387bf2}} 
-int {\bfseries get\+ID} ()
-\item 
-\mbox{\label{classLLIR_1_1Block_a3e036f81f75d5cae7dbc3d434c315f0b}} 
-int {\bfseries get\+Instr\+Count} ()
-\item 
-\mbox{\label{classLLIR_1_1Block_ae5aab809d59c195488e6dcc96938fafa}} 
-\textbf{ Instruction} $\ast$ {\bfseries get\+Instruction} (int pos)
-\item 
+\textbf{ Block} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Creates a new L\+L\+IR block. \end{DoxyCompactList}\item 
+void \textbf{ add\+Instruction} (\textbf{ Instruction} $\ast$i)
+\begin{DoxyCompactList}\small\item\em Adds an instruction to the block. \end{DoxyCompactList}\item 
+void \textbf{ set\+ID} (int id)
+\begin{DoxyCompactList}\small\item\em Sets the unique ID for the block. \end{DoxyCompactList}\item 
+std\+::string \textbf{ get\+Name} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the block. \end{DoxyCompactList}\item 
+int \textbf{ get\+ID} ()
+\begin{DoxyCompactList}\small\item\em Returns the ID of the block. \end{DoxyCompactList}\item 
+int \textbf{ get\+Instr\+Count} ()
+\begin{DoxyCompactList}\small\item\em Returns the number of instructions in the block. \end{DoxyCompactList}\item 
+\textbf{ Instruction} $\ast$ \textbf{ get\+Instruction} (int pos)
+\begin{DoxyCompactList}\small\item\em Returns the instruction at a given position. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Block_a62f8f600490f6a69e76f61a53ea60ecb}} 
 void {\bfseries print} ()
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a basic block in L\+L\+IR. 
+
+Basic blocks form the base of instructions in L\+L\+IR. A basic block contains a variable number of instructions, and terminates with either a branch or a return. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Block_a5f9bae16b6215e5962b910352d0a9604}} 
+\index{LLIR::Block@{LLIR::Block}!Block@{Block}}
+\index{Block@{Block}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{Block()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Block\+::\+Block (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Creates a new L\+L\+IR block. 
+
+You should use this constructor directly when you need to create a basic block, but when you do not want it to become the current insert point and/or you wish to insert it somewhere else within the function
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the block. This must be unique. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Block_ada68aa74bd48e00f12f3ef718ef2a48b}} 
+\index{LLIR::Block@{LLIR::Block}!addInstruction@{addInstruction}}
+\index{addInstruction@{addInstruction}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{addInstruction()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Block\+::add\+Instruction (\begin{DoxyParamCaption}\item[{\textbf{ Instruction} $\ast$}]{i }\end{DoxyParamCaption})}
+
+
+
+Adds an instruction to the block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The instruction to add \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Block_acfd81b984de3dfc9585aa36902387bf2}} 
+\index{LLIR::Block@{LLIR::Block}!getID@{getID}}
+\index{getID@{getID}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{getID()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Block\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the ID of the block. 
+
+\mbox{\label{classLLIR_1_1Block_a3e036f81f75d5cae7dbc3d434c315f0b}} 
+\index{LLIR::Block@{LLIR::Block}!getInstrCount@{getInstrCount}}
+\index{getInstrCount@{getInstrCount}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{getInstrCount()}
+{\footnotesize\ttfamily int L\+L\+I\+R\+::\+Block\+::get\+Instr\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the number of instructions in the block. 
+
+\mbox{\label{classLLIR_1_1Block_ae5aab809d59c195488e6dcc96938fafa}} 
+\index{LLIR::Block@{LLIR::Block}!getInstruction@{getInstruction}}
+\index{getInstruction@{getInstruction}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{getInstruction()}
+{\footnotesize\ttfamily \textbf{ Instruction} $\ast$ L\+L\+I\+R\+::\+Block\+::get\+Instruction (\begin{DoxyParamCaption}\item[{int}]{pos }\end{DoxyParamCaption})}
+
+
+
+Returns the instruction at a given position. 
+
+\mbox{\label{classLLIR_1_1Block_ab75e98ed44e35819eee7639b3e3ac060}} 
+\index{LLIR::Block@{LLIR::Block}!getName@{getName}}
+\index{getName@{getName}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{getName()}
+{\footnotesize\ttfamily std\+::string L\+L\+I\+R\+::\+Block\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the block. 
+
+\mbox{\label{classLLIR_1_1Block_a62ee07b847d4f992f946ae69045a45ce}} 
+\index{LLIR::Block@{LLIR::Block}!setID@{setID}}
+\index{setID@{setID}!LLIR::Block@{LLIR::Block}}
+\doxysubsubsection{setID()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Block\+::set\+ID (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Sets the unique ID for the block. 
+
+I\+M\+P\+O\+R\+T\+A\+NT\+: You should not use this function directly. It is managed by the parent function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID to set. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

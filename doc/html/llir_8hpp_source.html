@@ -259,149 +259,190 @@ $(document).ready(function(){initNavTree('llir_8hpp_source.html',''); initResiza
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <a class="code" href="classLLIR_1_1Operand.html">Operand</a> *src3 = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;};</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">// Represents function calls</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno"><a class="line" href="classLLIR_1_1FunctionCall.html">  272</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1FunctionCall.html">FunctionCall</a> : <span class="keyword">public</span> <a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> {</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1FunctionCall.html">FunctionCall</a>(std::string name, std::vector&lt;Operand *&gt; args);</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    </div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keywordtype">void</span> setArgs(std::vector&lt;Operand *&gt; args);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    std::string getName();</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    std::vector&lt;Operand *&gt; getArgs();</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    </div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="keywordtype">void</span> print();</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    std::vector&lt;Operand *&gt; args;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;};</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160; </div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="comment">// Represents a basic block</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="line" href="classLLIR_1_1Block.html">  289</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Block.html">Block</a> {</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Block.html">Block</a>(std::string name);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    ~<a class="code" href="classLLIR_1_1Block.html">Block</a>();</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    </div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordtype">void</span> addInstruction(<a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> *i);</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordtype">void</span> setID(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    std::string getName();</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordtype">int</span> getID();</div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="classLLIR_1_1FunctionCall.html">  275</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1FunctionCall.html">FunctionCall</a> : <span class="keyword">public</span> <a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1FunctionCall.html#ac857dbc32cc489e8b4f8b94e594716e7">FunctionCall</a>(std::string name, std::vector&lt;Operand *&gt; args);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1FunctionCall.html#af87880c1bcc92ba111207ab8b612c200">setArgs</a>(std::vector&lt;Operand *&gt; args);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    std::string <a class="code" href="classLLIR_1_1FunctionCall.html#a2f3397343d50285dfab1e8e7c60b9032">getName</a>();</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    std::vector&lt;Operand *&gt; <a class="code" href="classLLIR_1_1FunctionCall.html#aefd754bde916cffe7da09c31ea1e3e82">getArgs</a>();</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    </div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordtype">int</span> getInstrCount();</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> *getInstruction(<span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    </div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordtype">void</span> print();</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    std::vector&lt;Instruction *&gt; instrs;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 0;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;};</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">// Represents a function</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">// TODO: We can probably get rid of stack</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno"><a class="line" href="classLLIR_1_1Function.html">  314</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Function.html">Function</a> {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Function.html">Function</a>(std::string name, Linkage linkage);</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    ~<a class="code" href="classLLIR_1_1Function.html">Function</a>();</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    </div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <span class="keyword">static</span> <a class="code" href="classLLIR_1_1Function.html">Function</a> *Create(std::string name, Linkage linkage, <a class="code" href="classLLIR_1_1Type.html">Type</a> *dataType) {</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        <a class="code" href="classLLIR_1_1Function.html">Function</a> *func = <span class="keyword">new</span> <a class="code" href="classLLIR_1_1Function.html">Function</a>(name, linkage);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        func-&gt;setDataType(dataType);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordflow">return</span> func;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    </div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">void</span> setDataType(<a class="code" href="classLLIR_1_1Type.html">Type</a> *d);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keywordtype">void</span> setArgs(std::vector&lt;Type *&gt; args);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordtype">void</span> addArgPair(<a class="code" href="classLLIR_1_1Type.html">Type</a> *type, <a class="code" href="classLLIR_1_1Reg.html">Reg</a> *reg);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordtype">void</span> addBlock(<a class="code" href="classLLIR_1_1Block.html">Block</a> *block);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordtype">void</span> print();</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    std::vector&lt;Operand *&gt; args;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;};</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="classLLIR_1_1Block.html">  311</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Block.html">Block</a> {</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Block.html#a5f9bae16b6215e5962b910352d0a9604">Block</a>(std::string name);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    ~<a class="code" href="classLLIR_1_1Block.html">Block</a>();</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    </div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Block.html#ada68aa74bd48e00f12f3ef718ef2a48b">addInstruction</a>(<a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> *i);</div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    </div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordtype">void</span> addBlockAfter(<a class="code" href="classLLIR_1_1Block.html">Block</a> *block, <a class="code" href="classLLIR_1_1Block.html">Block</a> *newBlock);</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    </div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    std::string getName();</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    Linkage getLinkage();</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    </div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <span class="keywordtype">int</span> getBlockCount();</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <a class="code" href="classLLIR_1_1Block.html">Block</a> *getBlock(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Block.html#a62ee07b847d4f992f946ae69045a45ce">setID</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    </div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordtype">int</span> getArgCount();</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <a class="code" href="classLLIR_1_1Type.html">Type</a> *getArgType(<span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <a class="code" href="classLLIR_1_1Reg.html">Reg</a> *getArg(<span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    </div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    <span class="keywordtype">void</span> print();</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    <a class="code" href="classLLIR_1_1Type.html">Type</a> *dataType;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    Linkage linkage = Linkage::Local;</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    std::vector&lt;Block *&gt; blocks;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    std::vector&lt;Type *&gt; args;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    std::vector&lt;Reg *&gt; varRegs;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordtype">int</span> blockID = 1;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;};</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160; </div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="comment">// The base of all LLIR projects</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno"><a class="line" href="classLLIR_1_1Module.html">  356</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Module.html">Module</a> {</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Module.html">Module</a>(std::string name);</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    ~<a class="code" href="classLLIR_1_1Module.html">Module</a>();</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    </div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keywordtype">void</span> addFunction(<a class="code" href="classLLIR_1_1Function.html">Function</a> *func);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keywordtype">void</span> addStringPtr(<a class="code" href="classLLIR_1_1StringPtr.html">StringPtr</a> *ptr);</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    std::string getName();</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="keywordtype">int</span> getFunctionCount();</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <a class="code" href="classLLIR_1_1Function.html">Function</a> *getFunction(<span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keywordtype">int</span> getStringCount();</div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="code" href="classLLIR_1_1StringPtr.html">StringPtr</a> *getString(<span class="keywordtype">int</span> pos);</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <a class="code" href="classLLIR_1_1Function.html">Function</a> *getFunctionByName(std::string fname);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    </div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keywordtype">void</span> transform();</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    </div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordtype">void</span> print();</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    std::vector&lt;Function *&gt; functions;</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    std::vector&lt;StringPtr *&gt; strings;</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;};</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160; </div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;} <span class="comment">// end namespace LLIR</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;    std::string <a class="code" href="classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060">getName</a>();</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;    </div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2">getID</a>();</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    </div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b">getInstrCount</a>();</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <a class="code" href="classLLIR_1_1Instruction.html">Instruction</a> *<a class="code" href="classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa">getInstruction</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    </div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="keywordtype">void</span> print();</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    std::vector&lt;Instruction *&gt; instrs;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keywordtype">int</span> <span class="keywordtype">id</span> = 0;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;};</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00370"></a><span class="lineno"><a class="line" href="classLLIR_1_1Function.html">  370</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Function.html">Function</a> {</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Function.html#ad4cfbe173a207f16e10c3e5ce9bcb183">Function</a>(std::string name, Linkage linkage);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    ~<a class="code" href="classLLIR_1_1Function.html">Function</a>();</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    </div>
+<div class="line"><a name="l00388"></a><span class="lineno"><a class="line" href="classLLIR_1_1Function.html#a89ef99ddb9ffe1f7de5d01a86f98b78c">  388</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classLLIR_1_1Function.html">Function</a> *<a class="code" href="classLLIR_1_1Function.html#a89ef99ddb9ffe1f7de5d01a86f98b78c">Create</a>(std::string name, Linkage linkage, <a class="code" href="classLLIR_1_1Type.html">Type</a> *dataType) {</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <a class="code" href="classLLIR_1_1Function.html">Function</a> *func = <span class="keyword">new</span> <a class="code" href="classLLIR_1_1Function.html#ad4cfbe173a207f16e10c3e5ce9bcb183">Function</a>(name, linkage);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;        func-&gt;<a class="code" href="classLLIR_1_1Function.html#a8a166e61a2f50d41123927dcbdc73af8">setDataType</a>(dataType);</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        <span class="keywordflow">return</span> func;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    }</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    </div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Function.html#a8a166e61a2f50d41123927dcbdc73af8">setDataType</a>(<a class="code" href="classLLIR_1_1Type.html">Type</a> *d);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    </div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Function.html#af66f31ec9afec7bd92a842518b8f83b0">setArgs</a>(std::vector&lt;Type *&gt; args);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    </div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Function.html#a28ac674c6d5acb64396c9a291697888c">addArgPair</a>(<a class="code" href="classLLIR_1_1Type.html">Type</a> *type, <a class="code" href="classLLIR_1_1Reg.html">Reg</a> *reg);</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Function.html#af29aca143a0a6523e45181193ecca515">addBlock</a>(<a class="code" href="classLLIR_1_1Block.html">Block</a> *block);</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    </div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Function.html#a391fa20247ecbc46ec1ad3b291261ec2">addBlockAfter</a>(<a class="code" href="classLLIR_1_1Block.html">Block</a> *block, <a class="code" href="classLLIR_1_1Block.html">Block</a> *newBlock);</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    std::string <a class="code" href="classLLIR_1_1Function.html#a05027977342a61cf842dbc645e7e39a1">getName</a>();</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    </div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;    Linkage <a class="code" href="classLLIR_1_1Function.html#a0ed6c58268abe807577a58ba50efe4af">getLinkage</a>();</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    </div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Function.html#ab30b8ea11b09f8ebdbe0b65710b25969">getBlockCount</a>();</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    </div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    <a class="code" href="classLLIR_1_1Block.html">Block</a> *<a class="code" href="classLLIR_1_1Function.html#a17e387ea83e69b82e99fa43d87d18ec9">getBlock</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    </div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Function.html#ab0a20c75c75da160ceb76f14579b8cd0">getArgCount</a>();</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    </div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <a class="code" href="classLLIR_1_1Type.html">Type</a> *<a class="code" href="classLLIR_1_1Function.html#a0db33fad114c32c12c544bd37922df9e">getArgType</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    </div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;    <a class="code" href="classLLIR_1_1Reg.html">Reg</a> *<a class="code" href="classLLIR_1_1Function.html#a56c8da1606ee844407ebf97379ed6b7c">getArg</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    </div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;    <span class="keywordtype">void</span> print();</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    <a class="code" href="classLLIR_1_1Type.html">Type</a> *dataType;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;    Linkage linkage = Linkage::Local;</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;    std::vector&lt;Block *&gt; blocks;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;    std::vector&lt;Type *&gt; args;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;    std::vector&lt;Reg *&gt; varRegs;</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="keywordtype">int</span> blockID = 1;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;};</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160; </div>
+<div class="line"><a name="l00479"></a><span class="lineno"><a class="line" href="classLLIR_1_1Module.html">  479</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLLIR_1_1Module.html">Module</a> {</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classLLIR_1_1Module.html#a06a75a8b01218ddb970a8bc86f52df99">Module</a>(std::string name);</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;    ~<a class="code" href="classLLIR_1_1Module.html">Module</a>();</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    </div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Module.html#acb2243d0c9619f0e269a6f93e51ef01d">addFunction</a>(<a class="code" href="classLLIR_1_1Function.html">Function</a> *func);</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    </div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Module.html#a42844fec95f0cc5cea5252efa455b1b4">addStringPtr</a>(<a class="code" href="classLLIR_1_1StringPtr.html">StringPtr</a> *ptr);</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    </div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    std::string <a class="code" href="classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f">getName</a>();</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    </div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396">getFunctionCount</a>();</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    </div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <a class="code" href="classLLIR_1_1Function.html">Function</a> *<a class="code" href="classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0">getFunction</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    </div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8">getStringCount</a>();</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    </div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <a class="code" href="classLLIR_1_1StringPtr.html">StringPtr</a> *<a class="code" href="classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73">getString</a>(<span class="keywordtype">int</span> pos);</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    </div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;    <a class="code" href="classLLIR_1_1Function.html">Function</a> *<a class="code" href="classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa">getFunctionByName</a>(std::string fname);</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    </div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classLLIR_1_1Module.html#abe6ffad785be5a32853c22ec1cdda36b">transform</a>();</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    </div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="keywordtype">void</span> print();</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;    std::string name = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;    std::vector&lt;Function *&gt; functions;</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    std::vector&lt;StringPtr *&gt; strings;</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;};</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160; </div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;} <span class="comment">// end namespace LLIR</span></div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="aclassLLIR_1_1Module_html_a4980b76cfc7ec2bad0b8facec6c5606f"><div class="ttname"><a href="classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f">LLIR::Module::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdoc">Returns the name of the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:267</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a05027977342a61cf842dbc645e7e39a1"><div class="ttname"><a href="classLLIR_1_1Function.html#a05027977342a61cf842dbc645e7e39a1">LLIR::Function::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdoc">Returns the name of the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:218</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_ae5aab809d59c195488e6dcc96938fafa"><div class="ttname"><a href="classLLIR_1_1Block.html#ae5aab809d59c195488e6dcc96938fafa">LLIR::Block::getInstruction</a></div><div class="ttdeci">Instruction * getInstruction(int pos)</div><div class="ttdoc">Returns the instruction at a given position.</div><div class="ttdef"><b>Definition:</b> llir.cpp:158</div></div>
 <div class="ttc" id="aclassLLIR_1_1StructType_html_a17c7be23410e62a0679db69c8efed115"><div class="ttname"><a href="classLLIR_1_1StructType.html#a17c7be23410e62a0679db69c8efed115">LLIR::StructType::getElementTypes</a></div><div class="ttdeci">std::vector&lt; Type * &gt; getElementTypes()</div><div class="ttdoc">Returns a list of the element types.</div><div class="ttdef"><b>Definition:</b> llir.cpp:38</div></div>
 <div class="ttc" id="aclassLLIR_1_1Type_html"><div class="ttname"><a href="classLLIR_1_1Type.html">LLIR::Type</a></div><div class="ttdoc">Type- The base of all data types.</div><div class="ttdef"><b>Definition:</b> llir.hpp:91</div></div>
-<div class="ttc" id="aclassLLIR_1_1Function_html"><div class="ttname"><a href="classLLIR_1_1Function.html">LLIR::Function</a></div><div class="ttdef"><b>Definition:</b> llir.hpp:314</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a0ed6c58268abe807577a58ba50efe4af"><div class="ttname"><a href="classLLIR_1_1Function.html#a0ed6c58268abe807577a58ba50efe4af">LLIR::Function::getLinkage</a></div><div class="ttdeci">Linkage getLinkage()</div><div class="ttdoc">Returns the linkage of the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:222</div></div>
+<div class="ttc" id="aclassLLIR_1_1FunctionCall_html_aefd754bde916cffe7da09c31ea1e3e82"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html#aefd754bde916cffe7da09c31ea1e3e82">LLIR::FunctionCall::getArgs</a></div><div class="ttdeci">std::vector&lt; Operand * &gt; getArgs()</div><div class="ttdoc">Returns the arguments of the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:121</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html"><div class="ttname"><a href="classLLIR_1_1Function.html">LLIR::Function</a></div><div class="ttdoc">Represents a function in LLIR.</div><div class="ttdef"><b>Definition:</b> llir.hpp:370</div></div>
+<div class="ttc" id="aclassLLIR_1_1FunctionCall_html_af87880c1bcc92ba111207ab8b612c200"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html#af87880c1bcc92ba111207ab8b612c200">LLIR::FunctionCall::setArgs</a></div><div class="ttdeci">void setArgs(std::vector&lt; Operand * &gt; args)</div><div class="ttdoc">Sets the function arguments.</div><div class="ttdef"><b>Definition:</b> llir.cpp:113</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a89ef99ddb9ffe1f7de5d01a86f98b78c"><div class="ttname"><a href="classLLIR_1_1Function.html#a89ef99ddb9ffe1f7de5d01a86f98b78c">LLIR::Function::Create</a></div><div class="ttdeci">static Function * Create(std::string name, Linkage linkage, Type *dataType)</div><div class="ttdoc">Creates and returns a new function.</div><div class="ttdef"><b>Definition:</b> llir.hpp:388</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a17e387ea83e69b82e99fa43d87d18ec9"><div class="ttname"><a href="classLLIR_1_1Function.html#a17e387ea83e69b82e99fa43d87d18ec9">LLIR::Function::getBlock</a></div><div class="ttdeci">Block * getBlock(int pos)</div><div class="ttdoc">Returns a block at given position.</div><div class="ttdef"><b>Definition:</b> llir.cpp:230</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_ada68aa74bd48e00f12f3ef718ef2a48b"><div class="ttname"><a href="classLLIR_1_1Block.html#ada68aa74bd48e00f12f3ef718ef2a48b">LLIR::Block::addInstruction</a></div><div class="ttdeci">void addInstruction(Instruction *i)</div><div class="ttdoc">Adds an instruction to the block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:138</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a28ac674c6d5acb64396c9a291697888c"><div class="ttname"><a href="classLLIR_1_1Function.html#a28ac674c6d5acb64396c9a291697888c">LLIR::Function::addArgPair</a></div><div class="ttdeci">void addArgPair(Type *type, Reg *reg)</div><div class="ttdoc">Sets an type-register pair for the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:197</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_a06a75a8b01218ddb970a8bc86f52df99"><div class="ttname"><a href="classLLIR_1_1Module.html#a06a75a8b01218ddb970a8bc86f52df99">LLIR::Module::Module</a></div><div class="ttdeci">Module(std::string name)</div><div class="ttdoc">Creates a new module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:249</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_acfd81b984de3dfc9585aa36902387bf2"><div class="ttname"><a href="classLLIR_1_1Block.html#acfd81b984de3dfc9585aa36902387bf2">LLIR::Block::getID</a></div><div class="ttdeci">int getID()</div><div class="ttdoc">Returns the ID of the block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:150</div></div>
 <div class="ttc" id="aclassLLIR_1_1Reg_html"><div class="ttname"><a href="classLLIR_1_1Reg.html">LLIR::Reg</a></div><div class="ttdef"><b>Definition:</b> llir_operand.hpp:52</div></div>
-<div class="ttc" id="aclassLLIR_1_1Block_html"><div class="ttname"><a href="classLLIR_1_1Block.html">LLIR::Block</a></div><div class="ttdef"><b>Definition:</b> llir.hpp:289</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a8a166e61a2f50d41123927dcbdc73af8"><div class="ttname"><a href="classLLIR_1_1Function.html#a8a166e61a2f50d41123927dcbdc73af8">LLIR::Function::setDataType</a></div><div class="ttdeci">void setDataType(Type *d)</div><div class="ttdoc">Sets the data type (return type) of the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:184</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_ab75e98ed44e35819eee7639b3e3ac060"><div class="ttname"><a href="classLLIR_1_1Block.html#ab75e98ed44e35819eee7639b3e3ac060">LLIR::Block::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdoc">Returns the name of the block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:146</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html"><div class="ttname"><a href="classLLIR_1_1Block.html">LLIR::Block</a></div><div class="ttdoc">Represents a basic block in LLIR.</div><div class="ttdef"><b>Definition:</b> llir.hpp:311</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a384b6fbe11cd6744fb43913caac5f37a"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a384b6fbe11cd6744fb43913caac5f37a">LLIR::Instruction::getOperand3</a></div><div class="ttdeci">Operand * getOperand3()</div><div class="ttdoc">Returns the third source operand.</div><div class="ttdef"><b>Definition:</b> llir.cpp:100</div></div>
 <div class="ttc" id="aclassLLIR_1_1Type_html_a82aeb1616f8e65eaf82881be5f4dd7a8"><div class="ttname"><a href="classLLIR_1_1Type.html#a82aeb1616f8e65eaf82881be5f4dd7a8">LLIR::Type::Type</a></div><div class="ttdeci">Type(DataType type)</div><div class="ttdoc">Create a new type.</div><div class="ttdef"><b>Definition:</b> llir.hpp:97</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a6907c73bc2a3e1944650255b97f082cf"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a6907c73bc2a3e1944650255b97f082cf">LLIR::Instruction::setOperand1</a></div><div class="ttdeci">void setOperand1(Operand *o)</div><div class="ttdoc">Sets the first source operand for the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:68</div></div>
 <div class="ttc" id="aclassLLIR_1_1StructType_html_a0cb24b7f9cc9d3b439ad220cc92901ee"><div class="ttname"><a href="classLLIR_1_1StructType.html#a0cb24b7f9cc9d3b439ad220cc92901ee">LLIR::StructType::StructType</a></div><div class="ttdeci">StructType(std::string name, std::vector&lt; Type * &gt; elementTypes)</div><div class="ttdoc">Create a new structure type.</div><div class="ttdef"><b>Definition:</b> llir.cpp:26</div></div>
-<div class="ttc" id="aclassLLIR_1_1Module_html"><div class="ttname"><a href="classLLIR_1_1Module.html">LLIR::Module</a></div><div class="ttdef"><b>Definition:</b> llir.hpp:356</div></div>
+<div class="ttc" id="aclassLLIR_1_1FunctionCall_html_ac857dbc32cc489e8b4f8b94e594716e7"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html#ac857dbc32cc489e8b4f8b94e594716e7">LLIR::FunctionCall::FunctionCall</a></div><div class="ttdeci">FunctionCall(std::string name, std::vector&lt; Operand * &gt; args)</div><div class="ttdoc">Creates a new function call instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:108</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_af29aca143a0a6523e45181193ecca515"><div class="ttname"><a href="classLLIR_1_1Function.html#af29aca143a0a6523e45181193ecca515">LLIR::Function::addBlock</a></div><div class="ttdeci">void addBlock(Block *block)</div><div class="ttdoc">Adds a block to the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:202</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html"><div class="ttname"><a href="classLLIR_1_1Module.html">LLIR::Module</a></div><div class="ttdoc">Represents a module (compilation unit) in LLIR.</div><div class="ttdef"><b>Definition:</b> llir.hpp:479</div></div>
 <div class="ttc" id="aclassLLIR_1_1PointerType_html_a024a428cabd0e520363d585d4e59eb39"><div class="ttname"><a href="classLLIR_1_1PointerType.html#a024a428cabd0e520363d585d4e59eb39">LLIR::PointerType::getBaseType</a></div><div class="ttdeci">Type * getBaseType()</div><div class="ttdoc">Returns the base type of the pointer.</div><div class="ttdef"><b>Definition:</b> llir.hpp:149</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a8a994ec348f10e929e3ccc6f2aec212a"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a8a994ec348f10e929e3ccc6f2aec212a">LLIR::Instruction::setDataType</a></div><div class="ttdeci">void setDataType(Type *d)</div><div class="ttdoc">Set the data type of the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:59</div></div>
 <div class="ttc" id="aclassLLIR_1_1PointerType_html"><div class="ttname"><a href="classLLIR_1_1PointerType.html">LLIR::PointerType</a></div><div class="ttdoc">Represents a pointer.</div><div class="ttdef"><b>Definition:</b> llir.hpp:124</div></div>
 <div class="ttc" id="aclassLLIR_1_1Type_html_a7938db7f0fa6a7b4c2b917a86ab4db24"><div class="ttname"><a href="classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24">LLIR::Type::getType</a></div><div class="ttdeci">DataType getType()</div><div class="ttdoc">Returns what kind of type you have.</div><div class="ttdef"><b>Definition:</b> llir.hpp:111</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_ad1250c9cf54835206f663632f47e70e8"><div class="ttname"><a href="classLLIR_1_1Instruction.html#ad1250c9cf54835206f663632f47e70e8">LLIR::Instruction::getDataType</a></div><div class="ttdeci">Type * getDataType()</div><div class="ttdoc">Returns the data type of the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:84</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_ab30b8ea11b09f8ebdbe0b65710b25969"><div class="ttname"><a href="classLLIR_1_1Function.html#ab30b8ea11b09f8ebdbe0b65710b25969">LLIR::Function::getBlockCount</a></div><div class="ttdeci">int getBlockCount()</div><div class="ttdoc">Returns the number of blocks in the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:226</div></div>
 <div class="ttc" id="aclassLLIR_1_1PointerType_html_a3293bfbe235119ed267a0f0f48f16023"><div class="ttname"><a href="classLLIR_1_1PointerType.html#a3293bfbe235119ed267a0f0f48f16023">LLIR::PointerType::PointerType</a></div><div class="ttdeci">PointerType(Type *baseType)</div><div class="ttdoc">Create a new Pointer Type.</div><div class="ttdef"><b>Definition:</b> llir.cpp:8</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a391fa20247ecbc46ec1ad3b291261ec2"><div class="ttname"><a href="classLLIR_1_1Function.html#a391fa20247ecbc46ec1ad3b291261ec2">LLIR::Function::addBlockAfter</a></div><div class="ttdeci">void addBlockAfter(Block *block, Block *newBlock)</div><div class="ttdoc">Adds a new block after an existing block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:208</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_ab0a20c75c75da160ceb76f14579b8cd0"><div class="ttname"><a href="classLLIR_1_1Function.html#ab0a20c75c75da160ceb76f14579b8cd0">LLIR::Function::getArgCount</a></div><div class="ttdeci">int getArgCount()</div><div class="ttdoc">Returns the number of arguments for the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:234</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_acb2243d0c9619f0e269a6f93e51ef01d"><div class="ttname"><a href="classLLIR_1_1Module.html#acb2243d0c9619f0e269a6f93e51ef01d">LLIR::Module::addFunction</a></div><div class="ttdeci">void addFunction(Function *func)</div><div class="ttdoc">Adds a function to the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:259</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a0db33fad114c32c12c544bd37922df9e"><div class="ttname"><a href="classLLIR_1_1Function.html#a0db33fad114c32c12c544bd37922df9e">LLIR::Function::getArgType</a></div><div class="ttdeci">Type * getArgType(int pos)</div><div class="ttdoc">Returns the argument type at a given position.</div><div class="ttdef"><b>Definition:</b> llir.cpp:238</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html"><div class="ttname"><a href="classLLIR_1_1Instruction.html">LLIR::Instruction</a></div><div class="ttdoc">Represents an instruction in LLIR.</div><div class="ttdef"><b>Definition:</b> llir.hpp:187</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_aadb7f9af6a3f6d96e496822b2002f73e"><div class="ttname"><a href="classLLIR_1_1Instruction.html#aadb7f9af6a3f6d96e496822b2002f73e">LLIR::Instruction::setOperand3</a></div><div class="ttdeci">void setOperand3(Operand *o)</div><div class="ttdoc">Sets the third source operand for the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:76</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a3b88c040a3129eb76b71515754e97e12"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a3b88c040a3129eb76b71515754e97e12">LLIR::Instruction::getOperand1</a></div><div class="ttdeci">Operand * getOperand1()</div><div class="ttdoc">Returns the first source operand.</div><div class="ttdef"><b>Definition:</b> llir.cpp:92</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_ad91efd9553a31245e470dd173f747d30"><div class="ttname"><a href="classLLIR_1_1Instruction.html#ad91efd9553a31245e470dd173f747d30">LLIR::Instruction::getType</a></div><div class="ttdeci">InstrType getType()</div><div class="ttdoc">Returns the instruction type.</div><div class="ttdef"><b>Definition:</b> llir.cpp:80</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_a5f9bae16b6215e5962b910352d0a9604"><div class="ttname"><a href="classLLIR_1_1Block.html#a5f9bae16b6215e5962b910352d0a9604">LLIR::Block::Block</a></div><div class="ttdeci">Block(std::string name)</div><div class="ttdoc">Creates a new LLIR block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:128</div></div>
 <div class="ttc" id="aclassLLIR_1_1StringPtr_html"><div class="ttname"><a href="classLLIR_1_1StringPtr.html">LLIR::StringPtr</a></div><div class="ttdef"><b>Definition:</b> llir_operand.hpp:80</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_a3e036f81f75d5cae7dbc3d434c315f0b"><div class="ttname"><a href="classLLIR_1_1Block.html#a3e036f81f75d5cae7dbc3d434c315f0b">LLIR::Block::getInstrCount</a></div><div class="ttdeci">int getInstrCount()</div><div class="ttdoc">Returns the number of instructions in the block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:154</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a257feb612952dbd75cb1540e8f7b0153"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a257feb612952dbd75cb1540e8f7b0153">LLIR::Instruction::setDest</a></div><div class="ttdeci">void setDest(Operand *d)</div><div class="ttdoc">Sets the destination for the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:64</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_a0e3cb288af22dc4317ff21889945e396"><div class="ttname"><a href="classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396">LLIR::Module::getFunctionCount</a></div><div class="ttdeci">int getFunctionCount()</div><div class="ttdoc">Returns the number of functions in the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:271</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_afd8e73a53d9ac990695c4b42c449c688"><div class="ttname"><a href="classLLIR_1_1Instruction.html#afd8e73a53d9ac990695c4b42c449c688">LLIR::Instruction::Instruction</a></div><div class="ttdeci">Instruction(InstrType type)</div><div class="ttdoc">Create a new instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:46</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_a42844fec95f0cc5cea5252efa455b1b4"><div class="ttname"><a href="classLLIR_1_1Module.html#a42844fec95f0cc5cea5252efa455b1b4">LLIR::Module::addStringPtr</a></div><div class="ttdeci">void addStringPtr(StringPtr *ptr)</div><div class="ttdoc">Adds a global string constant to the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:263</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_a3470309d22a0cec04ace8be939fdd9c0"><div class="ttname"><a href="classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0">LLIR::Module::getFunction</a></div><div class="ttdeci">Function * getFunction(int pos)</div><div class="ttdoc">Returns a function at a given position in the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:275</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a7318cbd8a337960730f439986bd45276"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a7318cbd8a337960730f439986bd45276">LLIR::Instruction::getDest</a></div><div class="ttdeci">Operand * getDest()</div><div class="ttdoc">Returns the instruction's destination.</div><div class="ttdef"><b>Definition:</b> llir.cpp:88</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_aa0b44cf748917c507b05ad9073740e73"><div class="ttname"><a href="classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73">LLIR::Module::getString</a></div><div class="ttdeci">StringPtr * getString(int pos)</div><div class="ttdoc">Returns a string pointer at a given position.</div><div class="ttdef"><b>Definition:</b> llir.cpp:283</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_aa9d9897b79b70957e9361987aabd13c8"><div class="ttname"><a href="classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8">LLIR::Module::getStringCount</a></div><div class="ttdeci">int getStringCount()</div><div class="ttdoc">Returns the number of string constants in the module.</div><div class="ttdef"><b>Definition:</b> llir.cpp:279</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_a56c8da1606ee844407ebf97379ed6b7c"><div class="ttname"><a href="classLLIR_1_1Function.html#a56c8da1606ee844407ebf97379ed6b7c">LLIR::Function::getArg</a></div><div class="ttdeci">Reg * getArg(int pos)</div><div class="ttdoc">Returns the associated register for an argument at a given position.</div><div class="ttdef"><b>Definition:</b> llir.cpp:242</div></div>
 <div class="ttc" id="aclassLLIR_1_1StructType_html"><div class="ttname"><a href="classLLIR_1_1StructType.html">LLIR::StructType</a></div><div class="ttdoc">Represents a structure.</div><div class="ttdef"><b>Definition:</b> llir.hpp:161</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_ad4cfbe173a207f16e10c3e5ce9bcb183"><div class="ttname"><a href="classLLIR_1_1Function.html#ad4cfbe173a207f16e10c3e5ce9bcb183">LLIR::Function::Function</a></div><div class="ttdeci">Function(std::string name, Linkage linkage)</div><div class="ttdoc">Creates a new function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:165</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_aa1e0c8fd3d0b95217eb01936ae4b8bfa"><div class="ttname"><a href="classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa">LLIR::Module::getFunctionByName</a></div><div class="ttdeci">Function * getFunctionByName(std::string fname)</div><div class="ttdoc">Searches for and returns a function based on a given name.</div><div class="ttdef"><b>Definition:</b> llir.cpp:287</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a3cfa83b65813cf6b93da81c4f0d2df27"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a3cfa83b65813cf6b93da81c4f0d2df27">LLIR::Instruction::setOperand2</a></div><div class="ttdeci">void setOperand2(Operand *o)</div><div class="ttdoc">Sets the second source operand for the instruction.</div><div class="ttdef"><b>Definition:</b> llir.cpp:72</div></div>
-<div class="ttc" id="aclassLLIR_1_1FunctionCall_html"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html">LLIR::FunctionCall</a></div><div class="ttdef"><b>Definition:</b> llir.hpp:272</div></div>
+<div class="ttc" id="aclassLLIR_1_1FunctionCall_html"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html">LLIR::FunctionCall</a></div><div class="ttdoc">Represents a function call instruction.</div><div class="ttdef"><b>Definition:</b> llir.hpp:275</div></div>
+<div class="ttc" id="aclassLLIR_1_1Function_html_af66f31ec9afec7bd92a842518b8f83b0"><div class="ttname"><a href="classLLIR_1_1Function.html#af66f31ec9afec7bd92a842518b8f83b0">LLIR::Function::setArgs</a></div><div class="ttdeci">void setArgs(std::vector&lt; Type * &gt; args)</div><div class="ttdoc">Sets the function arguments of a function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:189</div></div>
 <div class="ttc" id="aclassLLIR_1_1Instruction_html_a87b6a48d7e5178c89e439bd14bb8a4dc"><div class="ttname"><a href="classLLIR_1_1Instruction.html#a87b6a48d7e5178c89e439bd14bb8a4dc">LLIR::Instruction::getOperand2</a></div><div class="ttdeci">Operand * getOperand2()</div><div class="ttdoc">Returns the second source operand.</div><div class="ttdef"><b>Definition:</b> llir.cpp:96</div></div>
 <div class="ttc" id="aclassLLIR_1_1Operand_html"><div class="ttname"><a href="classLLIR_1_1Operand.html">LLIR::Operand</a></div><div class="ttdef"><b>Definition:</b> llir_operand.hpp:23</div></div>
+<div class="ttc" id="aclassLLIR_1_1FunctionCall_html_a2f3397343d50285dfab1e8e7c60b9032"><div class="ttname"><a href="classLLIR_1_1FunctionCall.html#a2f3397343d50285dfab1e8e7c60b9032">LLIR::FunctionCall::getName</a></div><div class="ttdeci">std::string getName()</div><div class="ttdoc">Returns the name of the function.</div><div class="ttdef"><b>Definition:</b> llir.cpp:117</div></div>
+<div class="ttc" id="aclassLLIR_1_1Module_html_abe6ffad785be5a32853c22ec1cdda36b"><div class="ttname"><a href="classLLIR_1_1Module.html#abe6ffad785be5a32853c22ec1cdda36b">LLIR::Module::transform</a></div><div class="ttdeci">void transform()</div><div class="ttdoc">Hardware transformation.</div><div class="ttdef"><b>Definition:</b> transform.cpp:57</div></div>
+<div class="ttc" id="aclassLLIR_1_1Block_html_a62ee07b847d4f992f946ae69045a45ce"><div class="ttname"><a href="classLLIR_1_1Block.html#a62ee07b847d4f992f946ae69045a45ce">LLIR::Block::setID</a></div><div class="ttdeci">void setID(int id)</div><div class="ttdoc">Sets the unique ID for the block.</div><div class="ttdef"><b>Definition:</b> llir.cpp:142</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

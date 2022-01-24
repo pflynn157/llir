@@ -89,43 +89,271 @@ $(document).ready(function(){initNavTree('classLLIR_1_1Module.html',''); initRes
 <div class="title">LLIR::Module Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a module (compilation unit) in LLIR.  
+ <a href="classLLIR_1_1Module.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="llir_8hpp_source.html">llir.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a06a75a8b01218ddb970a8bc86f52df99"><td class="memItemLeft" align="right" valign="top"><a id="a06a75a8b01218ddb970a8bc86f52df99"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Module</b> (std::string name)</td></tr>
+<tr class="memitem:a06a75a8b01218ddb970a8bc86f52df99"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#a06a75a8b01218ddb970a8bc86f52df99">Module</a> (std::string name)</td></tr>
+<tr class="memdesc:a06a75a8b01218ddb970a8bc86f52df99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new module.  <a href="classLLIR_1_1Module.html#a06a75a8b01218ddb970a8bc86f52df99">More...</a><br /></td></tr>
 <tr class="separator:a06a75a8b01218ddb970a8bc86f52df99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2243d0c9619f0e269a6f93e51ef01d"><td class="memItemLeft" align="right" valign="top"><a id="acb2243d0c9619f0e269a6f93e51ef01d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addFunction</b> (<a class="el" href="classLLIR_1_1Function.html">Function</a> *func)</td></tr>
+<tr class="memitem:acb2243d0c9619f0e269a6f93e51ef01d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#acb2243d0c9619f0e269a6f93e51ef01d">addFunction</a> (<a class="el" href="classLLIR_1_1Function.html">Function</a> *func)</td></tr>
+<tr class="memdesc:acb2243d0c9619f0e269a6f93e51ef01d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a function to the module.  <a href="classLLIR_1_1Module.html#acb2243d0c9619f0e269a6f93e51ef01d">More...</a><br /></td></tr>
 <tr class="separator:acb2243d0c9619f0e269a6f93e51ef01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42844fec95f0cc5cea5252efa455b1b4"><td class="memItemLeft" align="right" valign="top"><a id="a42844fec95f0cc5cea5252efa455b1b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addStringPtr</b> (<a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> *ptr)</td></tr>
+<tr class="memitem:a42844fec95f0cc5cea5252efa455b1b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#a42844fec95f0cc5cea5252efa455b1b4">addStringPtr</a> (<a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> *ptr)</td></tr>
+<tr class="memdesc:a42844fec95f0cc5cea5252efa455b1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a global string constant to the module.  <a href="classLLIR_1_1Module.html#a42844fec95f0cc5cea5252efa455b1b4">More...</a><br /></td></tr>
 <tr class="separator:a42844fec95f0cc5cea5252efa455b1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4980b76cfc7ec2bad0b8facec6c5606f"><td class="memItemLeft" align="right" valign="top"><a id="a4980b76cfc7ec2bad0b8facec6c5606f"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> ()</td></tr>
+<tr class="memitem:a4980b76cfc7ec2bad0b8facec6c5606f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f">getName</a> ()</td></tr>
+<tr class="memdesc:a4980b76cfc7ec2bad0b8facec6c5606f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of the module.  <a href="classLLIR_1_1Module.html#a4980b76cfc7ec2bad0b8facec6c5606f">More...</a><br /></td></tr>
 <tr class="separator:a4980b76cfc7ec2bad0b8facec6c5606f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e3cb288af22dc4317ff21889945e396"><td class="memItemLeft" align="right" valign="top"><a id="a0e3cb288af22dc4317ff21889945e396"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getFunctionCount</b> ()</td></tr>
+<tr class="memitem:a0e3cb288af22dc4317ff21889945e396"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396">getFunctionCount</a> ()</td></tr>
+<tr class="memdesc:a0e3cb288af22dc4317ff21889945e396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of functions in the module.  <a href="classLLIR_1_1Module.html#a0e3cb288af22dc4317ff21889945e396">More...</a><br /></td></tr>
 <tr class="separator:a0e3cb288af22dc4317ff21889945e396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3470309d22a0cec04ace8be939fdd9c0"><td class="memItemLeft" align="right" valign="top"><a id="a3470309d22a0cec04ace8be939fdd9c0"></a>
-<a class="el" href="classLLIR_1_1Function.html">Function</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFunction</b> (int pos)</td></tr>
+<tr class="memitem:a3470309d22a0cec04ace8be939fdd9c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLLIR_1_1Function.html">Function</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0">getFunction</a> (int pos)</td></tr>
+<tr class="memdesc:a3470309d22a0cec04ace8be939fdd9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a function at a given position in the module.  <a href="classLLIR_1_1Module.html#a3470309d22a0cec04ace8be939fdd9c0">More...</a><br /></td></tr>
 <tr class="separator:a3470309d22a0cec04ace8be939fdd9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d9897b79b70957e9361987aabd13c8"><td class="memItemLeft" align="right" valign="top"><a id="aa9d9897b79b70957e9361987aabd13c8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getStringCount</b> ()</td></tr>
+<tr class="memitem:aa9d9897b79b70957e9361987aabd13c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8">getStringCount</a> ()</td></tr>
+<tr class="memdesc:aa9d9897b79b70957e9361987aabd13c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of string constants in the module.  <a href="classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8">More...</a><br /></td></tr>
 <tr class="separator:aa9d9897b79b70957e9361987aabd13c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0b44cf748917c507b05ad9073740e73"><td class="memItemLeft" align="right" valign="top"><a id="aa0b44cf748917c507b05ad9073740e73"></a>
-<a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getString</b> (int pos)</td></tr>
+<tr class="memitem:aa0b44cf748917c507b05ad9073740e73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73">getString</a> (int pos)</td></tr>
+<tr class="memdesc:aa0b44cf748917c507b05ad9073740e73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string pointer at a given position.  <a href="classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73">More...</a><br /></td></tr>
 <tr class="separator:aa0b44cf748917c507b05ad9073740e73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1e0c8fd3d0b95217eb01936ae4b8bfa"><td class="memItemLeft" align="right" valign="top"><a id="aa1e0c8fd3d0b95217eb01936ae4b8bfa"></a>
-<a class="el" href="classLLIR_1_1Function.html">Function</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getFunctionByName</b> (std::string fname)</td></tr>
+<tr class="memitem:aa1e0c8fd3d0b95217eb01936ae4b8bfa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLLIR_1_1Function.html">Function</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa">getFunctionByName</a> (std::string fname)</td></tr>
+<tr class="memdesc:aa1e0c8fd3d0b95217eb01936ae4b8bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches for and returns a function based on a given name.  <a href="classLLIR_1_1Module.html#aa1e0c8fd3d0b95217eb01936ae4b8bfa">More...</a><br /></td></tr>
 <tr class="separator:aa1e0c8fd3d0b95217eb01936ae4b8bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe6ffad785be5a32853c22ec1cdda36b"><td class="memItemLeft" align="right" valign="top"><a id="abe6ffad785be5a32853c22ec1cdda36b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>transform</b> ()</td></tr>
+<tr class="memitem:abe6ffad785be5a32853c22ec1cdda36b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Module.html#abe6ffad785be5a32853c22ec1cdda36b">transform</a> ()</td></tr>
+<tr class="memdesc:abe6ffad785be5a32853c22ec1cdda36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware transformation.  <a href="classLLIR_1_1Module.html#abe6ffad785be5a32853c22ec1cdda36b">More...</a><br /></td></tr>
 <tr class="separator:abe6ffad785be5a32853c22ec1cdda36b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78352e778d2407380626cb9c9a00d830"><td class="memItemLeft" align="right" valign="top"><a id="a78352e778d2407380626cb9c9a00d830"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
 <tr class="separator:a78352e778d2407380626cb9c9a00d830"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a module (compilation unit) in LLIR. </p>
+<p>A module is the base element of an LLIR project. A module corresponds to a single compilation unit. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a06a75a8b01218ddb970a8bc86f52df99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06a75a8b01218ddb970a8bc86f52df99">&#9670;&nbsp;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LLIR::Module::Module </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new module. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the module. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acb2243d0c9619f0e269a6f93e51ef01d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb2243d0c9619f0e269a6f93e51ef01d">&#9670;&nbsp;</a></span>addFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LLIR::Module::addFunction </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLLIR_1_1Function.html">Function</a> *&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a function to the module. </p>
+
+</div>
+</div>
+<a id="a42844fec95f0cc5cea5252efa455b1b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42844fec95f0cc5cea5252efa455b1b4">&#9670;&nbsp;</a></span>addStringPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LLIR::Module::addStringPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> *&#160;</td>
+          <td class="paramname"><em>ptr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a global string constant to the module. </p>
+<p>In most cases, this would correspond the .data section on Linux.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>The pointer to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3470309d22a0cec04ace8be939fdd9c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3470309d22a0cec04ace8be939fdd9c0">&#9670;&nbsp;</a></span>getFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLLIR_1_1Function.html">Function</a> * LLIR::Module::getFunction </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a function at a given position in the module. </p>
+
+</div>
+</div>
+<a id="aa1e0c8fd3d0b95217eb01936ae4b8bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e0c8fd3d0b95217eb01936ae4b8bfa">&#9670;&nbsp;</a></span>getFunctionByName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLLIR_1_1Function.html">Function</a> * LLIR::Module::getFunctionByName </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Searches for and returns a function based on a given name. </p>
+
+</div>
+</div>
+<a id="a0e3cb288af22dc4317ff21889945e396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3cb288af22dc4317ff21889945e396">&#9670;&nbsp;</a></span>getFunctionCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LLIR::Module::getFunctionCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of functions in the module. </p>
+
+</div>
+</div>
+<a id="a4980b76cfc7ec2bad0b8facec6c5606f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4980b76cfc7ec2bad0b8facec6c5606f">&#9670;&nbsp;</a></span>getName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string LLIR::Module::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the name of the module. </p>
+
+</div>
+</div>
+<a id="aa0b44cf748917c507b05ad9073740e73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0b44cf748917c507b05ad9073740e73">&#9670;&nbsp;</a></span>getString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classLLIR_1_1StringPtr.html">StringPtr</a> * LLIR::Module::getString </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a string pointer at a given position. </p>
+
+</div>
+</div>
+<a id="aa9d9897b79b70957e9361987aabd13c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d9897b79b70957e9361987aabd13c8">&#9670;&nbsp;</a></span>getStringCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LLIR::Module::getStringCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the number of string constants in the module. </p>
+
+</div>
+</div>
+<a id="abe6ffad785be5a32853c22ec1cdda36b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6ffad785be5a32853c22ec1cdda36b">&#9670;&nbsp;</a></span>transform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LLIR::Module::transform </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Hardware transformation. </p>
+<p>This runs the transform layer. The transform layer is in charge of converting virtual registers to real-world hardware elements. This MUST be called before using a hardware translation layer. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/<a class="el" href="llir_8hpp_source.html">llir.hpp</a></li>
 <li>src/llir.cpp</li>
