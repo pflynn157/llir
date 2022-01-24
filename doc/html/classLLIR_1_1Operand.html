@@ -90,6 +90,11 @@ $(document).ready(function(){initNavTree('classLLIR_1_1Operand.html',''); initRe
 <div class="title">LLIR::Operand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>The base for LLIR operands.  
+ <a href="classLLIR_1_1Operand.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="llir__operand_8hpp_source.html">llir_operand.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for LLIR::Operand:</div>
 <div class="dyncontent">
@@ -109,11 +114,11 @@ Inheritance diagram for LLIR::Operand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3285237cdeda1cb8ab8e1456891205db"><td class="memItemLeft" align="right" valign="top"><a id="a3285237cdeda1cb8ab8e1456891205db"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Operand</b> (OpType type)</td></tr>
+<tr class="memitem:a3285237cdeda1cb8ab8e1456891205db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Operand.html#a3285237cdeda1cb8ab8e1456891205db">Operand</a> (OpType type)</td></tr>
+<tr class="memdesc:a3285237cdeda1cb8ab8e1456891205db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new operand.  <a href="classLLIR_1_1Operand.html#a3285237cdeda1cb8ab8e1456891205db">More...</a><br /></td></tr>
 <tr class="separator:a3285237cdeda1cb8ab8e1456891205db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2f2d8f35d8c3bf8de78f0758f2e0b4e"><td class="memItemLeft" align="right" valign="top"><a id="ad2f2d8f35d8c3bf8de78f0758f2e0b4e"></a>
-OpType&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> ()</td></tr>
+<tr class="memitem:ad2f2d8f35d8c3bf8de78f0758f2e0b4e"><td class="memItemLeft" align="right" valign="top">OpType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLLIR_1_1Operand.html#ad2f2d8f35d8c3bf8de78f0758f2e0b4e">getType</a> ()</td></tr>
+<tr class="memdesc:ad2f2d8f35d8c3bf8de78f0758f2e0b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the type of the operand.  <a href="classLLIR_1_1Operand.html#ad2f2d8f35d8c3bf8de78f0758f2e0b4e">More...</a><br /></td></tr>
 <tr class="separator:ad2f2d8f35d8c3bf8de78f0758f2e0b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3f40d3933ac82c5c45987abb5c3b462"><td class="memItemLeft" align="right" valign="top"><a id="ad3f40d3933ac82c5c45987abb5c3b462"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> ()</td></tr>
@@ -125,6 +130,72 @@ Protected Attributes</h2></td></tr>
 OpType&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = OpType::None</td></tr>
 <tr class="separator:acd5124e77fbfbf5fb63e194352fb76a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The base for LLIR operands. </p>
+<p>This is the base class for all LLIR operands. This class generally should not be constructed directly; instead, use the derived versions. However, in cases where any type of LLIR operand is acceptable, this class should be used as a parameter/return type. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3285237cdeda1cb8ab8e1456891205db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3285237cdeda1cb8ab8e1456891205db">&#9670;&nbsp;</a></span>Operand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">LLIR::Operand::Operand </td>
+          <td>(</td>
+          <td class="paramtype">OpType&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a new operand. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the operand </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad2f2d8f35d8c3bf8de78f0758f2e0b4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2f2d8f35d8c3bf8de78f0758f2e0b4e">&#9670;&nbsp;</a></span>getType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OpType LLIR::Operand::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the type of the operand. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/<a class="el" href="llir__operand_8hpp_source.html">llir_operand.hpp</a></li>
 </ul>

@@ -24,5 +24,5 @@ var searchData=
   ['getoperand3_64',['getOperand3',['../classLLIR_1_1Instruction.html#a384b6fbe11cd6744fb43913caac5f37a',1,'LLIR::Instruction']]],
   ['getstring_65',['getString',['../classLLIR_1_1Module.html#aa0b44cf748917c507b05ad9073740e73',1,'LLIR::Module']]],
   ['getstringcount_66',['getStringCount',['../classLLIR_1_1Module.html#aa9d9897b79b70957e9361987aabd13c8',1,'LLIR::Module']]],
-  ['gettype_67',['getType',['../classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24',1,'LLIR::Type::getType()'],['../classLLIR_1_1Instruction.html#ad91efd9553a31245e470dd173f747d30',1,'LLIR::Instruction::getType()']]]
+  ['gettype_67',['getType',['../classLLIR_1_1Type.html#a7938db7f0fa6a7b4c2b917a86ab4db24',1,'LLIR::Type::getType()'],['../classLLIR_1_1Instruction.html#ad91efd9553a31245e470dd173f747d30',1,'LLIR::Instruction::getType()'],['../classLLIR_1_1Operand.html#ad2f2d8f35d8c3bf8de78f0758f2e0b4e',1,'LLIR::Operand::getType()']]]
 ];

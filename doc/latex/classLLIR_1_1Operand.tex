@@ -2,7 +2,17 @@
 \label{classLLIR_1_1Operand}\index{LLIR::Operand@{LLIR::Operand}}
 
 
-Inheritance diagram for L\+L\+IR\+::Operand\+:\nopagebreak
+The base for L\+L\+IR operands.  
+
+
+
+
+{\ttfamily \#include $<$llir\+\_\+operand.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::Operand\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,12 +22,10 @@ Inheritance diagram for L\+L\+IR\+::Operand\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Operand_a3285237cdeda1cb8ab8e1456891205db}} 
-{\bfseries Operand} (Op\+Type type)
-\item 
-\mbox{\label{classLLIR_1_1Operand_ad2f2d8f35d8c3bf8de78f0758f2e0b4e}} 
-Op\+Type {\bfseries get\+Type} ()
-\item 
+\textbf{ Operand} (Op\+Type type)
+\begin{DoxyCompactList}\small\item\em Creates a new operand. \end{DoxyCompactList}\item 
+Op\+Type \textbf{ get\+Type} ()
+\begin{DoxyCompactList}\small\item\em Returns the type of the operand. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Operand_ad3f40d3933ac82c5c45987abb5c3b462}} 
 virtual void {\bfseries print} ()
 \end{DoxyCompactItemize}
@@ -27,6 +35,42 @@ virtual void {\bfseries print} ()
 \mbox{\label{classLLIR_1_1Operand_acd5124e77fbfbf5fb63e194352fb76a0}} 
 Op\+Type {\bfseries type} = Op\+Type\+::\+None
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The base for L\+L\+IR operands. 
+
+This is the base class for all L\+L\+IR operands. This class generally should not be constructed directly; instead, use the derived versions. However, in cases where any type of L\+L\+IR operand is acceptable, this class should be used as a parameter/return type. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Operand_a3285237cdeda1cb8ab8e1456891205db}} 
+\index{LLIR::Operand@{LLIR::Operand}!Operand@{Operand}}
+\index{Operand@{Operand}!LLIR::Operand@{LLIR::Operand}}
+\doxysubsubsection{Operand()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Operand\+::\+Operand (\begin{DoxyParamCaption}\item[{Op\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Creates a new operand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the operand \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Operand_ad2f2d8f35d8c3bf8de78f0758f2e0b4e}} 
+\index{LLIR::Operand@{LLIR::Operand}!getType@{getType}}
+\index{getType@{getType}!LLIR::Operand@{LLIR::Operand}}
+\doxysubsubsection{getType()}
+{\footnotesize\ttfamily Op\+Type L\+L\+I\+R\+::\+Operand\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the type of the operand. 
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

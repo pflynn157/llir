@@ -17,15 +17,25 @@ enum class OpType {
     PReg         // Pointer register
 };
 
-//
-// The base class for operands
-//
+/*! \brief The base for LLIR operands
+ *
+ * This is the base class for all LLIR operands. This class generally should not be constructed directly;
+ * instead, use the derived versions. However, in cases where any type of LLIR operand is acceptable,
+ * this class should be used as a parameter/return type.
+ */
 class Operand {
 public:
+    /*! \brief Creates a new operand
+     *
+     * @param type The type of the operand
+     */
     explicit Operand(OpType type) {
         this->type = type;
     }
     
+    /*! \brief Returns the type of the operand
+     *
+     */
     OpType getType() { return type; }
     
     virtual void print() {}
@@ -33,7 +43,10 @@ protected:
     OpType type = OpType::None;
 };
 
-// Represents an immediate value
+/*! \brief An LLIR immediate value
+ *
+ * Represents an LLIR immediate operand. This can be of any byte length.
+ */
 class Imm : public Operand {
 public:
     explicit Imm(int64_t imm) : Operand(OpType::Imm) {
@@ -48,7 +61,12 @@ private:
     int64_t imm = 0;
 };
 
-// Represents a register
+/*! \brief An LLIR virtual register
+ *
+ * This represents a virtual register in LLIR. You should always use virtual registers for
+ * assignments. A virtual register can hold values and represent memory locations, depending
+ * on the situation.
+ */
 class Reg : public Operand {
 public:
     explicit Reg(std::string name) : Operand(OpType::Reg) {
@@ -62,7 +80,11 @@ private:
     std::string name = "";
 };
 
-// Represents a label
+/*! \brief An LLIR label
+ *
+ * Represents a label in LLIR. A label should correspond with a Block somewhere in
+ * the current function scope. In general, these are used in the branch instructions.
+ */
 class Label : public Operand {
 public:
     explicit Label(std::string name) : Operand(OpType::Label) {
@@ -76,7 +98,12 @@ private:
     std::string name = "";
 };
 
-// Represents a string
+/*! \brief An LLIR global string pointer
+ *
+ * This represents a string pointer in LLIR. A string pointer consists of the name of the
+ * pointer, and the value. There should be two copies of this class: one for the module, and
+ * the other whenever we need to reference the string.
+ */
 class StringPtr : public Operand {
 public:
     explicit StringPtr(std::string name, std::string val) : Operand(OpType::String) {

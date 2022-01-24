@@ -9,5 +9,5 @@ digraph "LLIR::FunctionCall"
   Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" dataType" ,fontname="Helvetica"];
   Node3 [label="LLIR::Type",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1Type.html",tooltip="Type- The base of all data types."];
   Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" src1\nsrc2\nsrc3\ndest" ,fontname="Helvetica"];
-  Node4 [label="LLIR::Operand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1Operand.html",tooltip=" "];
+  Node4 [label="LLIR::Operand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classLLIR_1_1Operand.html",tooltip="The base for LLIR operands."];
 }

@@ -2,7 +2,17 @@
 \label{classLLIR_1_1StringPtr}\index{LLIR::StringPtr@{LLIR::StringPtr}}
 
 
-Inheritance diagram for L\+L\+IR\+::String\+Ptr\+:\nopagebreak
+An L\+L\+IR global string pointer.  
+
+
+
+
+{\ttfamily \#include $<$llir\+\_\+operand.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::String\+Ptr\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +21,8 @@ Inheritance diagram for L\+L\+IR\+::String\+Ptr\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for L\+L\+IR\+::String\+Ptr\+:\nopagebreak
+Collaboration diagram for L\+L\+IR\+::String\+Ptr\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +46,11 @@ void {\bfseries print} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+An L\+L\+IR global string pointer. 
+
+This represents a string pointer in L\+L\+IR. A string pointer consists of the name of the pointer, and the value. There should be two copies of this class\+: one for the module, and the other whenever we need to reference the string. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
