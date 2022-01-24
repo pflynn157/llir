@@ -1,0 +1,17 @@
+#module a.out
+
+extern *i8 malloc(%0:*i8);
+extern void println(%0:*i8);
+extern void print(%0:*i8);
+extern i32 strlen(%0:*i8);
+extern i32 stringcmp(%0:*i8, %1:*i8);
+extern *i8 strcat_str(%0:*i8, %1:*i8);
+extern *i8 strcat_char(%0:*i8, %1:i8);
+global i32 main() {
+entry:
+  %0 = alloca i32 ;
+  store i32 32, %0;
+  %1 = load i32 %0;
+  void println(STR0("%d"), %1);
+  ret i32 0;
+}

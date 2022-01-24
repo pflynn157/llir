@@ -178,25 +178,84 @@ private:
     std::vector<Type *> elementTypes;
 };
 
-//
-// The base class for instructions
-//
+/*! \brief Represents an instruction in LLIR
+ *
+ * This class is used to represent a structure in LLIR. Although inheritence for more specific instructions can
+ * be done, in general using this class should suffice for most instructions. If you are working in LLIR, only
+ * extend this class if you have a specific need.
+ */
 class Instruction {
 public:
+    /*! \brief Create a new instruction
+     *
+     * @param type The type of instruction to be created
+     */
     explicit Instruction(InstrType type);
     ~Instruction();
     
+    /*! \brief Set the data type of the instruction
+     *
+     * Sets the data type for the instruction. This is assumed to be Void by default, but obviously this
+     * will not work on math and return types. You must set this or you could run into problems.
+     *
+     * @param d The type of the instruction
+     */
     void setDataType(Type *d);
+    
+    /*! \brief Sets the destination for the instruction
+     *
+     * Note this is not needed for all instructions
+     *
+     * @param d The operand representing the destination
+     */
     void setDest(Operand *d);
+    
+    /*! \brief Sets the first source operand for the instruction
+     *
+     * @param o The operand
+     */
     void setOperand1(Operand *o);
+    
+    /*! \brief Sets the second source operand for the instruction
+     *
+     * @param o The operand
+     */
     void setOperand2(Operand *o);
+    
+    /*! \brief Sets the third source operand for the instruction
+     *
+     * @param o The operand
+     */
     void setOperand3(Operand *o);
     
+    /*! \brief Returns the instruction type
+     *
+     */
     InstrType getType();
+    
+    /*! \brief Returns the data type of the instruction
+     *
+     */
     Type *getDataType();
+    
+    /*! \brief Returns the instruction's destination
+     *
+     */
     Operand *getDest();
+    
+    /*! \brief Returns the first source operand
+     *
+     */
     Operand *getOperand1();
+    
+    /*! \brief Returns the second source operand
+     *
+     */
     Operand *getOperand2();
+    
+    /*! \brief Returns the third source operand
+     *
+     */
     Operand *getOperand3();
     
     virtual void print();

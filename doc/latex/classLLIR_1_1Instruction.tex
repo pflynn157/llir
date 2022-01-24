@@ -2,7 +2,17 @@
 \label{classLLIR_1_1Instruction}\index{LLIR::Instruction@{LLIR::Instruction}}
 
 
-Inheritance diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
+Represents an instruction in L\+L\+IR.  
+
+
+
+
+{\ttfamily \#include $<$llir.\+hpp$>$}
+
+
+
+Inheritance diagram for L\+L\+IR\+::Instruction\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,7 +21,8 @@ Inheritance diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
+Collaboration diagram for L\+L\+IR\+::Instruction\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,42 +32,30 @@ Collaboration diagram for L\+L\+IR\+::Instruction\+:\nopagebreak
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\label{classLLIR_1_1Instruction_afd8e73a53d9ac990695c4b42c449c688}} 
-{\bfseries Instruction} (Instr\+Type type)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a8a994ec348f10e929e3ccc6f2aec212a}} 
-void {\bfseries set\+Data\+Type} (\textbf{ Type} $\ast$d)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a257feb612952dbd75cb1540e8f7b0153}} 
-void {\bfseries set\+Dest} (\textbf{ Operand} $\ast$d)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a6907c73bc2a3e1944650255b97f082cf}} 
-void {\bfseries set\+Operand1} (\textbf{ Operand} $\ast$o)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a3cfa83b65813cf6b93da81c4f0d2df27}} 
-void {\bfseries set\+Operand2} (\textbf{ Operand} $\ast$o)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_aadb7f9af6a3f6d96e496822b2002f73e}} 
-void {\bfseries set\+Operand3} (\textbf{ Operand} $\ast$o)
-\item 
-\mbox{\label{classLLIR_1_1Instruction_ad91efd9553a31245e470dd173f747d30}} 
-Instr\+Type {\bfseries get\+Type} ()
-\item 
-\mbox{\label{classLLIR_1_1Instruction_ad1250c9cf54835206f663632f47e70e8}} 
-\textbf{ Type} $\ast$ {\bfseries get\+Data\+Type} ()
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a7318cbd8a337960730f439986bd45276}} 
-\textbf{ Operand} $\ast$ {\bfseries get\+Dest} ()
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a3b88c040a3129eb76b71515754e97e12}} 
-\textbf{ Operand} $\ast$ {\bfseries get\+Operand1} ()
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a87b6a48d7e5178c89e439bd14bb8a4dc}} 
-\textbf{ Operand} $\ast$ {\bfseries get\+Operand2} ()
-\item 
-\mbox{\label{classLLIR_1_1Instruction_a384b6fbe11cd6744fb43913caac5f37a}} 
-\textbf{ Operand} $\ast$ {\bfseries get\+Operand3} ()
-\item 
+\textbf{ Instruction} (Instr\+Type type)
+\begin{DoxyCompactList}\small\item\em Create a new instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Data\+Type} (\textbf{ Type} $\ast$d)
+\begin{DoxyCompactList}\small\item\em Set the data type of the instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Dest} (\textbf{ Operand} $\ast$d)
+\begin{DoxyCompactList}\small\item\em Sets the destination for the instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Operand1} (\textbf{ Operand} $\ast$o)
+\begin{DoxyCompactList}\small\item\em Sets the first source operand for the instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Operand2} (\textbf{ Operand} $\ast$o)
+\begin{DoxyCompactList}\small\item\em Sets the second source operand for the instruction. \end{DoxyCompactList}\item 
+void \textbf{ set\+Operand3} (\textbf{ Operand} $\ast$o)
+\begin{DoxyCompactList}\small\item\em Sets the third source operand for the instruction. \end{DoxyCompactList}\item 
+Instr\+Type \textbf{ get\+Type} ()
+\begin{DoxyCompactList}\small\item\em Returns the instruction type. \end{DoxyCompactList}\item 
+\textbf{ Type} $\ast$ \textbf{ get\+Data\+Type} ()
+\begin{DoxyCompactList}\small\item\em Returns the data type of the instruction. \end{DoxyCompactList}\item 
+\textbf{ Operand} $\ast$ \textbf{ get\+Dest} ()
+\begin{DoxyCompactList}\small\item\em Returns the instruction\textquotesingle{}s destination. \end{DoxyCompactList}\item 
+\textbf{ Operand} $\ast$ \textbf{ get\+Operand1} ()
+\begin{DoxyCompactList}\small\item\em Returns the first source operand. \end{DoxyCompactList}\item 
+\textbf{ Operand} $\ast$ \textbf{ get\+Operand2} ()
+\begin{DoxyCompactList}\small\item\em Returns the second source operand. \end{DoxyCompactList}\item 
+\textbf{ Operand} $\ast$ \textbf{ get\+Operand3} ()
+\begin{DoxyCompactList}\small\item\em Returns the third source operand. \end{DoxyCompactList}\item 
 \mbox{\label{classLLIR_1_1Instruction_a047eb44ffa11c9f058a5b58e632200c2}} 
 virtual void {\bfseries print} ()
 \end{DoxyCompactItemize}
@@ -81,6 +80,171 @@ Instr\+Type {\bfseries type} = Instr\+Type\+::\+None
 \mbox{\label{classLLIR_1_1Instruction_abe782ca14abff9391fed88687b54eba1}} 
 \textbf{ Operand} $\ast$ {\bfseries src3} = nullptr
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents an instruction in L\+L\+IR. 
+
+This class is used to represent a structure in L\+L\+IR. Although inheritence for more specific instructions can be done, in general using this class should suffice for most instructions. If you are working in L\+L\+IR, only extend this class if you have a specific need. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classLLIR_1_1Instruction_afd8e73a53d9ac990695c4b42c449c688}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!Instruction@{Instruction}}
+\index{Instruction@{Instruction}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{Instruction()}
+{\footnotesize\ttfamily L\+L\+I\+R\+::\+Instruction\+::\+Instruction (\begin{DoxyParamCaption}\item[{Instr\+Type}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Create a new instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of instruction to be created \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{classLLIR_1_1Instruction_ad1250c9cf54835206f663632f47e70e8}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getDataType@{getDataType}}
+\index{getDataType@{getDataType}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getDataType()}
+{\footnotesize\ttfamily \textbf{ Type} $\ast$ L\+L\+I\+R\+::\+Instruction\+::get\+Data\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the data type of the instruction. 
+
+\mbox{\label{classLLIR_1_1Instruction_a7318cbd8a337960730f439986bd45276}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getDest@{getDest}}
+\index{getDest@{getDest}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getDest()}
+{\footnotesize\ttfamily \textbf{ Operand} $\ast$ L\+L\+I\+R\+::\+Instruction\+::get\+Dest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the instruction\textquotesingle{}s destination. 
+
+\mbox{\label{classLLIR_1_1Instruction_a3b88c040a3129eb76b71515754e97e12}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getOperand1@{getOperand1}}
+\index{getOperand1@{getOperand1}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getOperand1()}
+{\footnotesize\ttfamily \textbf{ Operand} $\ast$ L\+L\+I\+R\+::\+Instruction\+::get\+Operand1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the first source operand. 
+
+\mbox{\label{classLLIR_1_1Instruction_a87b6a48d7e5178c89e439bd14bb8a4dc}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getOperand2@{getOperand2}}
+\index{getOperand2@{getOperand2}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getOperand2()}
+{\footnotesize\ttfamily \textbf{ Operand} $\ast$ L\+L\+I\+R\+::\+Instruction\+::get\+Operand2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the second source operand. 
+
+\mbox{\label{classLLIR_1_1Instruction_a384b6fbe11cd6744fb43913caac5f37a}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getOperand3@{getOperand3}}
+\index{getOperand3@{getOperand3}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getOperand3()}
+{\footnotesize\ttfamily \textbf{ Operand} $\ast$ L\+L\+I\+R\+::\+Instruction\+::get\+Operand3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the third source operand. 
+
+\mbox{\label{classLLIR_1_1Instruction_ad91efd9553a31245e470dd173f747d30}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!getType@{getType}}
+\index{getType@{getType}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{getType()}
+{\footnotesize\ttfamily Instr\+Type L\+L\+I\+R\+::\+Instruction\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the instruction type. 
+
+\mbox{\label{classLLIR_1_1Instruction_a8a994ec348f10e929e3ccc6f2aec212a}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!setDataType@{setDataType}}
+\index{setDataType@{setDataType}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{setDataType()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Instruction\+::set\+Data\+Type (\begin{DoxyParamCaption}\item[{\textbf{ Type} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Set the data type of the instruction. 
+
+Sets the data type for the instruction. This is assumed to be Void by default, but obviously this will not work on math and return types. You must set this or you could run into problems.
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The type of the instruction \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Instruction_a257feb612952dbd75cb1540e8f7b0153}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!setDest@{setDest}}
+\index{setDest@{setDest}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{setDest()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Instruction\+::set\+Dest (\begin{DoxyParamCaption}\item[{\textbf{ Operand} $\ast$}]{d }\end{DoxyParamCaption})}
+
+
+
+Sets the destination for the instruction. 
+
+Note this is not needed for all instructions
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & The operand representing the destination \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Instruction_a6907c73bc2a3e1944650255b97f082cf}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!setOperand1@{setOperand1}}
+\index{setOperand1@{setOperand1}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{setOperand1()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Instruction\+::set\+Operand1 (\begin{DoxyParamCaption}\item[{\textbf{ Operand} $\ast$}]{o }\end{DoxyParamCaption})}
+
+
+
+Sets the first source operand for the instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & The operand \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Instruction_a3cfa83b65813cf6b93da81c4f0d2df27}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!setOperand2@{setOperand2}}
+\index{setOperand2@{setOperand2}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{setOperand2()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Instruction\+::set\+Operand2 (\begin{DoxyParamCaption}\item[{\textbf{ Operand} $\ast$}]{o }\end{DoxyParamCaption})}
+
+
+
+Sets the second source operand for the instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & The operand \\
+\hline
+\end{DoxyParams}
+\mbox{\label{classLLIR_1_1Instruction_aadb7f9af6a3f6d96e496822b2002f73e}} 
+\index{LLIR::Instruction@{LLIR::Instruction}!setOperand3@{setOperand3}}
+\index{setOperand3@{setOperand3}!LLIR::Instruction@{LLIR::Instruction}}
+\doxysubsubsection{setOperand3()}
+{\footnotesize\ttfamily void L\+L\+I\+R\+::\+Instruction\+::set\+Operand3 (\begin{DoxyParamCaption}\item[{\textbf{ Operand} $\ast$}]{o }\end{DoxyParamCaption})}
+
+
+
+Sets the third source operand for the instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & The operand \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
