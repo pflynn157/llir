@@ -1,3 +1,8 @@
+//
+// Copyright 2022 Patrick Flynn
+// This file is part of the LLIR framework.
+// LLIR is licensed under the BSD-3 license. See the COPYING file for more information.
+//
 #include "llir.hpp"
 
 namespace LLIR {
