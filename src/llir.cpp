@@ -21,7 +21,7 @@ PointerType::PointerType(DataType type) {
 }
 
 PointerType::~PointerType() {
-    delete baseType;
+    if (baseType) delete baseType;
 }
 
 //

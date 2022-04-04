@@ -35,5 +35,9 @@ int main(int argc, char **argv) {
     writer->writeToFile("/tmp/test1.s");
     system("gcc /tmp/test1.s -o ./test_bin/test1");
     
+    delete mod;
+    delete builder;
+    delete writer;
+    
     return 0;
 }

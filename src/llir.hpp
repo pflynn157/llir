@@ -103,6 +103,8 @@ public:
         this->type = type;
     }
     
+    virtual ~Type() {}
+    
     // Convience creators for types
     static Type *createVoidType() { return new Type(DataType::Void); }
     static Type *createI8Type() { return new Type(DataType::I8); }
