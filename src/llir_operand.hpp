@@ -38,6 +38,8 @@ public:
         this->type = type;
     }
     
+    virtual ~Operand() {}
+    
     /*! \brief Returns the type of the operand
      *
      */

@@ -73,5 +73,9 @@ int main(int argc, char **argv) {
     writer->writeToFile("/tmp/test2.s");
     system("gcc /tmp/test2.s -o ./test_bin/test2");
     
+    delete mod;
+    delete builder;
+    delete writer;
+    
     return 0;
 }
