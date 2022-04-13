@@ -5,7 +5,7 @@
 //
 #pragma once
 
-#include <llir.hpp>
+#include "llir.hpp"
 
 namespace LLIR {
 
@@ -37,6 +37,10 @@ public:
         currentFunc = func;
         regCounter = currentFunc->getArgCount();
     };
+    
+    Function *getCurrentFunction() {
+        return currentFunc;
+    }
     
     /*! \brief Create a new block and set the insert point
      *

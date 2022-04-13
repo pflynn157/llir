@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include <llir_operand.hpp>
+#include "llir_operand.hpp"
 
 namespace LLIR {
 
@@ -403,6 +403,10 @@ public:
      * @param d The type to set
      */
     void setDataType(Type *d);
+    
+    Type *getDataType() {
+        return dataType;
+    }
     
     /*! \brief Sets the function arguments of a function
      *
